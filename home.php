@@ -22,7 +22,9 @@
 			</div>
 		</a>
 		<a href="aboutus.php">
-			About Us
+			<div class="button navButton">
+				About Us
+			</div>
 		</a>
 		<a href="news.php">
 			News
