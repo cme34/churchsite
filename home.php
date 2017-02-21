@@ -15,7 +15,33 @@
 	session_start();
 	createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
 	?>
-	
+	<div id="nav">
+		<a href="home.php">
+			<div class="button navButton">
+				Home
+			</div>
+		</a>
+		<a href="aboutus.php">
+			About Us
+		</a>
+		<a href="news.php">
+			News
+		</a>
+		<a href="popularactivities.php">
+			Popular Activities
+		</a>
+		<a href="churchyear.php">
+			Church Year
+		</a>
+		<a href="youth.php">
+			Youth
+		</a>
+		<a href="outreach.php">
+			Outreach
+		</a>
+		<a href="directions.php">
+			Directions
+		</a>
 	
 	
 	<script src="js/vendor/jquery.js"></script>

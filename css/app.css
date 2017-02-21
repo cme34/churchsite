@@ -1,0 +1,16 @@
+.navButton
+{
+	background-color: #a33030;
+	color: #fefefe;
+	margin: 0;
+}	.navButton:hover, .navButton:focus {
+		background-color: #e23131;
+		color: #fefefe;
+	}
+
+#nav
+{
+	margin-left: 64px;
+	float: top;
+	background-color: #a33030;
+}
