@@ -8,9 +8,70 @@
 		color: #fefefe;
 	}
 
+.section
+{
+	width: 100%;
+}
+
+.center
+{
+	text-align: center;
+}
+
+.floatleft
+{
+	float: left;
+	padding: right;
+}
+
+.floatright
+{
+	float: right;
+	padding: left;
+}
+
+.site-container 
+{
+	width: 100%;
+	padding: 32px;
+	border-style: solid;
+	border-width: 4px;
+	border-color: #1088d7;
+	margin: auto;
+	margin-top: 32px;
+	margin-bottom: 32px;
+	background-color: #fcfbe3;
+	overflow: hidden;
+}
+
 #nav
 {
 	margin-left: 64px;
 	float: top;
 	background-color: #a33030;
+}
+
+#newsFeed 
+{
+	background-color: red;
+}
+
+#weeklySchedule 
+{
+	background-color: green;
+}
+
+#footer
+{
+	font-size: medium;
+	font-style: italic;
+	text-align: center;
+	clear: both;
+	border-style: solid;
+	border-width: 4px;
+	border-color: #1088d7;
+	margin: auto;
+	margin-bottom: 32px;
+	background-color: #fcfbe3;
+	overflow: hidden;
 }
