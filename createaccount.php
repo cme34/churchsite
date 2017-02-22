@@ -1,3 +1,11 @@
+<?php
+//If the user is signed in, prevent them from accessing this page
+session_start();
+if (isset($_SESSION["username"])) {
+	header("Location: home.php");
+}
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -9,13 +17,9 @@
 	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
 	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
 	<?php include 'php scripts/navigator.php';?>
+	<?php include 'php scripts/footer.php';?>
 </head>
-<body>
-	<?php
-	session_start();
-	createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
-	?>
-	
+<body>	
 	<h1>Create Account</h1>
 	<div>
 		<form Action="php scripts/createaccountscript.php" Method="POST">
@@ -44,6 +48,11 @@
 			?>
 		</form>
 	</div>
+	
+	<?php
+	createFooter();    //Create the footer at the bottom of the page. This is defined in footer.php
+	createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
+	?>
 	
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>

@@ -23,4 +23,12 @@
 			setTimeout(stay, transitionTime);
 		}
 	}
+	
+	slideShow('slideShow1', 4000, 1000);
+	
+	//$(window).resize(function() {
+	//	$('#slideShow1Frame').height($('#slideShow1Frame').width() * 9/16);
+	//	console.log($('#slideShow1Frame').height());
+	//});
+	//$('#slideShow1Frame').height($('#slideShow1Frame').width() * 9/16);
 })();

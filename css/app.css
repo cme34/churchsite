@@ -1,16 +1,37 @@
-.navButton
+body {
+	background-color: #aaaaaa;
+}
+
+ul {
+	list-style: none;
+}
+
+.border {
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 4px;
+}
+
+.buttonNav
 {
 	background-color: #a33030;
 	color: #fefefe;
+	font-size: 16pt;
+	height: 56px;
 	margin: 0;
-}	.navButton:hover, .navButton:focus {
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 18px 21px 10px 21px;
+}	.buttonNav:hover, .buttonNav:focus {
 		background-color: #e23131;
 		color: #fefefe;
 	}
-
-.section
-{
-	width: 100%;
+	
+.buttonRow {
+	display: table;
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .center
@@ -18,60 +39,129 @@
 	text-align: center;
 }
 
+.clear {
+	clear: both;
+}
+
+.content {
+	width: 85%;
+	margin: 88px auto 32px auto;
+}
+
 .floatleft
 {
 	float: left;
-	padding: right;
 }
 
 .floatright
 {
 	float: right;
-	padding: left;
 }
 
-.site-container 
+.section
 {
 	width: 100%;
-	padding: 32px;
-	border-style: solid;
-	border-width: 4px;
-	border-color: #1088d7;
-	margin: auto;
-	margin-top: 32px;
-	margin-bottom: 32px;
-	background-color: #fcfbe3;
-	overflow: hidden;
+	height: 320px;
 }
 
-#nav
-{
-	margin-left: 64px;
-	float: top;
-	background-color: #a33030;
+.slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: inherit;
+	height: inherit;
 }
 
-#newsFeed 
-{
-	background-color: red;
+.slideImage {
+	width: inherit;
+	height: inherit;
 }
 
-#weeklySchedule 
-{
-	background-color: green;
+.slideText {
+	position: absolute;
+	background: rgba(24, 24, 24, 0.25);
+	position: absolute;
+	color: #fefefe;
+	margin: 0;
+	padding: 16px 0;
+	width: 33.33%;
+	text-align: center;
+	font-size: 18pt;
+	bottom: 0;
+	left: 0;
+}
+
+#copyright {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 8px;
 }
 
 #footer
 {
-	font-size: medium;
+	position: relative;
+	background-color: #a33030;
+	color: #fefefe;
 	font-style: italic;
-	text-align: center;
-	clear: both;
-	border-style: solid;
-	border-width: 4px;
-	border-color: #1088d7;
+	width: 100%;
+	height: 256px;
+	margin: 0;
+	padding: 8px;
+}
+
+#footerFacebook {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 8px;
+}
+
+#footerImageContainer {
+	position: relative;
+	width: 480px;
+	height: 240px;
 	margin: auto;
-	margin-bottom: 32px;
-	background-color: #fcfbe3;
-	overflow: hidden;
+	padding: 0;
+}
+
+#nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #a33030;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	opacity: 0.70;
+	
+	transition: opacity 1s ease-out;
+}	#nav:hover {
+		opacity: 0.90;
+	}
+
+#newsFeed 
+{
+	background-color: #cccccc;
+	height: 320px;
+	min-height: 320px;
+}
+
+#slideShow1 {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+}
+
+#slideShow1Frame {
+	position: relative;
+	width: 100%;
+	height: 80vh;
+}
+
+#weeklySchedule 
+{
+	background-color: #cccccc;
+	height: 320px;
+	min-height: 320px;
 }
