@@ -95,5 +95,8 @@
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
 	<script src="js/app.js"></script>
+	<script type="text/javascript">
+		slideShow('slideShow1', 4000, 1000);
+	</script>
 </body>
 </html>

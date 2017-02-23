@@ -14,6 +14,7 @@ ul {
 
 .buttonNav
 {
+	position: relative;
 	background-color: #a33030;
 	color: #fefefe;
 	font-size: 16pt;
@@ -25,14 +26,11 @@ ul {
 }	.buttonNav:hover, .buttonNav:focus {
 		background-color: #e23131;
 		color: #fefefe;
+	}	.buttonNav.left {
+		float: left;
+	}	.buttonNav.right {
+		float: right;
 	}
-	
-.buttonRow {
-	display: table;
-	margin: 0;
-	margin-left: auto;
-	margin-right: auto;
-}
 
 .center
 {
@@ -56,6 +54,14 @@ ul {
 .floatright
 {
 	float: right;
+}
+
+.loginBoxRow {
+	margin: 8px 0 8px 8px;
+}
+
+.loginBoxText {
+	display: inline;
 }
 
 .section
@@ -91,6 +97,18 @@ ul {
 	left: 0;
 }
 
+.textFeild {
+	display: inline;
+	width: 196px;
+	height: 24px;
+}	.textFeild.createAccount {
+		
+	}	.textFeild.login {
+		float: right;
+		margin: 0 8px 0 0;
+		padding: 0;
+	}
+
 #copyright {
 	position: absolute;
 	bottom: 0;
@@ -125,6 +143,23 @@ ul {
 	padding: 0;
 }
 
+#loginBox {
+	position: fixed;
+	background-color: #aaaaaa;
+	color: #fefefe;
+	right: 0;
+	top: 56px;
+	width: 320px;
+	height: 128px;
+}
+
+#buttonLoginBox {
+	background-color: #a33030;
+	color: #fefefe;
+	width: 128px;
+	margin: 4px 96px;
+}
+
 #nav {
 	position: fixed;
 	top: 0;
@@ -134,7 +169,6 @@ ul {
 	margin: 0;
 	padding: 0;
 	opacity: 0.70;
-	
 	transition: opacity 1s ease-out;
 }	#nav:hover {
 		opacity: 0.90;

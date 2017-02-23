@@ -23,13 +23,13 @@ if (isset($_SESSION["username"])) {
 	<h1>Create Account</h1>
 	<div>
 		<form Action="php scripts/createaccountscript.php" Method="POST">
-			Username: <input class="text-feild" id="username" name="username" type="text" maxlength=64></input>
+			Username: <input class="textFeild" id="username" name="username" type="text" maxlength=64></input>
 			<p class="character-limit-text">Character Limit: 64</p>
-			Email: <input class="text-feild" id="email" name="email" type="text" maxlength=256></input>
+			Email: <input class="textFeild" id="email" name="email" type="text" maxlength=256></input>
 			<p class="character-limit-text">Character Limit: 256</p>
-			Password: <input class="text-feild" id="password" name="password" type="password" maxlength=256></input>
+			Password: <input class="textFeild" id="password" name="password" type="password" maxlength=256></input>
 			<p class="character-limit-text">Character Limit: 256</p>
-			Confirm Password: <input class="text-feild" id="passwordConfirm" name="passwordConfirm" type="password" maxlength=256></input>
+			Confirm Password: <input class="textFeild" id="passwordConfirm" name="passwordConfirm" type="password" maxlength=256></input>
 			<p class="character-limit-text">Character Limit: 256</p>
 			<input type="checkbox" id="newsletter" name="newsletter" checked><span>I would like to recieve the monthly Emanual Echos newsletter.</span>
 			<br/>
