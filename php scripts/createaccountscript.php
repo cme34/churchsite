@@ -37,9 +37,9 @@ if ($db->connect_error) {
 }
 
 //Sterilize Inputs
-$username = mysqli_real_escape_string($username);
-$password = mysqli_real_escape_string($password);
-$email = mysqli_real_escape_string($email);
+$username = $db->real_escape_string($username);
+$password = $db->real_escape_string($password);
+$email = $db->real_escape_string($email);
 
 //Check if username is taken
 $query = "SELECT * FROM emmanuelaccountinfo WHERE emmanuelaccountinfo.username = '$username'";
@@ -62,6 +62,7 @@ if (!$db->query($query)) {
 	die();
 }
 
-header("Location: ../home.php");
+$_SESSION["message"] = "You have created your account successfully. Before you can log in, please accept the verification email sent to your provided email address.";
+header("Location: ../message.php");
 
 ?>
