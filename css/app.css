@@ -1,15 +1,10 @@
 body {
 	background-color: #aaaaaa;
+	background-image: url("../img/Background.png");
 }
 
 ul {
 	list-style: none;
-}
-
-.border {
-	border-style: solid;
-	border-color: #a33030;
-	border-width: 4px;
 }
 
 .buttonNav
@@ -22,7 +17,7 @@ ul {
 	margin: 0;
 	margin-left: 2px;
 	margin-right: 2px;
-	padding: 18px 21px 10px 21px;
+	padding: auto;
 }	.buttonNav:hover, .buttonNav:focus {
 		background-color: #e23131;
 		color: #fefefe;
@@ -32,13 +27,56 @@ ul {
 		float: right;
 	}
 
-.center
+.buttonToolbox
+{
+	position: relative;
+	background-color: #a33030;
+	color: #fefefe;
+	font-size: 16pt;
+	width: 100%;
+	height: 56px;
+	margin: 0;
+	padding: auto;
+	border-style: solid;
+	border-color: #888888;
+	border-width: 2px;
+}	.buttonToolbox:hover, .buttonToolbox:focus {
+		background-color: #e23131;
+		color: #fefefe;
+}
+
+.characterLimitText {
+	font-size: 11px;
+	margin: 0 auto;
+	padding: 0 0 16px 0;
+}	
+
+.centerText
 {
 	text-align: center;
 }
 
+.centerElement {
+	margin: auto;
+}
+
 .clear {
 	clear: both;
+}
+
+.container {
+	position: relative;
+	background-color: #cccccc;
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 2px;
+	overflow: hidden;
+}
+
+.containerGroup {
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 2px;
 }
 
 .content {
@@ -56,18 +94,23 @@ ul {
 	float: right;
 }
 
+.footerText {
+	position: absolute;
+	bottom: 0;
+	padding: 0 8px;
+}	.footerText.left {
+		left: 0;
+	}
+	.footerText.right {
+		right: 0;
+	}
+
 .loginBoxRow {
 	margin: 8px 0 8px 8px;
 }
 
 .loginBoxText {
 	display: inline;
-}
-
-.section
-{
-	width: 100%;
-	height: 320px;
 }
 
 .slide {
@@ -81,6 +124,10 @@ ul {
 .slideImage {
 	width: inherit;
 	height: inherit;
+}
+
+.slideShow {
+	background-color: White;
 }
 
 .slideText {
@@ -98,59 +145,36 @@ ul {
 }
 
 .textFeild {
-	display: inline;
-	width: 196px;
-	height: 24px;
-}	.textFeild.createAccount {
-		
-	}	.textFeild.login {
-		float: right;
-		margin: 0 8px 0 0;
-		padding: 0;
-	}
-
-#copyright {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	padding: 8px;
+	margin: 0;
+	padding: 0;
 }
+
 
 #footer
 {
-	position: relative;
+	position: absolute;
 	background-color: #a33030;
 	color: #fefefe;
 	font-style: italic;
+	bottom: 0;
+	left: 0;
 	width: 100%;
 	height: 256px;
 	margin: 0;
 	padding: 8px;
 }
 
-#footerFacebook {
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 8px;
+#footerbuffer {
+	height: 256px;
+	min-height: 256px;
 }
 
 #footerImageContainer {
 	position: relative;
-	width: 480px;
-	height: 240px;
+	width: 100%;
+	max-width: 480px;
 	margin: auto;
 	padding: 0;
-}
-
-#loginBox {
-	position: fixed;
-	background-color: #aaaaaa;
-	color: #fefefe;
-	right: 0;
-	top: 56px;
-	width: 320px;
-	height: 128px;
 }
 
 #buttonLoginBox {
@@ -165,6 +189,9 @@ ul {
 	top: 0;
 	left: 0;
 	background-color: #a33030;
+	height: 56px;
+	min-height: 32px;
+	max-height: 56px;
 	width: 100%;
 	margin: 0;
 	padding: 0;
@@ -173,12 +200,15 @@ ul {
 }	#nav:hover {
 		opacity: 0.90;
 	}
-
+	
 #newsFeed 
 {
+	position: relative;
+	overflow: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
 	background-color: #cccccc;
 	height: 320px;
-	min-height: 320px;
 }
 
 #slideShow1 {
@@ -193,9 +223,27 @@ ul {
 	height: 80vh;
 }
 
+
+#toolBox {
+	position: fixed;
+	background-color: #aaaaaa;
+	color: #fefefe;
+	right: 0;
+	top: 56px;
+	width: 320px;
+}
+
 #weeklySchedule 
 {
+	position: relative;
+	overflow: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
 	background-color: #cccccc;
 	height: 320px;
-	min-height: 320px;
+}
+
+#wrapper {
+	position: relative;
+	min-height: 100vh;
 }

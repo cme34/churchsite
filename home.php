@@ -12,85 +12,91 @@
 	<?php include 'php scripts/footer.php';?>
 </head>
 <body>
-	<?php session_start(); ?>
-	
-	<div class="content">
-		<div id="slideShow1Frame">
-			<div id="slideShow1" class="slideShow">
-				<div id="slideShow1slide1" class="slide" hidden>
-					<img class="slideImage" src="img/Image 1.png" />
+	<div id="wrapper">
+		<?php session_start();?>
+		
+		<div class="content">
+			<div id="slideShow1Frame">
+				<div id="slideShow1" class="slideShow">
+					<div id="slideShow1slide1" class="slide" hidden>
+						<img class="slideImage" src="img/Image 1.png" />
+					</div>
+					<div id="slideShow1slide2" class="slide" hidden>
+						<img class="slideImage" src="img/Image 2.png" />
+					</div>
+					<div id="slideShow1slide3" class="slide" hidden>
+						<img class="slideImage" src="img/Image 3.png" />
+					</div>
 				</div>
-				<div id="slideShow1slide2" class="slide" hidden>
-					<img class="slideImage" src="img/Image 2.png" />
+			</div>
+			
+			<div class="containerGroup">
+				<div>
+					<div id="newsFeed" class="small-6 columns container">
+						<h4 class="centerText">News Feed</h4>
+						<h5>Highlighted News</h5>
+						<ul>
+							<li>
+								Title 1
+							</li>
+							<li>
+								Title 2
+							</li>
+						</ul>
+						<h5>Recent News</h5>
+						<ul>
+							<li>
+								Title 1
+							</li>
+							<li>
+								Title 2
+							</li>
+							<li>
+								Title 3
+							</li>
+						</ul>
+					</div>
+					<div id="weeklySchedule" class="small-6 columns container">
+						<h4 class="centerText">Weekly Schedule</h4>
+						<ul>
+							<li>
+								Sunday Text
+							</li>
+							<li>
+								Monday Text
+							</li>
+							<li>
+								Tuesday Text
+							</li>
+							<li>
+								Wednesday Text
+							</li>
+							<li>
+								Thursday Text
+							</li>
+							<li>
+								Friday Text
+							</li>
+							<li>
+								Saturday Text
+							</li>
+						</ul>
+						<a href="weeklybulletin.php">
+							<div class="centerText">[View Weekly Bulletin]</div>
+						</a>
+					</div>
 				</div>
-				<div id="slideShow1slide3" class="slide" hidden>
-					<img class="slideImage" src="img/Image 3.png" />
+				<div class="container">
+					<h4 class="centerText">About Emmanuel</h4>
 				</div>
 			</div>
 		</div>
 		
-		<div class="section">
-			<div id="newsFeed" class="small-6 columns border">
-				<div class="center"><h4>News Feed</h4></div>
-				<h5>Highlighted News</h5>
-				<ul>
-					<li>
-						Title 1
-					</li>
-					<li>
-						Title 2
-					</li>
-				</ul>
-				<h5>Recent News</h5>
-				<ul>
-					<li>
-						Title 1
-					</li>
-					<li>
-						Title 2
-					</li>
-					<li>
-						Title 3
-					</li>
-				</ul>
-			</div>
-			<div id="weeklySchedule" class="small-6 columns border">
-				<div class="center"><h4>Weekly Schedule</h4></div>
-				<ul>
-					<li>
-						Sunday Text
-					</li>
-					<li>
-						Monday Text
-					</li>
-					<li>
-						Tuesday Text
-					</li>
-					<li>
-						Wednesday Text
-					</li>
-					<li>
-						Thursday Text
-					</li>
-					<li>
-						Friday Text
-					</li>
-					<li>
-						Saturday Text
-					</li>
-				</ul>
-			<a href="weeklybulletin.php">
-				<div class="center">[View Weekly Bulletin]</div>
-			</a>
-			</div>
-		</div>
+		<?php
+		createFooter();    //Create the footer at the bottom of the page. This is defined in footer.php
+		createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
+		?>
 	</div>
-	
-	<?php
-	createFooter();    //Create the footer at the bottom of the page. This is defined in footer.php
-	createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
-	?>
-	
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
