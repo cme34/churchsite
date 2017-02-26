@@ -6,8 +6,8 @@ function createFooter() {
 	echo "        <div class='floatleft'>";
 	echo "            <h6>Worship Time:</h6>";
 	echo "            <ul>";
-	echo "                <li>Sunday 9:45am - 11:00am</li>";
-	echo "                <li>Second Tuesday of the Month 6:30pm - 7:00pm</li>";
+	echo "                <li>Sunday 10:00am - 11:15am</li>";
+	echo "                <li>Second Tuesday of the Month 6:30pm - 7:15pm</li>";
 	echo "            </ul>";
 	echo "            <h6>Contact:</h6>";
 	echo "            <ul>";
