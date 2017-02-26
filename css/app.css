@@ -113,6 +113,16 @@ ul {
 	display: inline;
 }
 
+.newsFeedText {
+	margin: 4px 0;
+	padding: 0;
+}	.newsFeedText.highlighted {
+		color: #e08c1f;
+	}
+	.newsFeedText.recentNews {
+		color: #2840b7;
+	}
+
 .slide {
 	position: absolute;
 	top: 0;
@@ -149,6 +159,10 @@ ul {
 	padding: 0;
 }
 
+.weeklyScheduleText {
+	margin: 16px 0;
+	padding: 0;
+}
 
 #footer
 {
@@ -208,7 +222,7 @@ ul {
 	overflow-y: hidden;
 	white-space: nowrap;
 	background-color: #cccccc;
-	height: 320px;
+	height: 384px;
 }
 
 #slideShow1 {
@@ -240,7 +254,7 @@ ul {
 	overflow-y: hidden;
 	white-space: nowrap;
 	background-color: #cccccc;
-	height: 320px;
+	height: 384px;
 }
 
 #wrapper {

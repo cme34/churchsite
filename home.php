@@ -36,53 +36,45 @@
 						<h4 class="centerText">News Feed</h4>
 						<h5>Highlighted News</h5>
 						<ul>
-							<li>
-								Title 1
-							</li>
-							<li>
-								Title 2
-							</li>
+							<li class="newsFeedText highlighted">Title</li>
+							<li class="newsFeedText highlighted">Title</li>
+							<li class="newsFeedText highlighted">Title</li>
 						</ul>
 						<h5>Recent News</h5>
 						<ul>
-							<li>
-								Title 1
-							</li>
-							<li>
-								Title 2
-							</li>
-							<li>
-								Title 3
-							</li>
+							<li class="newsFeedText recentNews">Title</li>
+							<li class="newsFeedText recentNews">Title</li>
+							<li class="newsFeedText recentNews">Title</li>
+							<li class="newsFeedText recentNews">Title</li>
+							<li class="newsFeedText recentNews">Title</li>
 						</ul>
 					</div>
 					<div id="weeklySchedule" class="small-6 columns container">
 						<h4 class="centerText">Weekly Schedule</h4>
-						<ul>
-							<li>
-								Sunday Text
-							</li>
-							<li>
-								Monday Text
-							</li>
-							<li>
-								Tuesday Text
-							</li>
-							<li>
-								Wednesday Text
-							</li>
-							<li>
-								Thursday Text
-							</li>
-							<li>
-								Friday Text
-							</li>
-							<li>
-								Saturday Text
-							</li>
-						</ul>
+						<div class="floatleft">
+							<ul>
+								<li class="weeklyScheduleText">Sunday:</li>
+								<li class="weeklyScheduleText">Monday:</li>
+								<li class="weeklyScheduleText">Tuesday:</li>
+								<li class="weeklyScheduleText">Wednesday:</li>
+								<li class="weeklyScheduleText">Thursday:</li>
+								<li class="weeklyScheduleText">Friday:</li>
+								<li class="weeklyScheduleText">Saturday:</li>
+							</ul>
+						</div>
+						<div class="floatleft">
+							<ul>
+								<li class="weeklyScheduleText">Text</li>
+								<li class="weeklyScheduleText">Text</li>
+								<li class="weeklyScheduleText">Text</li>
+								<li class="weeklyScheduleText">Text</li>
+								<li class="weeklyScheduleText">Text</li>
+								<li class="weeklyScheduleText">Text</li>
+								<li class="weeklyScheduleText">Text</li>
+							</ul>
+						</div>
 						<a href="weeklybulletin.php">
-							<div class="centerText">[View Weekly Bulletin]</div>
+							<div class="centerText clear">[View Weekly Bulletin]</div>
 						</a>
 					</div>
 				</div>
