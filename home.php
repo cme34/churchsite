@@ -50,8 +50,13 @@
 						</ul>
 					</div>
 					<div id="weeklySchedule" class="small-6 columns container">
-						<h4 class="centerText">Weekly Schedule</h4>
-						<div class="floatleft">
+						<h4 class='centerText'>Weekly Schedule</h4>
+						<?php 
+						$day = date('w');
+						$week_start = date('m-d-Y', strtotime('-'.$day.' days'));
+						echo "<p class='weeklyScheduleText centerText'>Sunday $week_start</p>";
+						?>
+						<div class="floatLeft">
 							<ul>
 								<li class="weeklyScheduleText">Sunday:</li>
 								<li class="weeklyScheduleText">Monday:</li>
@@ -62,7 +67,7 @@
 								<li class="weeklyScheduleText">Saturday:</li>
 							</ul>
 						</div>
-						<div class="floatleft">
+						<div class="floatLeft">
 							<ul>
 								<li class="weeklyScheduleText">Text</li>
 								<li class="weeklyScheduleText">Text</li>
@@ -76,6 +81,15 @@
 						<a href="weeklybulletin.php">
 							<div class="centerText clear">[View Weekly Bulletin]</div>
 						</a>
+						<?php
+						if (isset($_SESSION["username"])) {
+							if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
+								echo "<div class='editBar'>";
+								echo "    <a class='floatRight' href='editschedule.php'>edit</a>";
+								echo "</div>";
+							}
+						}
+						?>
 					</div>
 				</div>
 				<div class="container">
