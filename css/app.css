@@ -7,6 +7,27 @@ ul {
 	list-style: none;
 }
 
+.addBar {
+	background-color: rgba(0, 0, 0, 0);
+	position: absolute;
+	font-size: 18px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 32;
+	margin: 0;
+	padding: 8px 16px 0 16px;
+}
+
+.barOption {
+	float: right;
+	margin: 0 8px;
+}
+
+.block {
+	display: block;
+}
+
 .buttonNav
 {
 	position: relative;
@@ -87,10 +108,11 @@ ul {
 .editBar {
 	background-color: rgba(0, 0, 0, 0);
 	position: absolute;
+	font-size: 18px;
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	height: 24px;
+	height: 32px;
 	margin: 0;
 	padding: 0 16px;
 }
@@ -116,12 +138,20 @@ ul {
 		right: 0;
 	}
 
+.inline {
+	display: inline;
+}
+
+.inline-block {
+	display: inline-block;
+}
+	
 .loginBoxRow {
 	margin: 8px 0 8px 8px;
 }
 
 .loginBoxText {
-	display: inline;
+	display: inline-block;
 }
 
 .newsFeedText {
@@ -133,6 +163,14 @@ ul {
 	.newsFeedText.recentNews {
 		color: #2840b7;
 	}
+
+.noMargin {
+	margin: 0;
+}
+
+.noPadding {
+	padding: 0;
+}
 
 .slide {
 	position: absolute;

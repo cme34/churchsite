@@ -30,7 +30,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 			<h1>Edit Weekly Schedule</h1>
 			<div class="containerGroup">
 				<div class="container">
-					<form Action="php scripts/loginScript.php" Method="POST">
+					<form Action="php scripts/editschedulescript.php" Method="POST">
 						Sunday: <input class="textFeild" id="sunday" name="sunday" type="text"></input></br>
 						Monday: <input class="textFeild" id="monday" name="monday" type="text"></input></br>
 						Tuesday: <input class="textFeild" id="tuesday" name="tuesday" type="text"></input></br>

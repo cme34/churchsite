@@ -54,38 +54,48 @@
 						<?php 
 						$day = date('w');
 						$week_start = date('m-d-Y', strtotime('-'.$day.' days'));
-						echo "<p class='weeklyScheduleText centerText'>Sunday $week_start</p>";
+						echo "<p class='weeklyScheduleText centerText'>For the week of Sunday $week_start</p>";
 						?>
-						<div class="floatLeft">
-							<ul>
-								<li class="weeklyScheduleText">Sunday:</li>
-								<li class="weeklyScheduleText">Monday:</li>
-								<li class="weeklyScheduleText">Tuesday:</li>
-								<li class="weeklyScheduleText">Wednesday:</li>
-								<li class="weeklyScheduleText">Thursday:</li>
-								<li class="weeklyScheduleText">Friday:</li>
-								<li class="weeklyScheduleText">Saturday:</li>
-							</ul>
+						<div>
+							<div class="inline-block noPadding">
+								<ul>
+									<li class="weeklyScheduleText">Sunday:</li>
+									<li class="weeklyScheduleText">Monday:</li>
+									<li class="weeklyScheduleText">Tuesday:</li>
+									<li class="weeklyScheduleText">Wednesday:</li>
+									<li class="weeklyScheduleText">Thursday:</li>
+									<li class="weeklyScheduleText">Friday:</li>
+									<li class="weeklyScheduleText">Saturday:</li>
+								</ul>
+							</div>
+							<div class="inline-block noPadding">
+								<ul>
+									<?php
+									$file = "data/home/weeklyschedule.txt";
+									$handle = fopen($file, "r");
+									$schedule = array();							
+									while (!feof($handle)) {
+										$schedule[] = fgets($handle);
+									}
+									fclose($handle);
+									echo "<li class='weeklyScheduleText'>$schedule[0]</li>";
+									echo "<li class='weeklyScheduleText'>$schedule[1]</li>";
+									echo "<li class='weeklyScheduleText'>$schedule[2]</li>";
+									echo "<li class='weeklyScheduleText'>$schedule[3]</li>";
+									echo "<li class='weeklyScheduleText'>$schedule[4]</li>";
+									echo "<li class='weeklyScheduleText'>$schedule[5]</li>";
+									echo "<li class='weeklyScheduleText'>$schedule[6]</li>";
+									?>
+								</ul>
+							</div>
 						</div>
-						<div class="floatLeft">
-							<ul>
-								<li class="weeklyScheduleText">Text</li>
-								<li class="weeklyScheduleText">Text</li>
-								<li class="weeklyScheduleText">Text</li>
-								<li class="weeklyScheduleText">Text</li>
-								<li class="weeklyScheduleText">Text</li>
-								<li class="weeklyScheduleText">Text</li>
-								<li class="weeklyScheduleText">Text</li>
-							</ul>
-						</div>
-						<a href="weeklybulletin.php">
-							<div class="centerText clear">[View Weekly Bulletin]</div>
-						</a>
+						<div class="centerText clear"><a href="weeklybulletin.php">[View Weekly Bulletin]</a></div>
 						<?php
 						if (isset($_SESSION["username"])) {
 							if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
 								echo "<div class='editBar'>";
-								echo "    <a class='floatRight' href='editschedule.php'>edit</a>";
+								echo "    <a class='barOption' href='editschedule.php'>[edit]</a>";
+								echo "    <a class='barOption' href='editschedule.php'>[change weekly bulletin]</a>";
 								echo "</div>";
 							}
 						}
@@ -94,6 +104,15 @@
 				</div>
 				<div class="container">
 					<h4 class="centerText">About Emmanuel</h4>
+					<?php
+					if (isset($_SESSION["username"])) {
+						if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
+							echo "<div class='addBar'>";
+							echo "    <a class='barOption' href='editschedule.php'>[add new post]</a>";
+							echo "</div>";
+						}
+					}
+					?>
 				</div>
 			</div>
 		</div>
