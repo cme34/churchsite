@@ -71,7 +71,7 @@
 							<div class="inline-block noPadding">
 								<ul>
 									<?php
-									$file = "data/home/weeklyschedule.txt";
+									$file = "data/weeklyschedule.txt";
 									$handle = fopen($file, "r");
 									$schedule = array();							
 									while (!feof($handle)) {
@@ -108,7 +108,7 @@
 					if (isset($_SESSION["username"])) {
 						if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
 							echo "<div class='addBar'>";
-							echo "    <a class='barOption' href='editschedule.php'>[add new post]</a>";
+							echo "    <a class='barOption' href='post.php?loc=home'>[add new post]</a>";
 							echo "</div>";
 						}
 					}
