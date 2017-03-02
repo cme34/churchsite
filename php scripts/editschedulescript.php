@@ -20,7 +20,7 @@ $friday = $_POST["friday"];
 $saturday = $_POST["saturday"];
 
 //Write to file
-$file = "../data/home/weeklyschedule.txt";
+$file = "../data/weeklyschedule.txt";
 $handle = fopen($file, "w");
 fwrite($handle, "$sunday\r\n");
 fwrite($handle, "$monday\r\n");
