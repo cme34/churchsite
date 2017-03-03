@@ -154,15 +154,22 @@ ul {
 	display: inline-block;
 }
 
-.newsFeedText {
+.newsFeedCell {
+	background-color: #cccccc;
 	margin: 4px 0;
 	padding: 0;
-}	.newsFeedText.highlighted {
-		color: #e08c1f;
+	text-align: left;
+	overflow: hidden;
+}	.newsFeedCell.date {
+		width: 208px;
 	}
-	.newsFeedText.recentNews {
-		color: #2840b7;
+	.newsFeedCell.title {
+		width: auto;
 	}
+
+.newsFeedTable {
+	table-layout: fixed;
+}
 
 .noMargin {
 	margin: 0;

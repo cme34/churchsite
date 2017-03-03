@@ -10,6 +10,7 @@
 	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
 	<?php include 'php scripts/navigator.php';?>
 	<?php include 'php scripts/footer.php';?>
+	<?php include 'php scripts/post.php';?>
 </head>
 <body>
 	<div id="wrapper">
@@ -34,20 +35,74 @@
 				<div>
 					<div id="newsFeed" class="small-6 columns container">
 						<h4 class="centerText">News Feed</h4>
-						<h5>Highlighted News</h5>
-						<ul>
-							<li class="newsFeedText highlighted">Title</li>
-							<li class="newsFeedText highlighted">Title</li>
-							<li class="newsFeedText highlighted">Title</li>
-						</ul>
-						<h5>Recent News</h5>
-						<ul>
-							<li class="newsFeedText recentNews">Title</li>
-							<li class="newsFeedText recentNews">Title</li>
-							<li class="newsFeedText recentNews">Title</li>
-							<li class="newsFeedText recentNews">Title</li>
-							<li class="newsFeedText recentNews">Title</li>
-						</ul>
+						<?php
+						$highlightLimit = 3;
+						$recentLimit = 5;
+						//Connect to database
+						$db = new mysqli('localhost', 'root', '', 'emmanuel');
+						if ($db->connect_error) {
+							echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
+							die();
+						}
+						
+						//Get top $highlightLimit highlighted news
+						$query = "SELECT * FROM postsnews WHERE postsnews.highlight = '1' ORDER BY postid DESC LIMIT $highlightLimit";
+						$result = $db->query($query);
+						if (!$result) {
+							echo "<p class='error-text'>Error obtaining thread information. Please try again.</p>";
+							die();
+						}
+						$highlightCount = $result->num_rows;
+						
+						//Display Highlighted News
+						echo "<h5>Highlighted News</h5>";
+						echo "<table class='newsFeedTable'>";
+						for ($i = 0; $i < $highlightCount; $i++) {
+							$row = $result->fetch_assoc();
+							$title = $row["title"];
+							$creatortimestamp = $row["creatortimestamp"];
+							echo "<tr>";
+							echo "<th class='newsFeedCell date'>[$creatortimestamp]</th>";
+							echo "<th class='newsFeedCell title'><a>$title</a></th>";
+							echo "</tr>";
+						}
+						for ($i = $highlightCount; $i < $highlightLimit; $i++) {
+							echo "<tr>";
+							echo "<th class='newsFeedCell date'>------------------------------------</th>";
+							echo "<th class='newsFeedCell title'>------------------------------------------------------------------------</th>";
+							echo "</tr>";
+						}
+						echo "</table>";
+						
+						//Get top $recentLimit recent news
+						$query = "SELECT * FROM postsnews ORDER BY postid DESC LIMIT $recentLimit";
+						$result = $db->query($query);
+						if (!$result) {
+							echo "<p class='error-text'>Error obtaining thread information. Please try again.</p>";
+							die();
+						}
+						$recentCount = $result->num_rows;
+						
+						//Display Recent News
+						echo "<h5>Recent News</h5>";
+						echo "<table class='newsFeedTable'>";
+						for ($i = 0; $i < $recentCount; $i++) {
+							$row = $result->fetch_assoc();
+							$title = $row["title"];
+							$creatortimestamp = $row["creatortimestamp"];
+							echo "<tr>";
+							echo "<th class='newsFeedCell date'>[$creatortimestamp]</th>";
+							echo "<th class='newsFeedCell title'><a>$title</a></th>";
+							echo "</tr>";
+						}
+						for ($i = $recentCount; $i < $recentLimit; $i++) {
+							echo "<tr>";
+							echo "<th class='newsFeedCell date'>------------------------------------</th>";
+							echo "<th class='newsFeedCell title'>------------------------------------------------------------------------</th>";
+							echo "</tr>";
+						}
+						echo "</table>";
+						?>
 					</div>
 					<div id="weeklySchedule" class="small-6 columns container">
 						<h4 class='centerText'>Weekly Schedule</h4>
@@ -105,12 +160,43 @@
 				<div class="container">
 					<h4 class="centerText">About Emmanuel</h4>
 					<?php
+					//Show addBar if signed in as admin
 					if (isset($_SESSION["username"])) {
 						if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
 							echo "<div class='addBar'>";
-							echo "    <a class='barOption' href='post.php?loc=home'>[add new post]</a>";
+							echo "    <a class='barOption' href='createpost.php?loc=home'>[add new post]</a>";
 							echo "</div>";
 						}
+					}
+					?>
+					<?php
+					//Connect to database
+					$db = new mysqli('localhost', 'root', '', 'emmanuel');
+					if ($db->connect_error) {
+						echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
+						die();
+					}
+					
+					//Get all posts
+					$query = "SELECT * FROM postshome";
+					$result = $db->query($query);
+					if (!$result) {
+						echo "<p class='error-text'>Error obtaining thread information. Please try again.</p>";
+						die();
+					}
+					$count = $result->num_rows;
+					
+					//Display Posts
+					while ($row = $result->fetch_assoc()) {
+						$post = new Post();
+						$post->setTitle($row["title"]);
+						$post->setImageLink($row["image"]);
+						$post->setText($row["text"]);
+						$post->setCreator($row["creator"]);
+						$post->setCreatorTimestamp($row["creatortimestamp"]);
+						$post->setLastEditor($row["lasteditor"]);
+						$post->setLastEditTimestamp($row["lastedittimestamp"]);
+						$post->display();
 					}
 					?>
 				</div>

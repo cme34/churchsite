@@ -14,7 +14,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 <!doctype html>
 <html>
 <head>
-	<title>Post</title>
+	<title>Create Post</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,13 +27,22 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 <body>
 	<div id="wrapper">
 		<div class="content">
-			<h1>Post</h1>
+			<h1>Create Post</h1>
 			<div class="containerGroup">
 				<div class="container">
-					<form Action="php scripts/postscript.php" Method="POST">
+					<?php
+					$loc = $_GET["loc"];
+					echo "<form Action='php scripts/createpostscript.php?loc=$loc' Method='POST'>";
+					?>
 						Title: <input class="textFeild" id="title" name="title" type="text"></input></br>
 						Image Link: <input class="textFeild" id="image" name="image" type="text"></input></br>
 						Text: <textarea class="textFeild" id="text" name="text" type="text" rows=12></textarea></br>
+						<?php
+						$loc = $_GET["loc"];
+						if ($loc == "news") {
+							echo "<input type='checkbox' id='highlight' name='highlight'><span>Highlight Post</span><br/>";
+						}
+						?>
 						<button class="medium success button" id="buttonLogin">Submit</button>
 						<a href="home.php"><div class="medium secondary button" id="buttonCreateaccountCancel">Cancel</div></a>
 						<?php
