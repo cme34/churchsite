@@ -7,18 +7,6 @@ ul {
 	list-style: none;
 }
 
-.addBar {
-	background-color: rgba(0, 0, 0, 0);
-	position: absolute;
-	font-size: 18px;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 32;
-	margin: 0;
-	padding: 8px 16px 0 16px;
-}
-
 .barOption {
 	float: right;
 	margin: 0 8px;
@@ -107,15 +95,25 @@ ul {
 
 .editBar {
 	background-color: rgba(0, 0, 0, 0);
-	position: absolute;
 	font-size: 18px;
-	left: 0;
-	bottom: 0;
 	width: 100%;
 	height: 32px;
 	margin: 0;
 	padding: 0 16px;
-}
+}	.editBar.addBar {
+		position: absolute;
+		left: 0;
+		top: 0;
+		padding: 8px 16px 0 16px;
+	}
+	.editBar.postBar {
+		
+	}
+	.editBar.scheduleBar {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+	}
 
 .floatLeft
 {
@@ -179,6 +177,35 @@ ul {
 	padding: 0;
 }
 
+.post {
+	min-height: 320px;
+	margin: 0;
+	padding: 8px 32px;
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 0;
+	border-bottom-width: 2px;
+}
+
+.postImage {
+	width: auto;
+	height: 264px;
+	padding: 0;
+	margin: 0;
+	margin-right: 20px;
+	margin-bottom: 8px;
+	float: left;
+}	.postImage.left {
+		float: left;
+		margin-right: 20px;
+		margin-left: 0;
+	}
+	.postImage.right {
+		float: right;
+		margin-right: 0;
+		margin-left: 20px;
+	}
+	
 .slide {
 	position: absolute;
 	top: 0;
