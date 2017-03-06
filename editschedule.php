@@ -62,5 +62,29 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
 	<script src="js/app.js"></script>
+	<script type="text/javascript">
+		(function()	{
+			var rawFile = new XMLHttpRequest();
+			rawFile.open("GET", 'data/weeklyschedule.txt', false);
+			rawFile.onreadystatechange = function ()
+			{
+				if(rawFile.readyState === 4)
+				{
+					if(rawFile.status === 200 || rawFile.status == 0)
+					{
+						var text = rawFile.responseText.split(/\r\n|\n/);
+						$('#sunday').val(text[0]);
+						$('#monday').val(text[1]);
+						$('#tuesday').val(text[2]);
+						$('#wednesday').val(text[3]);
+						$('#thursday').val(text[4]);
+						$('#friday').val(text[5]);
+						$('#saturday').val(text[6]);
+					}
+				}
+			}
+			rawFile.send(null);
+		})();
+	</script>
 </body>
 </html>

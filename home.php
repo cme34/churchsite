@@ -148,7 +148,7 @@
 						<?php
 						if (isset($_SESSION["username"])) {
 							if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
-								echo "<div class='editBar'>";
+								echo "<div class='editBar scheduleBar'>";
 								echo "    <a class='barOption' href='editschedule.php'>[edit]</a>";
 								echo "    <a class='barOption' href='editschedule.php'>[change weekly bulletin]</a>";
 								echo "</div>";
@@ -158,12 +158,12 @@
 					</div>
 				</div>
 				<div class="container">
-					<h4 class="centerText">About Emmanuel</h4>
+					<h2 class="centerText">About Emmanuel</h2>
 					<?php
 					//Show addBar if signed in as admin
 					if (isset($_SESSION["username"])) {
 						if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
-							echo "<div class='addBar'>";
+							echo "<div class='editBar addBar'>";
 							echo "    <a class='barOption' href='createpost.php?loc=home'>[add new post]</a>";
 							echo "</div>";
 						}
@@ -184,9 +184,9 @@
 						echo "<p class='error-text'>Error obtaining thread information. Please try again.</p>";
 						die();
 					}
-					$count = $result->num_rows;
 					
 					//Display Posts
+					$imageOnRight = 0;
 					while ($row = $result->fetch_assoc()) {
 						$post = new Post();
 						$post->setTitle($row["title"]);
@@ -196,7 +196,14 @@
 						$post->setCreatorTimestamp($row["creatortimestamp"]);
 						$post->setLastEditor($row["lasteditor"]);
 						$post->setLastEditTimestamp($row["lastedittimestamp"]);
-						$post->display();
+						//Causes image to alternate sides every post
+						if ($imageOnRight == 0) {
+							$imageOnRight = 1;
+						}
+						else {
+							$imageOnRight = 0;
+						}
+						$post->display($imageOnRight);
 					}
 					?>
 				</div>
