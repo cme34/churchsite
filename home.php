@@ -189,6 +189,8 @@
 					$imageOnRight = 0;
 					while ($row = $result->fetch_assoc()) {
 						$post = new Post();
+						$post->setLoc("home");
+						$post->setId($row["postid"]);
 						$post->setTitle($row["title"]);
 						$post->setImageLink($row["image"]);
 						$post->setText($row["text"]);

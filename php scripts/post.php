@@ -1,5 +1,7 @@
 <?php
 class Post {
+	private $loc;
+	private $id;
 	private $title;
 	private $imageLink;
 	private $text;
@@ -23,7 +25,7 @@ class Post {
 		if (isset($_SESSION["username"])) {
 			if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
 				echo "<div class='editBar postBar'>";
-				echo "  <a class='barOption' href=''>[edit]</a>";
+				echo "  <a class='barOption' href='editpost.php?loc=$this->loc&id=$this->id'>[edit]</a>";
 				echo "  <a class='barOption' href=''>[delete]</a>";
 				echo "  <a class='barOption' href=''>[move up]</a>";
 				echo "  <a class='barOption' href=''>[move down]</a>";
@@ -31,6 +33,14 @@ class Post {
 			}
 		}
 		echo "	</div>";
+	}
+	
+	public function setLoc($loc) {
+		$this->loc = $loc;
+	}
+	
+	public function setId($id) {
+		$this->id = $id;
 	}
 	
 	public function setTitle($title) {

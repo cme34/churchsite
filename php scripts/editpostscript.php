@@ -12,6 +12,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 
 //Obtain forum data
 $loc = $_GET["loc"];
+$id = $_GET["id"];
 $title = $_POST["title"];
 $imagePath = $_POST["image"];
 $text = $_POST["text"];
@@ -39,7 +40,7 @@ if ($loc == "news") {
 	$highlight = $_POST["highlight"];
 	
 	//Add new entry to database
-	$query = "INSERT INTO postsnews (title, image, text, creator, creatortimestamp, lasteditor, lastedittimestamp, highlight) VALUES ('$title', '$imagePath', '$text', '$username', '$timestamp', '$username', '$timestamp', '$highlight')";
+	$query = "UPDATE postsnews SET title='$title', image='$imagePath', text='$text', lasteditor='$username', lastedittimestamp='$timestamp', highlight='$highlight' WHERE postid='$id'";
 	if (!$db->query($query)) {
 		$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
 		header("Location: ../createpost.php?loc=$loc");
@@ -49,19 +50,8 @@ if ($loc == "news") {
 else {
 	$dbloc = str_replace(' ', '', $loc);
 	
-	//Find orderid
-	$query = "SELECT COUNT(*) As count FROM posts$dbloc";
-	$result = $db->query($query);
-	if (!$result) {
-		$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
-		header("Location: ../createpost.php?loc=$loc");
-		die();
-	}
-	$orderid = mysqli_fetch_array($result);
-	$orderid = $orderid["count"];
-	
 	//Add new entry to database
-	$query = "INSERT INTO posts$dbloc (orderid, title, image, text, creator, creatortimestamp, lasteditor, lastedittimestamp) VALUES ('$orderid', '$title', '$imagePath', '$text', '$username', '$timestamp', '$username', '$timestamp')";
+	$query = "UPDATE posts$dbloc SET title='$title', image='$imagePath', text='$text', lasteditor='$username', lastedittimestamp='$timestamp' WHERE postid='$id'";
 	if (!$db->query($query)) {
 		$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
 		header("Location: ../createpost.php?loc=$loc");
