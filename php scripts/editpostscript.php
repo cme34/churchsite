@@ -24,7 +24,7 @@ $timestamp = date("m-d-Y h:ia e");
 $db = new mysqli('localhost', 'root', '', 'emmanuel');
 if ($db->connect_error) {
 	$_SESSION["error"] = "Connection with database failed. Please try again later.";
-	header("Location: ../createpost.php?loc=$loc");
+	header("Location: ../editpost.php?loc=$loc&id=$id");
 	die();
 }
 
@@ -39,23 +39,86 @@ $timestamp = $db->real_escape_string($timestamp);
 if ($loc == "news") {
 	$highlight = $_POST["highlight"];
 	
-	//Add new entry to database
-	$query = "UPDATE postsnews SET title='$title', image='$imagePath', text='$text', lasteditor='$username', lastedittimestamp='$timestamp', highlight='$highlight' WHERE postid='$id'";
-	if (!$db->query($query)) {
-		$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
-		header("Location: ../createpost.php?loc=$loc");
-		die();
+	//Process image
+	$imagePath = "";
+	if ($_FILES['image']['tmp_name'] != "") {
+		//Imaged changed
+		$imagePath = "img/upload/postsnews$id.png";
+		
+		if(file_exists('../$imagePath')) {
+			chmod('../$imagePath', 0755); //Change the file permissions if allowed
+			unlink('../$imagePath'); //remove the file
+		}
+		
+		if (move_uploaded_file($_FILES['image']['tmp_name'], "../$imagePath")) {
+			echo "File is valid, and was successfully uploaded.\n";
+		}
+		else {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../editpost.php?loc=$loc&id=$id");
+			die();
+		}
+		
+		//Add new entry to database
+		$query = "UPDATE postsnews SET title='$title', image='$imagePath', text='$text', lasteditor='$username', lastedittimestamp='$timestamp', highlight='$highlight' WHERE postid='$id'";
+		if (!$db->query($query)) {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../editpost.php?loc=$loc&id=$id");
+			die();
+		}
+	}
+	else {
+		//Image unchanged
+		//Add new entry to database
+		$query = "UPDATE postsnews SET title='$title', text='$text', lasteditor='$username', lastedittimestamp='$timestamp', highlight='$highlight' WHERE postid='$id'";
+		if (!$db->query($query)) {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../editpost.php?loc=$loc&id=$id");
+			die();
+		}
 	}
 }
 else {
 	$dbloc = str_replace(' ', '', $loc);
+	$dbloc = "posts$dbloc";
 	
-	//Add new entry to database
-	$query = "UPDATE posts$dbloc SET title='$title', image='$imagePath', text='$text', lasteditor='$username', lastedittimestamp='$timestamp' WHERE postid='$id'";
-	if (!$db->query($query)) {
-		$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
-		header("Location: ../createpost.php?loc=$loc");
-		die();
+	//Process image
+	$imagePath = "";
+	if ($_FILES['image']['tmp_name'] != "") {
+		//Image changed
+		$imagePath = "img/upload/$dbloc" . "$id.png";
+		
+		if(file_exists('../$imagePath')) {
+			chmod('../$imagePath', 0755); //Change the file permissions if allowed
+			unlink('../$imagePath'); //remove the file
+		}
+		
+		if (move_uploaded_file($_FILES['image']['tmp_name'], "../$imagePath")) {
+			echo "File is valid, and was successfully uploaded.\n";
+		}
+		else {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../editpost.php?loc=$loc&id=$id");
+			die();
+		}
+		
+		//Add new entry to database
+		$query = "UPDATE $dbloc SET title='$title', image='$imagePath', text='$text', lasteditor='$username', lastedittimestamp='$timestamp' WHERE postid='$id'";
+		if (!$db->query($query)) {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../editpost.php?loc=$loc&id=$id");
+			die();
+		}
+	}
+	else {
+		//Image unchanged
+		//Add new entry to database
+		$query = "UPDATE $dbloc SET title='$title', text='$text', lasteditor='$username', lastedittimestamp='$timestamp' WHERE postid='$id'";
+		if (!$db->query($query)) {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../editpost.php?loc=$loc&id=$id");
+			die();
+		}
 	}
 }
 

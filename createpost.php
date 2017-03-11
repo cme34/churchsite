@@ -32,10 +32,11 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 				<div class="container">
 					<?php
 					$loc = $_GET["loc"];
-					echo "<form Action='php scripts/createpostscript.php?loc=$loc' Method='POST'>";
+					echo "<form Action='php scripts/createpostscript.php?loc=$loc' Method='POST' enctype='multipart/form-data'>";
 					?>
 						Title: <input class="textFeild" id="title" name="title" type="text"></input></br>
-						Image Link: <input class="textFeild" id="image" name="image" type="text"></input></br>
+						Image: <input class="fileFeild" id="image" name="image" type="file" accept=".png, .jpg, gif, .bmp"></input></br>
+						<p class="characterLimitText">Only .png, .jpg, .gif and .bmp files supported</p>
 						Text: <textarea class="textFeild" id="text" name="text" type="text" rows=12></textarea></br>
 						<?php
 						$loc = $_GET["loc"];

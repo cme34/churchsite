@@ -52,9 +52,10 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 						$image = $row["image"];
 						$text = $row["text"];
 						$highlight = 0;
-						echo "<form Action='php scripts/editpostscript.php?loc=$loc&id=$id' Method='POST'>";
+						echo "<form Action='php scripts/editpostscript.php?loc=$loc&id=$id' Method='POST' enctype='multipart/form-data'>";
 						echo "	Title: <input class='textFeild' id='title' name='title' type='text'></input></br>";
-						echo "	Image Link: <input class='textFeild' id='image' name='image' type='text'></input></br>";
+						echo "  Image: <input class='fileFeild' id='image' name='image' type='file' accept='.png, .jpg, gif, .bmp'></input></br>";
+						echo "  <p class='characterLimitText'>Only .png, .jpg, .gif and .bmp files supported</p>";
 						echo "	Text: <textarea class='textFeild' id='text' name='text' type='text' rows=12></textarea></br>";
 						if ($loc == "news") {
 							$highlight = $row["highlight"];
@@ -93,7 +94,6 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 			$(document).on('ready', function() {
 				var loc = <?php echo json_encode($loc); ?>;
 				var title = <?php echo json_encode($title); ?>;
-				var image = <?php echo json_encode($image); ?>;
 				var text = <?php echo json_encode($text); ?>;
 				if (loc == "news") {
 					var highlight = <?php echo $highlight; ?>;
@@ -102,7 +102,6 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 					}
 				}
 				$('#title').val(title);
-				$('#image').val(image);
 				$('#text').val(text);
 			});
 		})();
