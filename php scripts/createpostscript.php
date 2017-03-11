@@ -13,7 +13,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 //Obtain forum data
 $loc = $_GET["loc"];
 $title = $_POST["title"];
-$imagePath = $_POST["image"];
+$image = $_FILES["image"];
 $text = $_POST["text"];
 $username = $_SESSION["username"];
 date_default_timezone_set("EST");
@@ -38,6 +38,30 @@ $timestamp = $db->real_escape_string($timestamp);
 if ($loc == "news") {
 	$highlight = $_POST["highlight"];
 	
+	$imagePath = "";
+	if ($_FILES['image']['tmp_name'] != "") {
+		//Process image
+		$query = "SHOW TABLE STATUS LIKE 'postsnews'";
+		$result = $db->query($query);
+		if (!$result) {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../createpost.php?loc=$loc");
+			die();
+		}
+		$nextid = mysqli_fetch_array($result);
+		$nextid = $nextid["Auto_increment"];
+
+		$imagePath = "img/upload/postsnews$nextid.png";
+		if (move_uploaded_file($_FILES['image']['tmp_name'], "../$imagePath")) {
+			echo "File is valid, and was successfully uploaded.\n";
+		}
+		else {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../createpost.php?loc=$loc");
+			die();
+		}
+	}
+	
 	//Add new entry to database
 	$query = "INSERT INTO postsnews (title, image, text, creator, creatortimestamp, lasteditor, lastedittimestamp, highlight) VALUES ('$title', '$imagePath', '$text', '$username', '$timestamp', '$username', '$timestamp', '$highlight')";
 	if (!$db->query($query)) {
@@ -48,9 +72,34 @@ if ($loc == "news") {
 }
 else {
 	$dbloc = str_replace(' ', '', $loc);
+	$dbloc = "posts$dbloc";
+	
+	$imagePath = "";
+	if ($_FILES['image']['tmp_name'] != "") {
+		//Process image
+		$query = "SHOW TABLE STATUS LIKE '$dbloc'";
+		$result = $db->query($query);
+		if (!$result) {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../createpost.php?loc=$loc");
+			die();
+		}
+		$nextid = mysqli_fetch_array($result);
+		$nextid = $nextid["Auto_increment"];
+
+		$imagePath = "img/upload/$dbloc" . "$nextid.png";
+		if (move_uploaded_file($_FILES['image']['tmp_name'], "../$imagePath")) {
+			echo "File is valid, and was successfully uploaded.\n";
+		}
+		else {
+			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
+			header("Location: ../createpost.php?loc=$loc");
+			die();
+		}
+	}
 	
 	//Find orderid
-	$query = "SELECT COUNT(*) As count FROM posts$dbloc";
+	$query = "SELECT COUNT(*) As count FROM $dbloc";
 	$result = $db->query($query);
 	if (!$result) {
 		$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
@@ -61,7 +110,7 @@ else {
 	$orderid = $orderid["count"];
 	
 	//Add new entry to database
-	$query = "INSERT INTO posts$dbloc (orderid, title, image, text, creator, creatortimestamp, lasteditor, lastedittimestamp) VALUES ('$orderid', '$title', '$imagePath', '$text', '$username', '$timestamp', '$username', '$timestamp')";
+	$query = "INSERT INTO $dbloc (orderid, title, image, text, creator, creatortimestamp, lasteditor, lastedittimestamp) VALUES ('$orderid', '$title', '$imagePath', '$text', '$username', '$timestamp', '$username', '$timestamp')";
 	if (!$db->query($query)) {
 		$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
 		header("Location: ../createpost.php?loc=$loc");
