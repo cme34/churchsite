@@ -108,6 +108,7 @@ else {
 	}
 	$orderid = mysqli_fetch_array($result);
 	$orderid = $orderid["count"];
+	$orderid++;
 	
 	//Add new entry to database
 	$query = "INSERT INTO $dbloc (orderid, title, image, text, creator, creatortimestamp, lasteditor, lastedittimestamp) VALUES ('$orderid', '$title', '$imagePath', '$text', '$username', '$timestamp', '$username', '$timestamp')";
