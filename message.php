@@ -20,21 +20,21 @@ if (!isset($_SESSION["message"])) {
 	<?php include 'php scripts/footer.php';?>
 </head>
 <body>
-	<?php
-	//Get variable from SESSION
-	$message = $_SESSION["message"];
-	unset($_SESSION["message"]);
-	
-	echo "<div id='wrapper'>";
-	echo "    <div class='content'>";
-	echo "        <p class='success-text'>$message</p>";
-	echo "        <a href='home.php'><div class='medium success button'>Back to home page</div></a>";
-	echo '    </div>';
-	echo '</div>';
-	
-	createFooter();    //Create the footer at the bottom of the page. This is defined in footer.php
-	createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
-	?>
+	<div id="wrapper">
+		<?php
+		//Get variable from SESSION
+		$message = $_SESSION["message"];
+		unset($_SESSION["message"]);
+		
+		echo "<div class='content'>";
+		echo "    <p class='success-text'>$message</p>";
+		echo "    <a href='home.php'><div class='medium success button'>Back to home page</div></a>";
+		echo '</div>';
+		
+		createFooter();    //Create the footer at the bottom of the page. This is defined in footer.php
+		createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
+		?>
+	</div>
 	
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>

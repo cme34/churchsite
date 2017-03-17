@@ -26,9 +26,10 @@ class Post {
 			if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
 				echo "<div class='editBar postBar'>";
 				echo "  <a class='barOption' href='editpost.php?loc=$this->loc&id=$this->id'>[edit]</a>";
-				echo "  <a class='barOption' href=''>[delete]</a>";
-				echo "  <a class='barOption' href=''>[move up]</a>";
-				echo "  <a class='barOption' href=''>[move down]</a>";
+				echo "  <a class='barOption' href='confirm.php?loc=$this->loc&action=delete&postid=$this->id'>[delete]</a>";
+				echo "  <a class='barOption' href='confirm.php?loc=$this->loc&action=removeImage&postid=$this->id'>[remove image]</a>";
+				echo "  <a class='barOption' href='php scripts/movepost.php?loc=$this->loc&direction=up&postid=$this->id'>[move up]</a>";
+				echo "  <a class='barOption' href='php scripts/movepost.php?loc=$this->loc&direction=down&postid=$this->id'>[move down]</a>";
 				echo "</div>";
 			}
 		}

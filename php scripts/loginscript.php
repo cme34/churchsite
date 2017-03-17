@@ -10,8 +10,8 @@ $password = rtrim($password);
 //Connect to database
 $db = new mysqli('localhost', 'root', '', 'emmanuel');
 if ($db->connect_error) {
-	$_SESSION["error"] = "Connection with database failed. Please try again later.";
-	header("Location: ../views/login.php");
+	$_SESSION["message"] = "Invalid login credentials";
+	header("Location: ../login.php");
 	die();
 }
 
@@ -28,7 +28,7 @@ $result = $db->query($query);
 $rows = $result->num_rows;
 if ($rows < 1) {
 	//Set error message and go to login page
-	$_SESSION["error"] = "Invalid login credentials";
+	$_SESSION["message"] = "Invalid login credentials";
 	header("Location: ../login.php");
 	die();
 }

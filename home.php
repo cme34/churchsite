@@ -178,7 +178,7 @@
 					}
 					
 					//Get all posts
-					$query = "SELECT * FROM postshome";
+					$query = "SELECT * FROM postshome ORDER BY orderid";
 					$result = $db->query($query);
 					if (!$result) {
 						echo "<p class='error-text'>Error obtaining thread information. Please try again.</p>";
