@@ -181,6 +181,14 @@ ul {
 	padding: 0;
 }
 
+.overflowHidden {
+	overflow: hidden; 
+}
+
+.overflowVisable {
+	overflow: visible; 
+}
+
 .post {
 	min-height: 320px;
 	margin: 0;
