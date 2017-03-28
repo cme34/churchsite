@@ -1,3 +1,38 @@
+<?php
+$highlightLimit = 5;
+$pageLimit = 20;
+
+if (isset($_GET['page'])) {
+	$page = $_GET['page'];
+}
+else {
+	header('Location: news.php?page=1');
+}
+
+//Connect to database
+$db = new mysqli('localhost', 'root', '', 'emmanuel');
+if ($db->connect_error) {
+	echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
+	die();
+}
+
+//Get count
+$query = "SELECT COUNT(*) FROM postsnews";
+$result = $db->query($query);
+if (!$result) {
+	echo "<p class='error-text'>Error obtaining news information. Please try again.</p>";
+	die();
+}
+$count = $result->fetch_assoc()['COUNT(*)'];
+
+//Determine news to display
+$lastPage = ceil($count / $pageLimit);
+if ($page < 1 || $page > $lastPage || $page != floor($page)) {
+	header('Location: news.php?page=1');
+}
+$firstPostOfPage = $pageLimit * ($page - 1);
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -15,7 +50,124 @@
 	<div id="wrapper">
 		<?php session_start();?>
 		
-		
+		<div class='content'>
+			<h4 class="centerText">Highlighted News</h4>
+			<div class="container">
+				<div class="small-4 columns overflowHidden">Title</div>
+				<div class="small-4 columns overflowHidden">Time Created</div>
+				<div class="small-4 columns overflowHidden">Time Last Edited</div>
+				<?php
+				//Get top $highlightLimit highlighted news
+				$query = "SELECT * FROM postsnews WHERE postsnews.highlight = '1' ORDER BY postid DESC LIMIT $highlightLimit";
+				$result = $db->query($query);
+				if (!$result) {
+					echo "<p class='error-text'>Error obtaining thread information. Please try again.</p>";
+					die();
+				}
+				$highlightCount = $result->num_rows;
+				
+				if ($highlightCount > $highlightLimit) {
+					$highlightCount = $highlightLimit;
+				}
+				
+				//Display highlighted news
+				for ($i = 0; $i < $highlightCount; $i++) {
+					$row = $result->fetch_assoc();
+					$postid = $row["postid"];
+					$title = $row["title"];
+					$creatortimestamp = $row["creatortimestamp"];
+					$lastedittimestamp = $row["lastedittimestamp"];
+					echo "<a href='newsview.php?postid=$postid'><div>";
+					echo "<div class='small-4 columns'>$title</div>";
+					echo "<div class='small-4 columns'>$creatortimestamp</div>";
+					echo "<div class='small-4 columns'>$lastedittimestamp</div>";
+					echo "</div></a>";
+				}
+				?>
+			</div>
+			<h4 class="centerText">News</h4>
+			<div class="container">
+				<?php		
+				//Get Posts to display
+				$query = "SELECT * FROM postsnews ORDER BY postid DESC LIMIT $firstPostOfPage, $pageLimit";
+				$result = $db->query($query);
+				if (!$result) {
+					echo "<p class='error-text'>Error obtaining thread information. Please try again.</p>";
+					die();
+				}
+				
+				while ($row = $result->fetch_assoc()) {
+					$postid = $row["postid"];
+					$title = $row["title"];
+					$creatortimestamp = $row["creatortimestamp"];
+					$lastedittimestamp = $row["lastedittimestamp"];
+					echo "<a href='newsview.php?postid=$postid'><div>";
+					echo "<div class='small-4 columns'>$title</div>";
+					echo "<div class='small-4 columns'>$creatortimestamp</div>";
+					echo "<div class='small-4 columns'>$lastedittimestamp</div>";
+					echo "</div></a>";
+				}
+				?>
+			</div>
+			<div class="container">
+				<?php
+				//Generate First and Prev buttons
+				if ($page == 1) {
+					echo "[First]&emsp;";
+					echo "[Prev]&emsp;";
+				}
+				else {
+					$pageminus = $page - 1;
+					echo "<a href='news.php?page=1'>[First]&emsp;</a>";
+					echo "<a href='news.php?page=$pageminus'>[Prev]&emsp;</a>";
+				}
+				
+				//Generate Number buttons - Display up to 9 direct page links
+				if ($lastPage > 9) {
+					//This is a little confusing, but it is to make the page navigator work with greater than 9 pages
+					$shift = 0;
+					if ($page - 4 > 0 && $page + 4 <= $lastPage) {
+						$shift = 0;
+					}
+					else if ($page - 4 <= 0) {
+						$shift = 0 - (($page - 4) - 1);
+					}
+					else if ($page + 4 > $lastPage) {
+						$shift = $lastPage - ($page + 4);
+					}
+					for ($i = ($page - 4) + $shift; $i <= ($page + 4) + $shift; $i++) {
+						if ($i == $page) {
+							echo "$i&emsp;";
+						}
+						else {
+							echo "<a href='news.php?page=$i'>$i&emsp;</a>";
+						}
+					}
+				}
+				else {
+					for ($i = 1; $i < $lastPage + 1; $i++) {
+						if ($i == $page) {
+							echo "$i&emsp;";
+						}
+						else {
+							echo "<a href='news.php?page=$i'>$i&emsp;</a>";
+						}
+					}
+				}
+				
+				//Generate First and Prev buttons
+				if ($page == $lastPage) {
+					echo "[Next]&emsp;";
+					echo "[Last]";
+				}
+				else {
+					$pageplus = $page + 1;
+					echo "<a href='news.php?page=$pageplus'>[Next]&emsp;</a>";
+					echo "<a href='news.php?page=$lastPage'>[Last]</a>";
+				}
+				?>
+			</div>
+		</div>
 		
 		<?php
 		createFooter();    //Create the footer at the bottom of the page. This is defined in footer.php
