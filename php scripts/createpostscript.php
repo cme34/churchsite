@@ -29,7 +29,6 @@ if ($db->connect_error) {
 
 //Sterilize Inputs
 $title = $db->real_escape_string($title);
-$imagePath = $db->real_escape_string($imagePath);
 $text = $db->real_escape_string($text);
 $username = $db->real_escape_string($username);
 $timestamp = $db->real_escape_string($timestamp);
@@ -52,8 +51,9 @@ if ($loc == "news") {
 		$nextid = $nextid["Auto_increment"];
 
 		$imagePath = "img/upload/postsnews$nextid.png";
+		$imagePath = $db->real_escape_string($imagePath);
 		if (move_uploaded_file($_FILES['image']['tmp_name'], "../$imagePath")) {
-			echo "File is valid, and was successfully uploaded.\n";
+			
 		}
 		else {
 			$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
@@ -62,6 +62,12 @@ if ($loc == "news") {
 		}
 	}
 	
+	if ($highlight == "on") {
+		$highlight = 1;
+	}
+	else {
+		$highlight = 0;
+	}
 	//Add new entry to database
 	$query = "INSERT INTO postsnews (title, image, text, creator, creatortimestamp, lasteditor, lastedittimestamp, highlight) VALUES ('$title', '$imagePath', '$text', '$username', '$timestamp', '$username', '$timestamp', '$highlight')";
 	if (!$db->query($query)) {

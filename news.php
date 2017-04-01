@@ -51,6 +51,7 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 		<?php session_start();?>
 		
 		<div class='content'>
+			<a href="createpost.php?loc=news"><div class="button">Create News Post</div></a>
 			<h4 class="centerText">Highlighted News</h4>
 			<div class="container">
 				<div class="small-4 columns overflowHidden">Title</div>
