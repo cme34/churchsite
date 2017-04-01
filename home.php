@@ -59,11 +59,12 @@
 						echo "<table class='newsFeedTable'>";
 						for ($i = 0; $i < $highlightCount; $i++) {
 							$row = $result->fetch_assoc();
+							$postid = $row["postid"];
 							$title = $row["title"];
 							$creatortimestamp = $row["creatortimestamp"];
 							echo "<tr>";
 							echo "<th class='newsFeedCell date'>[$creatortimestamp]</th>";
-							echo "<th class='newsFeedCell title'><a>$title</a></th>";
+							echo "<th class='newsFeedCell title'><a href='newsview.php?postid=$postid'>$title</a></th>";
 							echo "</tr>";
 						}
 						for ($i = $highlightCount; $i < $highlightLimit; $i++) {
@@ -88,11 +89,12 @@
 						echo "<table class='newsFeedTable'>";
 						for ($i = 0; $i < $recentCount; $i++) {
 							$row = $result->fetch_assoc();
+							$postid = $row["postid"];
 							$title = $row["title"];
 							$creatortimestamp = $row["creatortimestamp"];
 							echo "<tr>";
 							echo "<th class='newsFeedCell date'>[$creatortimestamp]</th>";
-							echo "<th class='newsFeedCell title'><a>$title</a></th>";
+							echo "<th class='newsFeedCell title'><a href='newsview.php?postid=$postid'>$title</a></th>";
 							echo "</tr>";
 						}
 						for ($i = $recentCount; $i < $recentLimit; $i++) {
@@ -168,8 +170,7 @@
 							echo "</div>";
 						}
 					}
-					?>
-					<?php
+					
 					//Connect to database
 					$db = new mysqli('localhost', 'root', '', 'emmanuel');
 					if ($db->connect_error) {
