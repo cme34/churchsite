@@ -27,6 +27,9 @@ $count = $result->fetch_assoc()['COUNT(*)'];
 
 //Determine news to display
 $lastPage = ceil($count / $pageLimit);
+if ($count == 0) {
+		$lastPage = 1;
+}
 if ($page < 1 || $page > $lastPage || $page != floor($page)) {
 	header('Location: news.php?page=1');
 }
