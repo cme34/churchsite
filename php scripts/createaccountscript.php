@@ -8,6 +8,7 @@ $password = $_POST["password"];
 $passwordConfirm = $_POST["passwordConfirm"];	
 $newsletter;
 $admin;
+$hash;
 
 $email = rtrim($email);
 $username = rtrim($username);
@@ -22,10 +23,10 @@ else {
 }
 
 if (isset($_POST["admin"])) {
-	$admin = 1;
+	$applyforadmin = 1;
 }
 else {
-	$admin = 0;
+	$applyforadmin = 0;
 }
 
 //Connect to database
@@ -53,16 +54,32 @@ if ($rows > 0) {
 
 //Hash password
 $password = hash("sha256", $password);
+$hash = md5(rand(0, 1000));
+$hashesc = $db->real_escape_string($hash);
 
 //Add new entry to database
-$query = "INSERT INTO emmanuelaccountinfo (username, password, email, admin, newsletter, verified) VALUES ('$username', '$password', '$email', 0, '$newsletter', 0)";
+$query = "INSERT INTO emmanuelaccountinfo (username, password, email, admin, applyforadmin, newsletter, verified, hash) VALUES ('$username', '$password', '$email', 0, '$applyforadmin', '$newsletter', 0, '$hashesc')";
 if (!$db->query($query)) {
 	$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
 	header("Location: ../createaccount.php");
 	die();
 }
 
+//Send verification email
+$email = $_POST["email"];	
+$username = $_POST["username"];	
+$to = $email;
+$subject = "Emmanuel Lutheran Church - Email Verification";
+$txt = "Thank you for creating an account on our website please click the following link to verifiy your account. 
+http://localhost/churchsite/php%20scripts/verify.php?username=$username&hash=$hash";
+$headers = array("From: ",
+    "Reply-To: ",
+    "X-Mailer: PHP/" . PHP_VERSION
+);
+$headers = implode("\r\n", $headers);
+//mail($to, $subject, $txt,$headers);
+
+//Set session message and navigate to message.php
 $_SESSION["message"] = "You have created your account successfully. Before you can log in, please accept the verification email sent to your provided email address.";
 header("Location: ../message.php");
-
 ?>
