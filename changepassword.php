@@ -22,24 +22,28 @@ if (!isset($_SESSION["username"])) {
 <body>
 	<div id="wrapper">
 		<div class="content">
-			<h1>Change Password</h1>
+			<div class="sectionTitleContainer">
+				<h2 class="strongText  centerText">Change Password</h4>
+			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form Action="php scripts/changepasswordscript.php" Method="POST">
-						Old Password: <input class="textFeild" id="oldpassword" name="oldpassword" type="password" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						New Password: <input class="textFeild" id="newpassword" name="newpassword" type="password" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						Confirm Password: <input class="textFeild" id="passwordconfirm" name="passwordconfirm" type="password" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						</br>
-						<button class="medium success button" id="buttonCreateaccountSubmit">Change Password</button>
-						<a href="home.php"><div class="medium secondary button" id="buttonCreateaccountCancel">Cancel</div></a>
+					<form class="inputForm" Action="php scripts/changepasswordscript.php" Method="POST">
+						Old Password: <input class="inputTextFeild" id="oldpassword" name="oldpassword" type="password" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						<br/>
+						New Password: <input class="inputTextFeild" id="newpassword" name="newpassword" type="password" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						<br/>
+						Confirm Password: <input class="inputTextFeild" id="passwordconfirm" name="passwordconfirm" type="password" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						<br/>
+						<div class="small-6 columns"><button class="button inputButton yes">Submit</button></div>
+						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
 						<?php
 							if (isset($_SESSION["error"])) {
 								$err = $_SESSION["error"];
 								unset($_SESSION["error"]);
-								echo "<p class='error-text'>$err</br></p>";
+								echo "<p class='errorText'>$err<br/></p>";
 							}
 						?>
 					</form>
@@ -65,20 +69,20 @@ if (!isset($_SESSION["username"])) {
 			
 			//Is any feild empty
 			if (!oldpassword || !password || !passwordConfirm) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Feilds must be filled.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Feilds must be filled.<br/></p>');
 				return false;
 			}
 			//Does password equal passwordConfirm
 			else if (password != passwordConfirm) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Password does not match confirm password.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Password does not match confirm password.<br/></p>');
 				return false;
 			}
 			//Is password too short
 			else if (password.length < 8) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Password is too short. Must be at least 8 characters long.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Password is too short. Must be at least 8 characters long.<br/></p>');
 				return false;
 			}
 			//Does password fulfill all requirments
@@ -115,9 +119,9 @@ if (!isset($_SESSION["username"])) {
 			}
 			var fulfills = contains_upper + contains_lower + contains_number + contains_symbol;
 			if (fulfills < 3) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Password is too weak. Make sure it contains 3 of the following: ' + 
-					'an upper case letter, lower case letter, number and symbol.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Password is too weak. Make sure it contains 3 of the following: ' + 
+					'an upper case letter, lower case letter, number and symbol.<br/></p>');
 				return false;
 			}
 		});

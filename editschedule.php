@@ -27,24 +27,26 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 <body>
 	<div id="wrapper">
 		<div class="content">
-			<h1>Edit Weekly Schedule</h1>
+			<div class="sectionTitleContainer">
+				<h2 class="strongText  centerText">Edit Weekly Schedule</h4>
+			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form Action="php scripts/editschedulescript.php" Method="POST">
-						Sunday: <input class="textFeild" id="sunday" name="sunday" type="text"></input></br>
-						Monday: <input class="textFeild" id="monday" name="monday" type="text"></input></br>
-						Tuesday: <input class="textFeild" id="tuesday" name="tuesday" type="text"></input></br>
-						Wednesday: <input class="textFeild" id="wednesday" name="wednesday" type="text"></input></br>
-						Thursday: <input class="textFeild" id="thursday" name="thursday" type="text"></input></br>
-						Friday: <input class="textFeild" id="friday" name="friday" type="text"></input></br>
-						Saturday: <input class="textFeild" id="saturday" name="saturday" type="text"></input></br>
-						<button class="medium success button" id="buttonLogin">Submit</button>
-						<a href="home.php"><div class="medium secondary button" id="buttonCreateaccountCancel">Cancel</div></a>
+					<form class="inputForm" Action="php scripts/editschedulescript.php" Method="POST">
+						Sunday: <input class="inputTextFeild" id="sunday" name="sunday" type="text"></input></br>
+						Monday: <input class="inputTextFeild" id="monday" name="monday" type="text"></input></br>
+						Tuesday: <input class="inputTextFeild" id="tuesday" name="tuesday" type="text"></input></br>
+						Wednesday: <input class="inputTextFeild" id="wednesday" name="wednesday" type="text"></input></br>
+						Thursday: <input class="inputTextFeild" id="thursday" name="thursday" type="text"></input></br>
+						Friday: <input class="inputTextFeild" id="friday" name="friday" type="text"></input></br>
+						Saturday: <input class="inputTextFeild" id="saturday" name="saturday" type="text"></input></br>
+						<div class="small-6 columns"><button class="button inputButton yes">Submit</button></div>
+						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
 						<?php
 							if (isset($_SESSION["error"])) {
 								$err = $_SESSION["error"];
 								unset($_SESSION["error"]);
-								echo "<p class='error-text'>$err</br></p>";
+								echo "<p class='errorText'>$err<br/></p>";
 							}
 						?>
 					</form>

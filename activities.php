@@ -17,18 +17,21 @@
 		<?php session_start();?>
 		
 		<div class="content">
-			<div class="container">
-				<h2 class="centerText">Activities</h2>
+			<div class="sectionTitleContainer">
+				<h2 class="strongText centerText">Activities</h2>
 				<?php
-				//Show addBar if signed in as admin
-				if (isset($_SESSION["username"])) {
-					if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
-						echo "<div class='editBar addBar'>";
-						echo "    <a class='barOption' href='createpost.php?loc=activities'>[add new post]</a>";
-						echo "</div>";
+					//Show addBar if signed in as admin
+					if (isset($_SESSION["username"])) {
+						if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
+							echo "<div class='editBar addBar'>";
+							echo "    <a class='barOption' href='createpost.php?loc=activities'>[add new post]</a>";
+							echo "</div>";
+						}
 					}
-				}
-				
+				?>
+			</div>
+			<div class="container">
+				<?php
 				//Connect to database
 				$db = new mysqli('localhost', 'root', '', 'emmanuel');
 				if ($db->connect_error) {

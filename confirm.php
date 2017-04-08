@@ -46,31 +46,34 @@ $postid = $_GET['postid'];
 </head>
 <body>
 	<div id="wrapper">
-		<?php		
-		if ($action == "delete") {
-			$msg = "Are you sure you want to delete this post?";
-			$yes = "php scripts/deletepost.php?loc=$loc&postid=$postid";
-			$no = "$loc.php";
-		}
-		else if ($action == "removeImage") {
-			$msg = "Are you sure you want to remove the image from this post? Another image can easily be assigned to the post later by editing it.";
-			$yes = "php scripts/removeimagepost.php?loc=$loc&postid=$postid";
-			$no = "$loc.php";
-		}
-		else {
-			$msg = "Oops. Something went wrong.";
-			$yes = "home.php";
-			$no = "home.php";
-		}
+		<div class="content small">
+			<div class="container">
+				<?php		
+				if ($action == "delete") {
+					$msg = "Are you sure you want to delete this post?";
+					$yes = "php scripts/deletepost.php?loc=$loc&postid=$postid";
+					$no = "$loc.php";
+				}
+				else if ($action == "removeImage") {
+					$msg = "Are you sure you want to remove the image from this post? Another image can easily be assigned to the post later by editing it.";
+					$yes = "php scripts/removeimagepost.php?loc=$loc&postid=$postid";
+					$no = "$loc.php";
+				}
+				else {
+					$msg = "Oops. Something went wrong.";
+					$yes = "home.php";
+					$no = "home.php";
+				}
+				echo "<p class='centerText'>$msg</p>";
+				echo "<div class='small-6 columns'><a href='$yes'><div class='button inputButton yes'>Yes</div></a></div>";
+				echo "<div class='small-6 columns'><a href='$no'><div class='button inputButton no'>No</div></a></div>";
+				?>
+			</div>
+		</div>
 		
-		echo "<div class='content'>";
-		echo "	  <p>$msg</p>";
-		echo "	  <a href='$yes'><div class='button'>Yes</div></a>";
-		echo "	  <a href='$no'><div class='button'>No</div></a>";
-		echo '</div>';
-		
-		createFooter();    //Create the footer at the bottom of the page. This is defined in footer.php
-		createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
+		<?php
+			createFooter();    //Create the footer at the bottom of the page. This is defined in footer.php
+			createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
 		?>
 	</div>
 	

@@ -54,12 +54,13 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 		<?php session_start();?>
 		
 		<div class='content'>
-			<a href="createpost.php?loc=news"><div class="button">Create News Post</div></a>
-			<h4 class="centerText">Highlighted News</h4>
+			<div class="sectionTitleContainer">
+				<h2 class="strongText  centerText">Highlighted News</h4>
+			</div>
 			<div class="container">
-				<div class="small-4 columns overflowHidden">Title</div>
-				<div class="small-4 columns overflowHidden">Time Created</div>
-				<div class="small-4 columns overflowHidden">Time Last Edited</div>
+				<div class="small-4 columns overflowHidden strongText">Title</div>
+				<div class="small-4 columns overflowHidden strongText">Time Created</div>
+				<div class="small-4 columns overflowHidden strongText">Time Last Edited</div>
 				<?php
 				//Get top $highlightLimit highlighted news
 				$query = "SELECT * FROM postsnews WHERE postsnews.highlight = '1' ORDER BY postid DESC LIMIT $highlightLimit";
@@ -89,8 +90,23 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 				}
 				?>
 			</div>
-			<h4 class="centerText">News</h4>
+			<div class="sectionTitleContainer">
+				<h2 class="strongText centerText">News</h4>
+				<?php
+					//Show addBar if signed in as admin
+					if (isset($_SESSION["username"])) {
+						if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
+							echo "<div class='editBar addBar'>";
+							echo "    <a class='barOption' href='createpost.php?loc=news'>[add new post]</a>";
+							echo "</div>";
+						}
+					}
+				?>
+			</div>
 			<div class="container">
+				<div class="small-4 columns overflowHidden strongText">Title</div>
+				<div class="small-4 columns overflowHidden strongText">Time Created</div>
+				<div class="small-4 columns overflowHidden strongText">Time Last Edited</div>
 				<?php		
 				//Get Posts to display
 				$query = "SELECT * FROM postsnews ORDER BY postid DESC LIMIT $firstPostOfPage, $pageLimit";
@@ -112,64 +128,64 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 					echo "</div></a>";
 				}
 				?>
-			</div>
-			<div class="container">
-				<?php
-				//Generate First and Prev buttons
-				if ($page == 1) {
-					echo "[First]&emsp;";
-					echo "[Prev]&emsp;";
-				}
-				else {
-					$pageminus = $page - 1;
-					echo "<a href='news.php?page=1'>[First]&emsp;</a>";
-					echo "<a href='news.php?page=$pageminus'>[Prev]&emsp;</a>";
-				}
-				
-				//Generate Number buttons - Display up to 9 direct page links
-				if ($lastPage > 9) {
-					//This is a little confusing, but it is to make the page navigator work with greater than 9 pages
-					$shift = 0;
-					if ($page - 4 > 0 && $page + 4 <= $lastPage) {
+				<div class="newsPageNav">
+					<?php
+					//Generate First and Prev buttons
+					if ($page == 1) {
+						echo "[First]&emsp;";
+						echo "[Prev]&emsp;";
+					}
+					else {
+						$pageminus = $page - 1;
+						echo "<a href='news.php?page=1'>[First]&emsp;</a>";
+						echo "<a href='news.php?page=$pageminus'>[Prev]&emsp;</a>";
+					}
+					
+					//Generate Number buttons - Display up to 9 direct page links
+					if ($lastPage > 9) {
+						//This is a little confusing, but it is to make the page navigator work with greater than 9 pages
 						$shift = 0;
-					}
-					else if ($page - 4 <= 0) {
-						$shift = 0 - (($page - 4) - 1);
-					}
-					else if ($page + 4 > $lastPage) {
-						$shift = $lastPage - ($page + 4);
-					}
-					for ($i = ($page - 4) + $shift; $i <= ($page + 4) + $shift; $i++) {
-						if ($i == $page) {
-							echo "$i&emsp;";
+						if ($page - 4 > 0 && $page + 4 <= $lastPage) {
+							$shift = 0;
 						}
-						else {
-							echo "<a href='news.php?page=$i'>$i&emsp;</a>";
+						else if ($page - 4 <= 0) {
+							$shift = 0 - (($page - 4) - 1);
 						}
-					}
-				}
-				else {
-					for ($i = 1; $i < $lastPage + 1; $i++) {
-						if ($i == $page) {
-							echo "$i&emsp;";
+						else if ($page + 4 > $lastPage) {
+							$shift = $lastPage - ($page + 4);
 						}
-						else {
-							echo "<a href='news.php?page=$i'>$i&emsp;</a>";
+						for ($i = ($page - 4) + $shift; $i <= ($page + 4) + $shift; $i++) {
+							if ($i == $page) {
+								echo "$i&emsp;";
+							}
+							else {
+								echo "<a href='news.php?page=$i'>$i&emsp;</a>";
+							}
 						}
 					}
-				}
-				
-				//Generate First and Prev buttons
-				if ($page == $lastPage) {
-					echo "[Next]&emsp;";
-					echo "[Last]";
-				}
-				else {
-					$pageplus = $page + 1;
-					echo "<a href='news.php?page=$pageplus'>[Next]&emsp;</a>";
-					echo "<a href='news.php?page=$lastPage'>[Last]</a>";
-				}
-				?>
+					else {
+						for ($i = 1; $i < $lastPage + 1; $i++) {
+							if ($i == $page) {
+								echo "$i&emsp;";
+							}
+							else {
+								echo "<a href='news.php?page=$i'>$i&emsp;</a>";
+							}
+						}
+					}
+					
+					//Generate First and Prev buttons
+					if ($page == $lastPage) {
+						echo "[Next]&emsp;";
+						echo "[Last]";
+					}
+					else {
+						$pageplus = $page + 1;
+						echo "<a href='news.php?page=$pageplus'>[Next]&emsp;</a>";
+						echo "<a href='news.php?page=$lastPage'>[Last]</a>";
+					}
+					?>
+				</div>
 			</div>
 		</div>
 		

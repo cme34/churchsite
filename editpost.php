@@ -27,7 +27,9 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 <body>
 	<div id="wrapper">
 		<div class="content">
-			<h1>Edit Post</h1>
+			<div class="sectionTitleContainer">
+				<h2 class="strongText  centerText">Create Post</h4>
+			</div>
 			<div class="containerGroup">
 				<div class="container">
 					<?php
@@ -37,7 +39,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 					//Connect to database
 					$db = new mysqli('localhost', 'root', '', 'emmanuel');
 					if ($db->connect_error) {
-						echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
+						echo "<p class='errorText'>Connection with database failed. Please try again later.</p>";
 						die();
 					}
 					
@@ -52,26 +54,26 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 						$image = $row["image"];
 						$text = $row["text"];
 						$highlight = 0;
-						echo "<form Action='php scripts/editpostscript.php?loc=$loc&id=$id' Method='POST' enctype='multipart/form-data'>";
-						echo "	Title: <input class='textFeild' id='title' name='title' type='text'></input></br>";
-						echo "  Image: <input class='fileFeild' id='image' name='image' type='file' accept='.png, .jpg, gif, .bmp'></input></br>";
-						echo "  <p class='characterLimitText'>Only .png, .jpg, .gif and .bmp files supported</p>";
-						echo "	Text: <textarea class='textFeild' id='text' name='text' type='text' rows=12></textarea></br>";
+						echo "<form class='inputForm' Action='php scripts/editpostscript.php?loc=$loc&id=$id' Method='POST' enctype='multipart/form-data'>";
+						echo "	Title: <input class='inputTextFeild' id='title' name='title' type='text'></input><br/>";
+						echo "  Image: <input class='inputFileFeild' id='image' name='image' type='file' accept='.png, .jpg, gif, .bmp'></input>";
+						echo "  <p>Only .png, .jpg, .gif and .bmp files supported</p>";
+						echo "	Text: <textarea class='textFeild' id='text' name='text' type='text' rows=12></textarea><br/>";
 						if ($loc == "news") {
 							$highlight = $row["highlight"];
 							echo "<input type='checkbox' id='highlight' name='highlight'><span>Highlight Post</span><br/>";
 						}
-						echo "	<button class='medium success button' id='buttonLogin'>Submit</button>";
-						echo "	<a href='home.php'><div class='medium secondary button' id='buttonCreateaccountCancel'>Cancel</div></a>";
+						echo "	<div class='small-6 columns'><button class='button inputButton yes'>Submit</button></div>";
+						echo "	<div class='small-6 columns'><a href='home.php'><div class='button inputButton no'>Cancel</div></a></div>";
 						if (isset($_SESSION["error"])) {
 							$err = $_SESSION["error"];
 							unset($_SESSION["error"]);
-							echo "<p class='error-text'>$err</br></p>";
+							echo "<p class='errorText'>$err<br/></p>";
 						}
 					}
 					else {
 						echo "<p>An error has occured. Please try again later.</p>";
-						echo "<a href='home.php'><div class='medium success button'>Back to home page</div></a>";
+						echo "<a href='home.php'><div class='button inputButton'>Back to home page</div></a>";
 					}
 					?>
 					</form>
