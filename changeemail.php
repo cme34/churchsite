@@ -22,24 +22,28 @@ if (!isset($_SESSION["username"])) {
 <body>
 	<div id="wrapper">
 		<div class="content">
-			<h1>Change Email</h1>
+			<div class="sectionTitleContainer">
+				<h2 class="strongText  centerText">Change Email</h4>
+			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form Action="php scripts/changeemailscript.php" Method="POST">
-						Old Email: <input class="textFeild" id="oldemail" name="oldemail" type="text" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						New Email: <input class="textFeild" id="newemail" name="newemail" type="text" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						Password: <input class="textFeild" id="password" name="password" type="password" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						</br>
-						<button class="medium success button" id="buttonCreateaccountSubmit">Change Email</button>
-						<a href="home.php"><div class="medium secondary button" id="buttonCreateaccountCancel">Cancel</div></a>
+					<form class="inputForm" Action="php scripts/changeemailscript.php" Method="POST">
+						Old Email: <input class="inputTextFeild" id="oldemail" name="oldemail" type="text" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						<br/>
+						New Email: <input class="inputTextFeild" id="newemail" name="newemail" type="text" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						<br/>
+						Password: <input class="inputTextFeild" id="password" name="password" type="password" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						<br/>
+						<div class="small-6 columns"><button class="button inputButton yes">Submit</button></div>
+						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
 						<?php
 							if (isset($_SESSION["error"])) {
 								$err = $_SESSION["error"];
 								unset($_SESSION["error"]);
-								echo "<p class='error-text'>$err</br></p>";
+								echo "<p class='errorText'>$err<br/></p>";
 							}
 						?>
 					</form>
@@ -65,8 +69,8 @@ if (!isset($_SESSION["username"])) {
 			
 			//Is any feild empty
 			if (!oldemail || !newemail || !password) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Feilds must be filled.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Feilds must be filled.<br/></p>');
 				return false;
 			}
 		});

@@ -21,19 +21,23 @@ if (isset($_SESSION["username"])) {
 </head>
 <body>
 	<div id="wrapper">
-		<div class="content">
-			<h1>Login</h1>
+		<div class="content small">
+			<div class="sectionTitleContainer">
+				<h2 class="strongText  centerText">Login</h4>
+			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form Action="php scripts/loginScript.php" Method="POST">
-						Username: <input class="textFeild" id="username" name="username" type="text" maxlength=64></input></br>
-						Password: <input class="textFeild" id="password" name="password" type="password" maxlength=256></input></br>
-						<button class="medium success button" id="buttonLogin">Login</button>
+					<form class="inputForm" Action="php scripts/loginScript.php" Method="POST">
+						Username: <input class="inputTextFeild" id="username" name="username" type="text" maxlength=64></input>
+						<br/>
+						Password: <input class="inputTextFeild" id="password" name="password" type="password" maxlength=256></input>
+						<br/>
+						<button class="button inputButton yes">Login</button>
 						<?php
 							if (isset($_SESSION["error"])) {
 								$err = $_SESSION["error"];
 								unset($_SESSION["error"]);
-								echo "<p class='error-text'>$err</br></p>";
+								echo "<p class='errorText'>$err</br></p>";
 							}
 						?>
 					</form>
@@ -54,8 +58,8 @@ if (isset($_SESSION["username"])) {
 	<script type="text/javascript">
 		$('form').on('submit', function() {
 			if (!$('#username').val() || !$('#password').val()) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Feilds must be filled.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Feilds must be filled.<br/></p>');
 				return false;
 			}
 		});

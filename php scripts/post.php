@@ -12,15 +12,15 @@ class Post {
 	
 	public function display($imageOnRight) {
 		echo "	<div class='post'>";
-		echo "		<h3 class='centerText'>$this->title</h3>";
-		echo "		<div class='row'>";
+		echo "		<h3 class='strongText centerText'>$this->title</h3>";
+		echo "		<div class='row postRow'>";
 		if ($imageOnRight == 1) {
 			echo "		<img class='postImage right' src='$this->imageLink' alt='$this->imageLink' />";
 		}
 		else {
 			echo "		<img class='postImage left' src='$this->imageLink' alt='$this->imageLink' />";
 		}
-		echo "			<p>$this->text</p>";
+		echo "			<p class='postText'>$this->text</p>";
 		echo "		</div>";
 		if (isset($_SESSION["username"])) {
 			if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {

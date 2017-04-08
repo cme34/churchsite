@@ -21,32 +21,38 @@ if (isset($_SESSION["username"])) {
 </head>
 <body>
 	<div id="wrapper">
-		<div class="content">
-			<h1>Create Account</h1>
+		<div class="content small">
+			<div class="sectionTitleContainer">
+				<h2 class="strongText  centerText">Create Account</h4>
+			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form Action="php scripts/createaccountscript.php" Method="POST">
-						Username: <input class="textFeild" id="username" name="username" type="text" maxlength=64></input>
-						<p class="characterLimitText">Character Limit: 64</p>
-						Email: <input class="textFeild" id="email" name="email" type="text" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						Password: <input class="textFeild" id="password" name="password" type="password" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						Confirm Password: <input class="textFeild" id="passwordConfirm" name="passwordConfirm" type="password" maxlength=256></input>
-						<p class="characterLimitText">Character Limit: 256</p>
-						<input type="checkbox" id="newsletter" name="newsletter" checked><span>I would like to recieve the monthly Emanual Echos newsletter.</span>
+					<form class="inputForm" Action="php scripts/createaccountscript.php" Method="POST">
+						Username: <input class="inputTextFeild" id="username" name="username" type="text" maxlength=64></input>
+						<p class="inputCharacterLimitText">Character Limit: 64</p>
 						<br/>
-						<input type="checkbox" id="terms" name="terms"><span>By creating an account, you hereby accept the <a href="privacypolicy.php">Privacy Policy</a> and <a href="termsofuse.php">Terms of Use</a>.</span>
+						Email: <input class="inputTextFeild" id="email" name="email" type="text" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
 						<br/>
-						<input type="checkbox" id="admin" name="admin"><span>I would like to apply for an Administrator account to help Emanual Lutheran Church maintain thier site.</span>
+						Password: <input class="inputTextFeild" id="password" name="password" type="password" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
 						<br/>
-						<button class="medium success button" id="buttonCreateaccountSubmit">Create Account</button>
-						<a href="home.php"><div class="medium secondary button" id="buttonCreateaccountCancel">Cancel</div></a>
+						Confirm Password: <input class="inputTextFeild" id="passwordConfirm" name="passwordConfirm" type="password" maxlength=256></input>
+						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						<br/>
+						<input class="inputCheckbox" type="checkbox" id="newsletter" name="newsletter" checked><span>I would like to recieve the monthly Emanual Echos newsletter.</span>
+						<br/>
+						<input class="inputCheckbox" type="checkbox" id="terms" name="terms"><span>By creating an account, you hereby accept the <a href="privacypolicy.php">Privacy Policy</a> and <a href="termsofuse.php">Terms of Use</a>.</span>
+						<br/>
+						<input class="inputCheckbox" type="checkbox" id="admin" name="admin"><span>I would like to apply for an Administrator account to help Emanual Lutheran Church maintain thier site.</span>
+						<br/>
+						<div class="small-6 columns"><button class="button inputButton yes">Create Account</button></div>
+						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
 						<?php
 							if (isset($_SESSION["error"])) {
 								$err = $_SESSION["error"];
 								unset($_SESSION["error"]);
-								echo "<p class='error-text'>$err</br></p>";
+								echo "<p class='errorText'>$err<br/></p>";
 							}
 						?>
 					</form>
@@ -74,32 +80,32 @@ if (isset($_SESSION["username"])) {
 			
 			//Is terms selected
 			if (!terms) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">You must accept to the privacy policy and terms of use.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">You must accept to the privacy policy and terms of use.<br/></p>');
 				return false;
 			}
 			//Is any feild empty
 			else if (!email || !username || !password || !passwordConfirm) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Feilds must be filled.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Feilds must be filled.<br/></p>');
 				return false;
 			}
 			//Does password equal passwordConfirm
 			else if (password != passwordConfirm) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Password does not match confirm password.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Password does not match confirm password.<br/></p>');
 				return false;
 			}
 			//Is username too short
 			else if (username.length < 8) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Username is too short. Must be at least 8 characters long.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Username is too short. Must be at least 8 characters long.<br/></p>');
 				return false;
 			}
 			//Is password too short
 			else if (password.length < 8) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Password is too short. Must be at least 8 characters long.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Password is too short. Must be at least 8 characters long.<br/></p>');
 				return false;
 			}
 			//Does password fulfill all requirments
@@ -136,9 +142,9 @@ if (isset($_SESSION["username"])) {
 			}
 			var fulfills = contains_upper + contains_lower + contains_number + contains_symbol;
 			if (fulfills < 3) {
-				$('.error-text').remove();
-				$('form').append('<p class="error-text">Password is too weak. Make sure it contains 3 of the following: ' + 
-					'an upper case letter, lower case letter, number and symbol.</br></p>');
+				$('.errorText').remove();
+				$('form').append('<p class="errorText">Password is too weak. Make sure it contains 3 of the following: ' + 
+					'an upper case letter, lower case letter, number and symbol.<br/></p>');
 				return false;
 			}
 		});

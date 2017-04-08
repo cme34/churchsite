@@ -27,30 +27,34 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 <body>
 	<div id="wrapper">
 		<div class="content">
-			<h1>Create Post</h1>
+			<div class="sectionTitleContainer">
+				<h2 class="strongText  centerText">Create Post</h4>
+			</div>
 			<div class="containerGroup">
 				<div class="container">
 					<?php
 					$loc = $_GET["loc"];
-					echo "<form Action='php scripts/createpostscript.php?loc=$loc' Method='POST' enctype='multipart/form-data'>";
+					echo "<form class='inputForm' Action='php scripts/createpostscript.php?loc=$loc' Method='POST' enctype='multipart/form-data'>";
 					?>
-						Title: <input class="textFeild" id="title" name="title" type="text"></input></br>
-						Image: <input class="fileFeild" id="image" name="image" type="file" accept=".png, .jpg, gif, .bmp"></input></br>
-						<p class="characterLimitText">Only .png, .jpg, .gif and .bmp files supported</p>
-						Text: <textarea class="textFeild" id="text" name="text" type="text" rows=12></textarea></br>
+						Title: <input class="inputTextFeild" id="title" name="title" type="text"></input>
+						<br/>
+						Image: <input class="inputFileFeild" id="image" name="image" type="file" accept=".png, .jpg, gif, .bmp"></input>
+						<p>Only .png, .jpg, .gif and .bmp files supported</p>
+						Text: <textarea class="inputTextFeild" id="text" name="text" type="text" rows=12></textarea>
+						<br/>
 						<?php
 						$loc = $_GET["loc"];
 						if ($loc == "news") {
-							echo "<input type='checkbox' id='highlight' name='highlight'><span>Highlight Post</span><br/>";
+							echo "<input class='inputCheckbox' type='checkbox' id='highlight' name='highlight'><span>Highlight Post</span><br/>";
 						}
 						?>
-						<button class="medium success button" id="buttonLogin">Submit</button>
-						<a href="home.php"><div class="medium secondary button" id="buttonCreateaccountCancel">Cancel</div></a>
+						<div class="small-6 columns"><button class="button inputButton yes">Submit</button></div>
+						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
 						<?php
 							if (isset($_SESSION["error"])) {
 								$err = $_SESSION["error"];
 								unset($_SESSION["error"]);
-								echo "<p class='error-text'>$err</br></p>";
+								echo "<p class='errorText'>$err<br/></p>";
 							}
 						?>
 					</form>

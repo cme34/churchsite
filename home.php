@@ -32,9 +32,9 @@
 			</div>
 			
 			<div class="containerGroup">
-				<div>
+				<div style="height: 384px; background-color: #a33030;">
 					<div id="newsFeed" class="small-6 columns container">
-						<h4 class="centerText">News Feed</h4>
+						<h4 class="strongText centerText">News Feed</h4>
 						<?php
 						$highlightLimit = 3;
 						$recentLimit = 5;
@@ -55,7 +55,7 @@
 						$highlightCount = $result->num_rows;
 						
 						//Display Highlighted News
-						echo "<h5>Highlighted News</h5>";
+						echo "<h5 class='strongText'>Highlighted News</h5>";
 						echo "<table class='newsFeedTable'>";
 						for ($i = 0; $i < $highlightCount; $i++) {
 							$row = $result->fetch_assoc();
@@ -85,7 +85,7 @@
 						$recentCount = $result->num_rows;
 						
 						//Display Recent News
-						echo "<h5>Recent News</h5>";
+						echo "<h5 class='strongText'>Recent News</h5>";
 						echo "<table class='newsFeedTable'>";
 						for ($i = 0; $i < $recentCount; $i++) {
 							$row = $result->fetch_assoc();
@@ -107,22 +107,22 @@
 						?>
 					</div>
 					<div id="weeklySchedule" class="small-6 columns container">
-						<h4 class='centerText'>Weekly Schedule</h4>
+						<h4 class='strongText centerText'>Weekly Schedule</h4>
 						<?php 
 						$day = date('w');
 						$week_start = date('m-d-Y', strtotime('-'.$day.' days'));
-						echo "<p class='weeklyScheduleText centerText'>For the week of Sunday $week_start</p>";
+						echo "<p class='weeklyScheduleText strongText centerText'>For the week of Sunday $week_start</p>";
 						?>
 						<div>
 							<div class="inline-block noPadding">
 								<ul>
-									<li class="weeklyScheduleText">Sunday:</li>
-									<li class="weeklyScheduleText">Monday:</li>
-									<li class="weeklyScheduleText">Tuesday:</li>
-									<li class="weeklyScheduleText">Wednesday:</li>
-									<li class="weeklyScheduleText">Thursday:</li>
-									<li class="weeklyScheduleText">Friday:</li>
-									<li class="weeklyScheduleText">Saturday:</li>
+									<li class="weeklyScheduleText strongText">Sunday:</li>
+									<li class="weeklyScheduleText strongText">Monday:</li>
+									<li class="weeklyScheduleText strongText">Tuesday:</li>
+									<li class="weeklyScheduleText strongText">Wednesday:</li>
+									<li class="weeklyScheduleText strongText">Thursday:</li>
+									<li class="weeklyScheduleText strongText">Friday:</li>
+									<li class="weeklyScheduleText strongText">Saturday:</li>
 								</ul>
 							</div>
 							<div class="inline-block noPadding">
@@ -151,7 +151,6 @@
 						if (isset($_SESSION["username"])) {
 							if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
 								echo "<div class='editBar scheduleBar'>";
-								echo "    <a class='barOption' href='editschedule.php'>[edit]</a>";
 								echo "    <a class='barOption' href='editschedule.php'>[change weekly bulletin]</a>";
 								echo "</div>";
 							}
@@ -159,9 +158,11 @@
 						?>
 					</div>
 				</div>
-				<div class="container">
-					<h2 class="centerText">About Emmanuel</h2>
-					<?php
+			</div>
+			
+			<div class="sectionTitleContainer">
+				<h2 class="strongText centerText">About Emmanuel</h2>
+				<?php
 					//Show addBar if signed in as admin
 					if (isset($_SESSION["username"])) {
 						if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
@@ -170,7 +171,11 @@
 							echo "</div>";
 						}
 					}
-					
+				?>
+			</div>
+			<div class="containerGroup">
+				<div class="container">
+					<?php					
 					//Connect to database
 					$db = new mysqli('localhost', 'root', '', 'emmanuel');
 					if ($db->connect_error) {
@@ -218,6 +223,7 @@
 		createNavigator(); //Create the navigator at the top of the page. This is defined in navigator.php
 		?>
 	</div>
+	
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
