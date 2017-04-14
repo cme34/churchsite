@@ -82,11 +82,11 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 					$title = $row["title"];
 					$creatortimestamp = $row["creatortimestamp"];
 					$lastedittimestamp = $row["lastedittimestamp"];
-					echo "<a href='newsview.php?postid=$postid'><div>";
-					echo "<div class='small-4 columns'>$title</div>";
-					echo "<div class='small-4 columns'>$creatortimestamp</div>";
-					echo "<div class='small-4 columns'>$lastedittimestamp</div>";
-					echo "</div></a>";
+					echo "<div>";
+					echo "<a href='newsview.php?postid=$postid'><div class='small-4 columns boldLink'>$title</div></a>";
+					echo "<div class='small-4 columns'>[$creatortimestamp]</div>";
+					echo "<div class='small-4 columns'>[$lastedittimestamp]</div>";
+					echo "</div>";
 				}
 				?>
 			</div>
@@ -105,8 +105,9 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 			</div>
 			<div class="container">
 				<div class="small-4 columns overflowHidden strongText">Title</div>
-				<div class="small-4 columns overflowHidden strongText">Time Created</div>
-				<div class="small-4 columns overflowHidden strongText">Time Last Edited</div>
+				<div class="small-2 columns overflowHidden strongText">Highlighted</div>
+				<div class="small-3 columns overflowHidden strongText">Time Created</div>
+				<div class="small-3 columns overflowHidden strongText">Time Last Edited</div>
 				<?php		
 				//Get Posts to display
 				$query = "SELECT * FROM postsnews ORDER BY postid DESC LIMIT $firstPostOfPage, $pageLimit";
@@ -121,11 +122,18 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 					$title = $row["title"];
 					$creatortimestamp = $row["creatortimestamp"];
 					$lastedittimestamp = $row["lastedittimestamp"];
-					echo "<a href='newsview.php?postid=$postid'><div>";
-					echo "<div class='small-4 columns'>$title</div>";
-					echo "<div class='small-4 columns'>$creatortimestamp</div>";
-					echo "<div class='small-4 columns'>$lastedittimestamp</div>";
-					echo "</div></a>";
+					$highlight = $row["highlight"];
+					echo "<div>";
+					echo "<a href='newsview.php?postid=$postid'><div class='small-4 columns boldLink'>$title</div></a>";
+					if ($highlight == 1) {
+						echo "<div class='small-2 columns'>yes</div>";
+					}
+					else {
+						echo "<div class='small-2 columns'>no</div>";
+					}
+					echo "<div class='small-3 columns'>[$creatortimestamp]</div>";
+					echo "<div class='small-3 columns'>[$lastedittimestamp]</div>";
+					echo "</div>";
 				}
 				?>
 				<div class="newsPageNav">

@@ -44,8 +44,6 @@ if (isset($_SESSION["username"])) {
 						<br/>
 						<input class="inputCheckbox" type="checkbox" id="terms" name="terms"><span>By creating an account, you hereby accept the <a href="privacypolicy.php">Privacy Policy</a> and <a href="termsofuse.php">Terms of Use</a>.</span>
 						<br/>
-						<input class="inputCheckbox" type="checkbox" id="admin" name="admin"><span>I would like to apply for an Administrator account to help Emanual Lutheran Church maintain thier site.</span>
-						<br/>
 						<div class="small-6 columns"><button class="button inputButton yes">Create Account</button></div>
 						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
 						<?php

@@ -7,7 +7,6 @@ $username = $_POST["username"];
 $password = $_POST["password"];	
 $passwordConfirm = $_POST["passwordConfirm"];	
 $newsletter;
-$admin;
 $hash;
 
 $email = rtrim($email);
@@ -20,13 +19,6 @@ if (isset($_POST["newsletter"])) {
 }
 else {
 	$newsletter = 0;
-}
-
-if (isset($_POST["admin"])) {
-	$applyforadmin = 1;
-}
-else {
-	$applyforadmin = 0;
 }
 
 //Connect to database
@@ -58,7 +50,7 @@ $hash = md5(rand(0, 1000));
 $hashesc = $db->real_escape_string($hash);
 
 //Add new entry to database
-$query = "INSERT INTO emmanuelaccountinfo (username, password, email, admin, applyforadmin, newsletter, verified, hash) VALUES ('$username', '$password', '$email', 0, '$applyforadmin', '$newsletter', 0, '$hashesc')";
+$query = "INSERT INTO emmanuelaccountinfo (username, password, email, admin, newsletter, verified, hash) VALUES ('$username', '$password', '$email', 0, '$newsletter', 0, '$hashesc')";
 if (!$db->query($query)) {
 	$_SESSION["error"] = "An error occured when submitting data to the database. Please try again.";
 	header("Location: ../createaccount.php");

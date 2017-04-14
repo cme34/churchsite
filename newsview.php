@@ -2,6 +2,7 @@
 if (!isset($_GET['postid'])) {
 	header('Location: news.php?page=1');
 }
+$id = $_GET['postid'];
 ?>
 
 <!doctype html>
@@ -48,12 +49,21 @@ if (!isset($_GET['postid'])) {
 				$lasteditor = $row['lasteditor'];
 				$lastedittimestamp = $row['lastedittimestamp'];
 				$highlight = $row['highlight'];
-				echo "<h3 class='centerText'>$title</h3>";
+				echo "<h3 class='strongText centerText'>$title</h3>";
 				echo "<div class='container'>";
-				echo "	<div class='row'>";
+				echo "	<div class='row postRow'>";
 				echo "		<img class='postImage right' src='$image' alt='$image' />";
-				echo "		<p>$text</p>";
+				echo "		<p class='postText'>$text</p>";
 				echo "	</div>";
+				if (isset($_SESSION["username"])) {
+					if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
+						echo "<div class='editBar postBar'>";
+						echo "  <a class='barOption' href='editpost.php?loc=news&id=$id'>[edit]</a>";
+						echo "  <a class='barOption' href='confirm.php?loc=news&action=delete&postid=$id'>[delete]</a>";
+						echo "  <a class='barOption' href='confirm.php?loc=news&action=removeImage&postid=$id'>[remove image]</a>";
+						echo "</div>";
+					}
+				}
 				echo "</div>";
 			}
 			else {

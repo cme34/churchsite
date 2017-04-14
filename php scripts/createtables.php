@@ -14,7 +14,7 @@ $table = "emmanuelaccountinfo";
 $query = "SELECT 1 FROM $table LIMIT 1";
 $result = $db->query($query);
 if (!$result) {
-	$query = "CREATE TABLE emmanuel.$table ( username VARCHAR(64) NOT NULL , password VARCHAR(256) NOT NULL , email VARCHAR(256) NOT NULL , admin INT NOT NULL , applyforadmin TINYINT(1) NOT NULL , newsletter TINYINT(1) NOT NULL , verified TINYINT(1) NOT NULL , hash VARCHAR(32) NOT NULL , PRIMARY KEY (username)) ENGINE = InnoDB;";
+	$query = "CREATE TABLE emmanuel.$table ( username VARCHAR(64) NOT NULL , password VARCHAR(256) NOT NULL , email VARCHAR(256) NOT NULL , admin INT NOT NULL , newsletter TINYINT(1) NOT NULL , verified TINYINT(1) NOT NULL , hash VARCHAR(32) NOT NULL , PRIMARY KEY (username)) ENGINE = InnoDB;";
 	$result = $db->query($query);
 	if (!$result) {
 		$msg .= "Error creating table $table.<br />";
