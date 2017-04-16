@@ -36,9 +36,12 @@ if ($rows < 1) {
 //Get admin level
 $row = $result->fetch_assoc();
 $admin = $row["admin"];
+$newsletter = $row["newsletter"];
 
 //Set session data and go to home page
 $_SESSION["username"] = $username;
 $_SESSION["admin"] = $admin;
+$_SESSION["newsletter"] = $newsletter;
+
 header("Location: ../home.php");
 ?>

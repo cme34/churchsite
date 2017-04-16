@@ -7,6 +7,25 @@ ul {
 	list-style: none;
 }
 
+.adminName {
+	color: #a33030;
+	font-size: 16pt;
+	font-weight: bold;
+	padding: 10%;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	float: left;
+}
+
+.adminRemoveLink {
+	font-size: 16pt;
+	font-weight: bold;
+	padding: 10%;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	float: right;
+}
+
 .barOption {
 	float: right;
 	margin: 0 8px;
@@ -200,6 +219,10 @@ ul {
 
 .loginBoxText {
 	display: inline-block;
+}
+
+.maxWidth {
+	width: 100%;
 }
 
 .newsFeedCell {
