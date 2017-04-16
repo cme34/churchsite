@@ -18,8 +18,17 @@ function createNavigator() {
 		echo "    <a href='php scripts/logoutscript.php'><div class='button buttonToolbox'>Logout</div></a>";
 		echo "    <a href='changeemail.php'><div class='button buttonToolbox'>Change Email</div></a>";
 		echo "    <a href='changepassword.php'><div class='button buttonToolbox'>Change Password</div></a>";
+		if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
+			echo "<a href='createnewsletter.php'><div class='button buttonToolbox'>Create Newsletter</div></a>";
+		}
 		if ($_SESSION["admin"] == 2) {
 			echo "<a href='manageadmins.php'><div class='button buttonToolbox'>Manage Admins</div></a>";
+		}
+		if ($_SESSION["newsletter"] == 0) {
+			echo "<a href='php scripts/switchnewsletter.php'><div class='button buttonToolbox'>Start Receiving Newsletter</div></a>";
+		}
+		else {
+			echo "<a href='php scripts/switchnewsletter.php'><div class='button buttonToolbox'>Stop Receiving Newsletter</div></a>";
 		}
 		echo "</div>";
 	}
