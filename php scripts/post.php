@@ -20,7 +20,8 @@ class Post {
 		else {
 			echo "		<img class='postImage left' src='$this->imageLink' alt='$this->imageLink' />";
 		}
-		echo "			<p class='postText'>$this->text</p>";
+		$text = convertText($this->text);
+		echo "			<p class='postText'>$text</p>";
 		echo "		</div>";
 		if (isset($_SESSION["username"])) {
 			if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {

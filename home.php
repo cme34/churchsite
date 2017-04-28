@@ -10,6 +10,7 @@
 	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
 	<?php include 'php scripts/navigator.php';?>
 	<?php include 'php scripts/footer.php';?>
+	<?php include 'php scripts/textprocessor.php';?>
 	<?php include 'php scripts/post.php';?>
 </head>
 <body>
@@ -146,12 +147,16 @@
 								</ul>
 							</div>
 						</div>
-						<div class="centerText clear"><a href="weeklybulletin.php">[View Weekly Bulletin]</a></div>
 						<?php
+						if (file_exists("data/bulletin.docx")) {
+							echo "<div class='centerText clear'><a href='data/bulletin.docx'>[View Weekly Bulletin]</a></div>";
+						}
+						
 						if (isset($_SESSION["username"])) {
 							if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
 								echo "<div class='editBar scheduleBar'>";
-								echo "    <a class='barOption' href='editschedule.php'>[change weekly bulletin]</a>";
+								echo "    <a class='barOption' href='editschedule.php'>[edit schedule]</a>";
+								echo "    <a class='barOption' href='changebulletin.php'>[change bulletin]</a>";
 								echo "</div>";
 							}
 						}

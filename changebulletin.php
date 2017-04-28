@@ -1,9 +1,20 @@
-<?php session_start();?>
+<?php
+session_start();
+//If the user is not signed in, prevent them from accessing this page
+if (!isset($_SESSION["username"])) {
+	header("Location: home.php");
+}
+
+//If the user is not an admin, prevent them from accessing this page
+if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
+	header("Location: home.php");
+}
+?>
 
 <!doctype html>
 <html>
 <head>
-	<title>Directions</title>
+	<title>Change Bulletin</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,11 +29,22 @@
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText centerText">Directions</h4>
+				<h2 class="strongText  centerText">Change Bulletin</h4>
 			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<div id="map"></div>
+					<form class='inputForm' Action='php scripts/changebullitinscript.php' Method='POST' enctype='multipart/form-data'>
+						Bulletin File: <input class="inputFileFeild" id="file" name="file" type="file" accept=".docx"></input>
+						<div class="small-6 columns"><button class="button inputButton yes">Submit</button></div>
+						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
+						<?php
+							if (isset($_SESSION["error"])) {
+								$err = $_SESSION["error"];
+								unset($_SESSION["error"]);
+								echo "<p class='errorText'>$err<br/></p>";
+							}
+						?>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -37,23 +59,5 @@
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
 	<script src="js/app.js"></script>
-	<script>
-		//Map key: AIzaSyAXsHPPYcms1qs7ORGfhGSHHuuzQmP3AWM
-		function initMap(){
-			var point = new google.maps.LatLng(40.441999, -79.813);
-
-			var map = new google.maps.Map(document.getElementById("map"), {
-				center: point,
-				zoom: 17,
-			});
-			
-			var marker = new google.maps.Marker({
-				position: point,
-				map: map
-			});
-		}
-
-		//google.maps.event.addDomListener(window, 'load', initialize);
-	</script>
-	<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXsHPPYcms1qs7ORGfhGSHHuuzQmP3AWM&callback=initMap"></script>
 </body>
+</html>
