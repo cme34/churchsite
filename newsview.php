@@ -17,6 +17,7 @@ $id = $_GET['postid'];
 	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
 	<?php include 'php scripts/navigator.php';?>
 	<?php include 'php scripts/footer.php';?>
+	<?php include 'php scripts/textprocessor.php';?>
 	<?php include 'php scripts/post.php';?>
 </head>
 <body>
@@ -43,7 +44,7 @@ $id = $_GET['postid'];
 			if (!empty($row)) {
 				$title = $row['title'];
 				$image = $row['image'];
-				$text = $row['text'];
+				$text = convertText($row['text']);
 				$creator = $row['creator'];
 				$creatortimestamp = $row['creatortimestamp'];
 				$lasteditor = $row['lasteditor'];

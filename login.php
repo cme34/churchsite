@@ -18,6 +18,7 @@ if (isset($_SESSION["username"])) {
 	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
 	<?php include 'php scripts/navigator.php';?>
 	<?php include 'php scripts/footer.php';?>
+	<?php include 'php scripts/textprocessor.php';?>
 </head>
 <body>
 	<div id="wrapper">
