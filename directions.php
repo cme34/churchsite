@@ -13,6 +13,8 @@
 	<?php include "php scripts/navigator.php";?>
 	<?php include "php scripts/footer.php";?>
 	<?php include "php scripts/textprocessor.php";?>
+	<?php include "../config/config.php"?>
+	
 </head>
 <body>
 	<div id="wrapper">
@@ -22,7 +24,61 @@
 			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<div id="map"></div>
+					<div class="small-8 columns noMargin noPadding">
+						<div id="map"></div>
+					</div>
+					<div class="small-4 columns noMargin noPadding">
+						<div id="address">
+							<h5>Address:</h5>
+							<ul>
+								<li>Jefferson</li>
+								<li>Pittsburgh, PA</li>
+								<li>15235</li>
+							</ul>
+							<h5>Phone:</h5>
+							<ul>
+								<li>412</li>
+							</ul>
+							<h5>Email:</h5>
+							<ul>
+								<li>email@</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div id="directionsContainer">
+						<?php
+						//Connect to database
+						$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
+						if ($db->connect_error) {
+							echo "<p class='errorText'>Connection with database failed. Please try again later.</p>";
+							die();
+						}
+						
+						//Check if credentials are valid
+						$query = "SELECT * FROM directions WHERE directions.id = 1";
+						$result = $db->query($query);
+						if ($db->query($query)) {
+							$row = $result->fetch_assoc();
+							if (isset($row["directions"])) { $directions = $row["directions"]; } else { $directions = ""; }
+							$directions = convertText($directions);
+							echo "<p class='postText'>$directions</p>";
+						}
+						else {
+							echo "<p>An error has occured. Please try again later.</p>";
+							echo "<a href='home.php'><div class='button inputButton'>Back to home page</div></a>";
+						}
+						
+						if (isset($_SESSION["username"])) {
+							if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
+								echo "<div class='editBar directionsBar'>";
+								echo "    <a class='barOption' href='editdirections.php'>[edit directions]</a>";
+								echo "</div>";
+							}
+						}
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -38,7 +94,6 @@
     <script src="js/vendor/foundation.js"></script>
 	<script src="js/app.js"></script>
 	<script>
-		//Map key: AIzaSyAXsHPPYcms1qs7ORGfhGSHHuuzQmP3AWM
 		function initMap(){
 			var point = new google.maps.LatLng(40.441999, -79.813);
 
@@ -53,5 +108,7 @@
 			});
 		}
 	</script>
-	<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXsHPPYcms1qs7ORGfhGSHHuuzQmP3AWM&callback=initMap"></script>
+	<?php
+	echo "<script async defer src = 'https://maps.googleapis.com/maps/api/js?key=$_map_key&callback=initMap'></script>";
+	?>
 </body>

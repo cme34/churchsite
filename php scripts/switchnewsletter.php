@@ -25,7 +25,7 @@ $username = $db->real_escape_string($username);
 //Change newsletter status
 $newsletter = $_SESSION["newsletter"];
 if ($newsletter == 0) {
-	$query = "UPDATE emmanuelaccountinfo SET newsletter = 1 WHERE username = '$username'";
+	$query = "UPDATE $_db_host SET newsletter = 1 WHERE username = '$username'";
 	if (!$db->query($query)) {
 		$_SESSION["message"] = "An error occured when submitting data to the database. Please try again.";
 		header("Location: ../message.php");

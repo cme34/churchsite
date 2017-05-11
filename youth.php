@@ -35,7 +35,7 @@
 			<div class="container">
 				<?php	
 				//Connect to database
-				$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
+				$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 				if ($db->connect_error) {
 					echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 					die();

@@ -41,7 +41,7 @@
 						$highlightLimit = 3;
 						$recentLimit = 5;
 						//Connect to database
-						$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
+						$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 						if ($db->connect_error) {
 							echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 							die();
@@ -130,28 +130,38 @@
 							<div class="inline-block noPadding">
 								<ul>
 									<?php
-									$schedule = array();
-									$file = "data/weeklyschedule.txt";
-									$handle = fopen($file, "r");
-									if (flock($handle, LOCK_EX)) {							
-										while (!feof($handle)) {
-											$schedule[] = fgets($handle);
+									$sunday = "";
+									$monday = "";
+									$tuesday = "";
+									$wednesday = "";
+									$thursday = "";
+									$friday = "";
+									$saturday = "";
+									
+									//Get schedule from database
+									$query = "SELECT * FROM schedule WHERE schedule.id = 1";
+									$result = $db->query($query);
+									if ($db->query($query)) {
+										if ($result->num_rows == 1) {
+											$row = $result->fetch_assoc();
+											$sunday = $row["sunday"];
+											$monday = $row["monday"];
+											$tuesday = $row["tuesday"];
+											$wednesday = $row["wednesday"];
+											$thursday = $row["thursday"];
+											$friday = $row["friday"];
+											$saturday = $row["saturday"];
 										}
-										flock($handle, LOCK_UN);
 									}
-									else {
-										for ($i = 0; $i < 7; $i++) {
-											$schedule[] = "Error Loading Schedule";
-										}
-									}
-									fclose($handle);
-									echo "<li class='weeklyScheduleText'>$schedule[0]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[1]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[2]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[3]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[4]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[5]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[6]</li>";
+									
+									//Set schedule values
+									echo "<li class='weeklyScheduleText'>$sunday</li>";
+									echo "<li class='weeklyScheduleText'>$monday</li>";
+									echo "<li class='weeklyScheduleText'>$tuesday</li>";
+									echo "<li class='weeklyScheduleText'>$wednesday</li>";
+									echo "<li class='weeklyScheduleText'>$thursday</li>";
+									echo "<li class='weeklyScheduleText'>$friday</li>";
+									echo "<li class='weeklyScheduleText'>$saturday</li>";
 									?>
 								</ul>
 							</div>
@@ -191,7 +201,7 @@
 				<div class="container">
 					<?php					
 					//Connect to database
-					$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
+					$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 					if ($db->connect_error) {
 						echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 						die();

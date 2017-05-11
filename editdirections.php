@@ -6,7 +6,7 @@ if (!isset($_SESSION["username"])) {
 }
 
 //If the user is not an admin, prevent them from accessing this page
-if (!($_SESSION["admin"] == 2)) {
+if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 	header("Location: home.php");
 }
 ?>
@@ -14,7 +14,7 @@ if (!($_SESSION["admin"] == 2)) {
 <!doctype html>
 <html>
 <head>
-	<title>Manage Admins</title>
+	<title>Edit Weekly Directions</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,53 +30,41 @@ if (!($_SESSION["admin"] == 2)) {
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText centerText">Manage Admins</h4>
+				<h2 class="strongText  centerText">Edit Weekly Directions</h4>
 			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form class="inputForm" Action="php scripts/addnewadminscript.php" Method="POST" enctype="multipart/form-data">
-						<div>Enter the username of a new admin here:</div>
-						<input class="inputBox" id="username" name="username" type="text"></input>
-						<button class="inputButton yes" type="text">Submit New Admin</button>
-						<br />
-						<?php
-						if (isset($_SESSION["message"])) {
-							$msg = $_SESSION["message"];
-							echo "<div class='centerText'>$msg</div>";	
-							unset($_SESSION["message"]);
-						}
-						?>
-						<br />
-					</form>
-				</div>
-				<br />
-				<div class="container">
-					<div class="maxWidth"><h3 class="strongText centerText">List of Admins</h3></div>
 					<?php
 					//Connect to database
 					$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 					if ($db->connect_error) {
-						echo "<p class='errorText'>Error loading admins</p>";
+						echo "<p class='errorText'>Connection with database failed. Please try again later.</p>";
+						die();
 					}
-					else
-					{
-						//Check if credentials are valid
-						$query = "SELECT * FROM emmanuelaccountinfo WHERE emmanuelaccountinfo.admin = 1";
-						$result = $db->query($query);
-						$rows = $result->num_rows;
-						if ($rows < 1) {
-							echo "<p class='centerText'>No admins found</p>";
+					
+					//Check if credentials are valid
+					$query = "SELECT * FROM directions WHERE directions.id = 1";
+					$result = $db->query($query);
+					if ($db->query($query)) {
+						$row = $result->fetch_assoc();
+						if (isset($row["directions"])) { $directions = $row["directions"]; } else { $directions = ""; }
+						echo "<form class='inputForm' Action='php scripts/editdirectionsscript.php' Method='POST'>";
+						echo "	Directions: <textarea class='inputTextFeild' id='directions' name='directions' type='text' rows=12></textarea></br>";
+						echo "	<div class='small-6 columns'><button class='button inputButton yes'>Submit</button></div>";
+						echo "	<div class='small-6 columns'><a href='home.php'><div class='button inputButton no'>Cancel</div></a></div>";
+						if (isset($_SESSION["error"])) {
+							$err = $_SESSION["error"];
+							unset($_SESSION["error"]);
+							echo "<p class='errorText'>$err<br/></p>";
 						}
-						
-						while ($row = $result->fetch_assoc()) {
-							$username = $row["username"];
-							echo "<div class='maxWidth'>";
-							echo "	<div class='adminName'>$username</div>";
-							echo "	<div class='adminRemoveLink'><a href='php scripts/removeadminscript.php?username=$username'>Remove Admin</a></div>";
-							echo "</div>";
-						}
+						echo "</form>";
+					}
+					else {
+						echo "<p>An error has occured. Please try again later.</p>";
+						echo "<a href='home.php'><div class='button inputButton'>Back to home page</div></a>";
 					}
 					?>
+					
 				</div>
 			</div>
 		</div>
@@ -91,4 +79,13 @@ if (!($_SESSION["admin"] == 2)) {
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
 	<script src="js/app.js"></script>
+	<script type="text/javascript">
+		(function()	{
+			$(document).on('ready', function() {
+				var directions = <?php echo json_encode($directions); ?>;
+				$('#directions').val(directions);
+			});
+		})();
+	</script>
 </body>
+</html>
