@@ -19,11 +19,12 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
-	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
-	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
-	<?php include 'php scripts/navigator.php';?>
-	<?php include 'php scripts/footer.php';?>
-	<?php include 'php scripts/textprocessor.php';?>
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<?php include "php scripts/navigator.php";?>
+	<?php include "php scripts/footer.php";?>
+	<?php include "php scripts/textprocessor.php";?>
+	<?php include "../config/config.php"?>
 </head>
 <body>
 	<div id="wrapper">
@@ -38,7 +39,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 					$id = $_GET["id"];
 					
 					//Connect to database
-					$db = new mysqli('localhost', 'root', '', 'emmanuel');
+					$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 					if ($db->connect_error) {
 						echo "<p class='errorText'>Connection with database failed. Please try again later.</p>";
 						die();
@@ -48,7 +49,6 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 					$dbloc = str_replace(' ', '', $loc);
 					$query = "SELECT * FROM posts$dbloc WHERE posts$dbloc.postid = '$id'";
 					$result = $db->query($query);
-					
 					if ($result->num_rows == 1) {
 						$row = $result->fetch_assoc();
 						$title = $row["title"];
@@ -59,7 +59,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 						echo "	Title: <input class='inputTextFeild' id='title' name='title' type='text'></input><br/>";
 						echo "  Image: <input class='inputFileFeild' id='image' name='image' type='file' accept='.png, .jpg, gif, .bmp'></input>";
 						echo "  <p>Only .png, .jpg, .gif and .bmp files supported</p>";
-						echo "	Text: <textarea class='textFeild' id='text' name='text' type='text' rows=12></textarea><br/>";
+						echo "	Text: <textarea class='inputTextFeild' id='text' name='text' type='text' rows=12></textarea><br/>";
 						if ($loc == "news") {
 							$highlight = $row["highlight"];
 							echo "<input type='checkbox' id='highlight' name='highlight'><span>Highlight Post</span><br/>";
@@ -71,13 +71,13 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 							unset($_SESSION["error"]);
 							echo "<p class='errorText'>$err<br/></p>";
 						}
+						echo "</form>"
 					}
 					else {
 						echo "<p>An error has occured. Please try again later.</p>";
 						echo "<a href='home.php'><div class='button inputButton'>Back to home page</div></a>";
 					}
 					?>
-					</form>
 				</div>
 			</div>
 		</div>

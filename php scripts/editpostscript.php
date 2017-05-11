@@ -1,5 +1,8 @@
 <?php
+include "../../config/config.php";
+
 session_start();
+
 //If the user is not signed in, prevent them from accessing this page
 if (!isset($_SESSION["username"])) {
 	header("Location: ../home.php");
@@ -21,7 +24,7 @@ date_default_timezone_set("EST");
 $timestamp = date("m-d-Y h:ia e");
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["error"] = "Connection with database failed. Please try again later.";
 	header("Location: ../editpost.php?loc=$loc&id=$id");
@@ -41,16 +44,16 @@ if ($loc == "news") {
 	
 	//Process image
 	$imagePath = "";
-	if ($_FILES['image']['tmp_name'] != "") {
+	if ($_FILES["image"]["tmp_name"] != "") {
 		//Imaged changed
 		$imagePath = "img/upload/postsnews$id.png";
 		
-		if(file_exists('../$imagePath')) {
-			chmod('../$imagePath', 0755); //Change the file permissions if allowed
-			unlink('../$imagePath'); //remove the file
+		if(file_exists("../$imagePath")) {
+			chmod("../$imagePath", 0755); //Change the file permissions if allowed
+			unlink("../$imagePath"); //remove the file
 		}
 		
-		if (move_uploaded_file($_FILES['image']['tmp_name'], "../$imagePath")) {
+		if (move_uploaded_file($_FILES["image"]["tmp_name"], "../$imagePath")) {
 			echo "File is valid, and was successfully uploaded.\n";
 		}
 		else {
@@ -79,18 +82,18 @@ if ($loc == "news") {
 	}
 }
 else {
-	$dbloc = str_replace(' ', '', $loc);
+	$dbloc = str_replace(" ", "", $loc);
 	$dbloc = "posts$dbloc";
 	
 	//Process image
 	$imagePath = "";
-	if ($_FILES['image']['tmp_name'] != "") {
+	if ($_FILES["image"]["tmp_name"] != "") {
 		//Image changed
 		$imagePath = "img/upload/$dbloc" . "$id.png";
 		
-		if(file_exists('../$imagePath')) {
-			chmod('../$imagePath', 0755); //Change the file permissions if allowed
-			unlink('../$imagePath'); //remove the file
+		if(file_exists("../$imagePath")) {
+			chmod("../$imagePath", 0755); //Change the file permissions if allowed
+			unlink("../$imagePath"); //remove the file
 		}
 		
 		if (move_uploaded_file($_FILES['image']['tmp_name'], "../$imagePath")) {

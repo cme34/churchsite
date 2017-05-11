@@ -14,11 +14,11 @@ if (!isset($_SESSION["username"])) {
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
-	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
-	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
-	<?php include 'php scripts/navigator.php';?>
-	<?php include 'php scripts/footer.php';?>
-	<?php include 'php scripts/textprocessor.php';?>
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<?php include "php scripts/navigator.php";?>
+	<?php include "php scripts/footer.php";?>
+	<?php include "php scripts/textprocessor.php";?>
 </head>
 <body>
 	<div id="wrapper">
@@ -29,14 +29,14 @@ if (!isset($_SESSION["username"])) {
 			<div class="containerGroup">
 				<div class="container">
 					<form class="inputForm" Action="php scripts/changepasswordscript.php" Method="POST">
-						Old Password: <input class="inputTextFeild" id="oldpassword" name="oldpassword" type="password" maxlength=256></input>
-						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						Old Password: <input class="inputTextFeild" id="oldpassword" name="oldpassword" type="password" maxlength=512></input>
+						<p class="inputCharacterLimitText">Character Limit: 512</p>
 						<br/>
-						New Password: <input class="inputTextFeild" id="newpassword" name="newpassword" type="password" maxlength=256></input>
-						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						New Password: <input class="inputTextFeild" id="newpassword" name="newpassword" type="password" maxlength=512></input>
+						<p class="inputCharacterLimitText">Character Limit: 512</p>
 						<br/>
-						Confirm Password: <input class="inputTextFeild" id="passwordconfirm" name="passwordconfirm" type="password" maxlength=256></input>
-						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						Confirm Password: <input class="inputTextFeild" id="passwordconfirm" name="passwordconfirm" type="password" maxlength=512></input>
+						<p class="inputCharacterLimitText">Character Limit: 512</p>
 						<br/>
 						<div class="small-6 columns"><button class="button inputButton yes">Submit</button></div>
 						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>

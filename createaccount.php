@@ -14,11 +14,11 @@ if (isset($_SESSION["username"])) {
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
-	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
-	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
-	<?php include 'php scripts/navigator.php';?>
-	<?php include 'php scripts/footer.php';?>
-	<?php include 'php scripts/textprocessor.php';?>
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<?php include "php scripts/navigator.php";?>
+	<?php include "php scripts/footer.php";?>
+	<?php include "php scripts/textprocessor.php";?>
 </head>
 <body>
 	<div id="wrapper">
@@ -32,14 +32,14 @@ if (isset($_SESSION["username"])) {
 						Username: <input class="inputTextFeild" id="username" name="username" type="text" maxlength=64></input>
 						<p class="inputCharacterLimitText">Character Limit: 64</p>
 						<br/>
-						Email: <input class="inputTextFeild" id="email" name="email" type="text" maxlength=256></input>
-						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						Email: <input class="inputTextFeild" id="email" name="email" type="text" maxlength=512></input>
+						<p class="inputCharacterLimitText">Character Limit: 512</p>
 						<br/>
-						Password: <input class="inputTextFeild" id="password" name="password" type="password" maxlength=256></input>
-						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						Password: <input class="inputTextFeild" id="password" name="password" type="password" maxlength=512></input>
+						<p class="inputCharacterLimitText">Character Limit: 512</p>
 						<br/>
-						Confirm Password: <input class="inputTextFeild" id="passwordConfirm" name="passwordConfirm" type="password" maxlength=256></input>
-						<p class="inputCharacterLimitText">Character Limit: 256</p>
+						Confirm Password: <input class="inputTextFeild" id="passwordConfirm" name="passwordConfirm" type="password" maxlength=512></input>
+						<p class="inputCharacterLimitText">Character Limit: 512</p>
 						<br/>
 						<input class="inputCheckbox" type="checkbox" id="newsletter" name="newsletter" checked><span>I would like to recieve the monthly Emanual Echos newsletter.</span>
 						<br/>

@@ -6,13 +6,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
-	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
-	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
-	<?php include 'php scripts/navigator.php';?>
-	<?php include 'php scripts/footer.php';?>
-	<?php include 'php scripts/textprocessor.php';?>
-	<?php include 'php scripts/post.php';?>
-</head>
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<?php include "php scripts/navigator.php";?>
+	<?php include "php scripts/footer.php";?>
+	<?php include "php scripts/textprocessor.php";?>
+	<?php include "php scripts/post.php";?>
+	<?php include "../config/config.php"?>
+</head><!--  $db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");  -->
 <body>
 	<div id="wrapper">
 		<?php session_start();?>
@@ -40,7 +41,7 @@
 						$highlightLimit = 3;
 						$recentLimit = 5;
 						//Connect to database
-						$db = new mysqli('localhost', 'root', '', 'emmanuel');
+						$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 						if ($db->connect_error) {
 							echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 							die();
@@ -129,20 +130,38 @@
 							<div class="inline-block noPadding">
 								<ul>
 									<?php
-									$file = "data/weeklyschedule.txt";
-									$handle = fopen($file, "r");
-									$schedule = array();							
-									while (!feof($handle)) {
-										$schedule[] = fgets($handle);
+									$sunday = "";
+									$monday = "";
+									$tuesday = "";
+									$wednesday = "";
+									$thursday = "";
+									$friday = "";
+									$saturday = "";
+									
+									//Get schedule from database
+									$query = "SELECT * FROM schedule WHERE schedule.id = 1";
+									$result = $db->query($query);
+									if ($db->query($query)) {
+										if ($result->num_rows == 1) {
+											$row = $result->fetch_assoc();
+											$sunday = $row["sunday"];
+											$monday = $row["monday"];
+											$tuesday = $row["tuesday"];
+											$wednesday = $row["wednesday"];
+											$thursday = $row["thursday"];
+											$friday = $row["friday"];
+											$saturday = $row["saturday"];
+										}
 									}
-									fclose($handle);
-									echo "<li class='weeklyScheduleText'>$schedule[0]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[1]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[2]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[3]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[4]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[5]</li>";
-									echo "<li class='weeklyScheduleText'>$schedule[6]</li>";
+									
+									//Set schedule values
+									echo "<li class='weeklyScheduleText'>$sunday</li>";
+									echo "<li class='weeklyScheduleText'>$monday</li>";
+									echo "<li class='weeklyScheduleText'>$tuesday</li>";
+									echo "<li class='weeklyScheduleText'>$wednesday</li>";
+									echo "<li class='weeklyScheduleText'>$thursday</li>";
+									echo "<li class='weeklyScheduleText'>$friday</li>";
+									echo "<li class='weeklyScheduleText'>$saturday</li>";
 									?>
 								</ul>
 							</div>
@@ -182,7 +201,7 @@
 				<div class="container">
 					<?php					
 					//Connect to database
-					$db = new mysqli('localhost', 'root', '', 'emmanuel');
+					$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 					if ($db->connect_error) {
 						echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 						die();
@@ -234,7 +253,7 @@
     <script src="js/vendor/foundation.js"></script>
 	<script src="js/app.js"></script>
 	<script type="text/javascript">
-		slideShow('slideShow1', 4000, 1000);
+		slideShow("slideShow1", 4000, 1000);
 	</script>
 </body>
 </html>

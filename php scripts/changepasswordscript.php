@@ -1,4 +1,6 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 
 //Obtain form data
@@ -11,7 +13,7 @@ $password = rtrim($password);
 $passwordConfirm = rtrim($passwordConfirm);
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["error"] = "Connection with database failed. Please try again later.";
 	header("Location: ../changepassword.php");
@@ -25,8 +27,8 @@ $oldpassword = $db->real_escape_string($oldpassword);
 $password = $db->real_escape_string($password);
 
 //Hash passwords
-$oldpassword = hash("sha256", $oldpassword);
-$password = hash("sha256", $password);
+$oldpassword = hash("sha512", $oldpassword);
+$password = hash("sha512", $password);
 
 //Check if oldpassword matches
 $query = "SELECT * FROM emmanuelaccountinfo WHERE emmanuelaccountinfo.username = '$username' AND emmanuelaccountinfo.password = '$oldpassword'";

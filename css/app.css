@@ -1,3 +1,10 @@
+/*
+ *  Order of elements
+ *	- HTML Tags A-Z
+ *	- Classes A-Z
+ *	- IDs A-Z
+ */
+
 body {
 	background-color: #aaaaaa;
 	background-image: url("../img/Background.png");
@@ -348,6 +355,26 @@ ul {
 	padding: 0;
 }
 
+#address {
+	width: 100%;
+	height: 280px;
+	background-color: transparent;
+	padding: 0 12px;
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 2px;
+	border-bottom-width: 0;
+}
+
+#directionsContainer {
+	width: 100%;
+	background-color: transparent;
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 2px;
+	border-top-width: 0;
+}
+
 #footer {
 	position: absolute;
 	background-color: #a33030;
@@ -383,8 +410,12 @@ ul {
 
 #map {
 	width: 100%;
-	height: 480px;
+	height: 280px;
 	background-color: grey;
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 2px;
+	border-bottom-width: 0;
 }
 
 #nav {

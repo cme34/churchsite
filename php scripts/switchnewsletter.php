@@ -1,4 +1,6 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 
 //If the user is not an admin, prevent them from accessing this page
@@ -10,7 +12,7 @@ $username = $_SESSION["username"];
 $username = rtrim($username);
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["message"] = "Connection with database failed. Please try again later.";
 	header("Location: ../message.php");
@@ -23,7 +25,7 @@ $username = $db->real_escape_string($username);
 //Change newsletter status
 $newsletter = $_SESSION["newsletter"];
 if ($newsletter == 0) {
-	$query = "UPDATE emmanuelaccountinfo SET newsletter = 1 WHERE username = '$username'";
+	$query = "UPDATE $_db_host SET newsletter = 1 WHERE username = '$username'";
 	if (!$db->query($query)) {
 		$_SESSION["message"] = "An error occured when submitting data to the database. Please try again.";
 		header("Location: ../message.php");

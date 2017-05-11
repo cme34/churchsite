@@ -1,4 +1,6 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 
 //Obtain form data
@@ -11,7 +13,7 @@ $newemail = rtrim($newemail);
 $password = rtrim($password);
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["error"] = "Connection with database failed. Please try again later.";
 	header("Location: ../changeemail.php");
@@ -26,7 +28,7 @@ $newemail = $db->real_escape_string($newemail);
 $password = $db->real_escape_string($password);
 
 //Hash passwords
-$password = hash("sha256", $password);
+$password = hash("sha512", $password);
 
 //Check if email matches
 $query = "SELECT * FROM emmanuelaccountinfo WHERE emmanuelaccountinfo.username = '$username' AND emmanuelaccountinfo.email = '$oldemail'";

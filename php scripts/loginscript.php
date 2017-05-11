@@ -1,4 +1,6 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 
 //Obtain form data
@@ -8,7 +10,7 @@ $username = rtrim($username);
 $password = rtrim($password);
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["error"] = "Invalid login credentials";
 	header("Location: ../login.php");
@@ -20,7 +22,7 @@ $username = $db->real_escape_string($username);
 $password = $db->real_escape_string($password);
 
 //Hash password
-$password = hash("sha256", $password);
+$password = hash("sha512", $password);
 
 //Check if credentials are valid
 $query = "SELECT * FROM emmanuelaccountinfo WHERE emmanuelaccountinfo.username = '$username' AND emmanuelaccountinfo.password = '$password'";
