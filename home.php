@@ -6,13 +6,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
-	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
-	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
-	<?php include 'php scripts/navigator.php';?>
-	<?php include 'php scripts/footer.php';?>
-	<?php include 'php scripts/textprocessor.php';?>
-	<?php include 'php scripts/post.php';?>
-</head>
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<?php include "php scripts/navigator.php";?>
+	<?php include "php scripts/footer.php";?>
+	<?php include "php scripts/textprocessor.php";?>
+	<?php include "php scripts/post.php";?>
+	<?php include "../config/config.php"?>
+</head><!--  $db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");  -->
 <body>
 	<div id="wrapper">
 		<?php session_start();?>
@@ -40,7 +41,7 @@
 						$highlightLimit = 3;
 						$recentLimit = 5;
 						//Connect to database
-						$db = new mysqli('localhost', 'root', '', 'emmanuel');
+						$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 						if ($db->connect_error) {
 							echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 							die();
@@ -129,11 +130,19 @@
 							<div class="inline-block noPadding">
 								<ul>
 									<?php
+									$schedule = array();
 									$file = "data/weeklyschedule.txt";
 									$handle = fopen($file, "r");
-									$schedule = array();							
-									while (!feof($handle)) {
-										$schedule[] = fgets($handle);
+									if (flock($handle, LOCK_EX)) {							
+										while (!feof($handle)) {
+											$schedule[] = fgets($handle);
+										}
+										flock($handle, LOCK_UN);
+									}
+									else {
+										for ($i = 0; $i < 7; $i++) {
+											$schedule[] = "Error Loading Schedule";
+										}
 									}
 									fclose($handle);
 									echo "<li class='weeklyScheduleText'>$schedule[0]</li>";
@@ -182,7 +191,7 @@
 				<div class="container">
 					<?php					
 					//Connect to database
-					$db = new mysqli('localhost', 'root', '', 'emmanuel');
+					$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 					if ($db->connect_error) {
 						echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 						die();
@@ -234,7 +243,7 @@
     <script src="js/vendor/foundation.js"></script>
 	<script src="js/app.js"></script>
 	<script type="text/javascript">
-		slideShow('slideShow1', 4000, 1000);
+		slideShow("slideShow1", 4000, 1000);
 	</script>
 </body>
 </html>

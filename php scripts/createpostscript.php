@@ -1,4 +1,6 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 //If the user is not signed in, prevent them from accessing this page
 if (!isset($_SESSION["username"])) {
@@ -20,7 +22,7 @@ date_default_timezone_set("EST");
 $timestamp = date("m-d-Y h:ia e");
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["error"] = "Connection with database failed. Please try again later.";
 	header("Location: ../createpost.php?loc=$loc");
@@ -38,7 +40,7 @@ if ($loc == "news") {
 	$highlight = $_POST["highlight"];
 	
 	$imagePath = "";
-	if ($_FILES['image']['tmp_name'] != "") {
+	if ($_FILES["image"]["tmp_name"] != "") {
 		//Process image
 		$query = "SHOW TABLE STATUS LIKE 'postsnews'";
 		$result = $db->query($query);
@@ -52,7 +54,7 @@ if ($loc == "news") {
 
 		$imagePath = "img/upload/postsnews$nextid.png";
 		$imagePath = $db->real_escape_string($imagePath);
-		if (move_uploaded_file($_FILES['image']['tmp_name'], "../$imagePath")) {
+		if (move_uploaded_file($_FILES["image"]["tmp_name"], "../$imagePath")) {
 			
 		}
 		else {
@@ -77,11 +79,11 @@ if ($loc == "news") {
 	}
 }
 else {
-	$dbloc = str_replace(' ', '', $loc);
+	$dbloc = str_replace(" ", "", $loc);
 	$dbloc = "posts$dbloc";
 	
 	$imagePath = "";
-	if ($_FILES['image']['tmp_name'] != "") {
+	if ($_FILES["image"]["tmp_name"] != "") {
 		//Process image
 		$query = "SHOW TABLE STATUS LIKE '$dbloc'";
 		$result = $db->query($query);

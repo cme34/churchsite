@@ -19,11 +19,12 @@ if (!($_SESSION["admin"] == 2)) {
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
-	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
-	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
-	<?php include 'php scripts/navigator.php';?>
-	<?php include 'php scripts/footer.php';?>
-	<?php include 'php scripts/textprocessor.php';?>
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<?php include "php scripts/navigator.php";?>
+	<?php include "php scripts/footer.php";?>
+	<?php include "php scripts/textprocessor.php";?>
+	<?php include "../config/config.php"?>
 </head>
 <body>
 	<div id="wrapper">
@@ -53,7 +54,7 @@ if (!($_SESSION["admin"] == 2)) {
 					<div class="maxWidth"><h3 class="strongText centerText">List of Admins</h3></div>
 					<?php
 					//Connect to database
-					$db = new mysqli('localhost', 'root', '', 'emmanuel');
+					$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 					if ($db->connect_error) {
 						echo "<p class='errorText'>Error loading admins</p>";
 					}

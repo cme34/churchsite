@@ -1,16 +1,18 @@
 <?php
+include "../config/config.php";
+
 $highlightLimit = 5;
 $pageLimit = 20;
 
-if (isset($_GET['page'])) {
-	$page = $_GET['page'];
+if (isset($_GET["page"])) {
+	$page = $_GET["page"];
 }
 else {
-	header('Location: news.php?page=1');
+	header("Location: news.php?page=1");
 }
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 	die();
@@ -23,7 +25,7 @@ if (!$result) {
 	echo "<p class='error-text'>Error obtaining news information. Please try again.</p>";
 	die();
 }
-$count = $result->fetch_assoc()['COUNT(*)'];
+$count = $result->fetch_assoc()["COUNT(*)"];
 
 //Determine news to display
 $lastPage = ceil($count / $pageLimit);
@@ -31,7 +33,7 @@ if ($count == 0) {
 		$lastPage = 1;
 }
 if ($page < 1 || $page > $lastPage || $page != floor($page)) {
-	header('Location: news.php?page=1');
+	header("Location: news.php?page=1");
 }
 $firstPostOfPage = $pageLimit * ($page - 1);
 ?>
@@ -44,11 +46,11 @@ $firstPostOfPage = $pageLimit * ($page - 1);
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
-	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
-	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
-	<?php include 'php scripts/navigator.php';?>
-	<?php include 'php scripts/footer.php';?>
-	<?php include 'php scripts/textprocessor.php';?>
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<?php include "php scripts/navigator.php";?>
+	<?php include "php scripts/footer.php";?>
+	<?php include "php scripts/textprocessor.php";?>
 </head>
 <body>
 	<div id="wrapper">

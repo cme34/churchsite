@@ -1,8 +1,8 @@
 <?php
-if (!isset($_GET['postid'])) {
-	header('Location: news.php?page=1');
+if (!isset($_GET["postid"])) {
+	header("Location: news.php?page=1");
 }
-$id = $_GET['postid'];
+$id = $_GET["postid"];
 ?>
 
 <!doctype html>
@@ -13,12 +13,13 @@ $id = $_GET['postid'];
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
-	<link rel='stylesheet' media='screen and (max-width: 800px)' href='css/mobile.css' />
-	<link rel='stylesheet' media='screen and (min-width: 801px)' href='css/app.css' />
-	<?php include 'php scripts/navigator.php';?>
-	<?php include 'php scripts/footer.php';?>
-	<?php include 'php scripts/textprocessor.php';?>
-	<?php include 'php scripts/post.php';?>
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<?php include "php scripts/navigator.php";?>
+	<?php include "php scripts/footer.php";?>
+	<?php include "php scripts/textprocessor.php";?>
+	<?php include "php scripts/post.php";?>
+	<?php include "../config/config.php"?>
 </head>
 <body>
 	<div id="wrapper">
@@ -27,7 +28,7 @@ $id = $_GET['postid'];
 		<div class="content">
 			<?php
 			//Connect to database
-			$db = new mysqli('localhost', 'root', '', 'emmanuel');
+			$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 			if ($db->connect_error) {
 				echo "<p class='error-text'>Connection with database failed. Please try again later.</p>";
 				die();
@@ -42,14 +43,14 @@ $id = $_GET['postid'];
 			}
 			$row = $result->fetch_assoc();
 			if (!empty($row)) {
-				$title = $row['title'];
-				$image = $row['image'];
-				$text = convertText($row['text']);
-				$creator = $row['creator'];
-				$creatortimestamp = $row['creatortimestamp'];
-				$lasteditor = $row['lasteditor'];
-				$lastedittimestamp = $row['lastedittimestamp'];
-				$highlight = $row['highlight'];
+				$title = $row["title"];
+				$image = $row["image"];
+				$text = convertText($row["text"]);
+				$creator = $row["creator"];
+				$creatortimestamp = $row["creatortimestamp"];
+				$lasteditor = $row["lasteditor"];
+				$lastedittimestamp = $row["lastedittimestamp"];
+				$highlight = $row["highlight"];
 				echo "<h3 class='strongText centerText'>$title</h3>";
 				echo "<div class='container'>";
 				echo "	<div class='row postRow'>";

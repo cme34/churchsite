@@ -1,4 +1,6 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 
 //Check if verification link is valid
@@ -17,7 +19,7 @@ if (!isset($_GET["hash"])) {
 $hash = $_GET["hash"];	
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["message"] = "Connection with database failed. Please try again later.";
 	header("Location: ../message.php");

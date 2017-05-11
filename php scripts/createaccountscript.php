@@ -1,4 +1,6 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 
 //Obtain form data
@@ -22,7 +24,7 @@ else {
 }
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["error"] = "Connection with database failed. Please try again later.";
 	header("Location: ../createaccount.php");
@@ -45,7 +47,7 @@ if ($rows > 0) {
 }
 
 //Hash password
-$password = hash("sha256", $password);
+$password = hash("sha512", $password);
 $hash = md5(rand(0, 1000));
 $hashesc = $db->real_escape_string($hash);
 

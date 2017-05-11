@@ -1,4 +1,6 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 //If the user is not signed in, prevent them from accessing this page
 if (!isset($_SESSION["username"])) {
@@ -16,13 +18,13 @@ if (!(isset($_GET["loc"]))) {
 }
 $loc = $_GET["loc"];
 
-if (!isset($_GET['postid'])) {
+if (!isset($_GET["postid"])) {
 	header("Location: $loc.php");
 }
-$postid = $_GET['postid'];
+$postid = $_GET["postid"];
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["message"] = "Connection with database failed. Please try again later.";
 	header("Location: ../message.php");
@@ -30,7 +32,7 @@ if ($db->connect_error) {
 }
 
 //Get db name
-$dbloc = str_replace(' ', '', $loc);
+$dbloc = str_replace(" ", "", $loc);
 $dbloc = "posts$dbloc";
 
 //Get image path

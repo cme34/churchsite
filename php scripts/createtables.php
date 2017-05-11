@@ -1,8 +1,10 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["message"] = "Connection with database failed. Please try again later.";
 	header("Location: ../message.php");
@@ -14,7 +16,7 @@ $table = "emmanuelaccountinfo";
 $query = "SELECT 1 FROM $table LIMIT 1";
 $result = $db->query($query);
 if (!$result) {
-	$query = "CREATE TABLE emmanuel.$table ( username VARCHAR(64) NOT NULL , password VARCHAR(256) NOT NULL , email VARCHAR(256) NOT NULL , admin INT NOT NULL , newsletter TINYINT(1) NOT NULL , verified TINYINT(1) NOT NULL , hash VARCHAR(32) NOT NULL , PRIMARY KEY (username)) ENGINE = InnoDB;";
+	$query = "CREATE TABLE emmanuel.$table ( username VARCHAR(64) NOT NULL , password VARCHAR(512) NOT NULL , email VARCHAR(512) NOT NULL , admin INT NOT NULL , newsletter TINYINT(1) NOT NULL , verified TINYINT(1) NOT NULL , hash VARCHAR(32) NOT NULL , PRIMARY KEY (username)) ENGINE = InnoDB;";
 	$result = $db->query($query);
 	if (!$result) {
 		$msg .= "Error creating table $table.<br />";

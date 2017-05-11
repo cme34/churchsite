@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 //If the user is not signed in, prevent them from accessing this page
 if (!isset($_SESSION["username"])) {
 	header("Location: ../home.php");
@@ -12,8 +13,8 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 
 //
 $file = "../data/bulletin.docx";
-if (!move_uploaded_file($_FILES['file']['tmp_name'], $file)) {
-	$_SESSION['message'] = "Error uploading bulletin.";
+if (!move_uploaded_file($_FILES["file"]["tmp_name"], $file)) {
+	$_SESSION["message"] = "Error uploading bulletin.";
 	header("Location: ../message.php");
 }
 

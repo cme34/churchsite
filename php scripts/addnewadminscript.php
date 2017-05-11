@@ -1,7 +1,9 @@
 <?php
+include "../../config/config.php";
+
 session_start();
 
-//If the user is not an admin, prevent them from accessing this page
+//If the user is not a master, prevent them from accessing this page
 if (!($_SESSION["admin"] == 2)) {
 	header("Location: home.php");
 }
@@ -11,7 +13,7 @@ $username = $_POST["username"];
 $username = rtrim($username);
 
 //Connect to database
-$db = new mysqli('localhost', 'root', '', 'emmanuel');
+$db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {
 	$_SESSION["message"] = "Connection with database failed. Please try again later.";
 	header("Location: ../manageadmins.php");
