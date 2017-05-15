@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_GET["postid"])) {
 	header("Location: news.php?page=1");
 }
@@ -23,8 +25,6 @@ $id = $_GET["postid"];
 </head>
 <body>
 	<div id="wrapper">
-		<?php session_start();?>
-		
 		<div class="content">
 			<?php
 			//Connect to database

@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -13,23 +17,43 @@
 	<?php include "php scripts/textprocessor.php";?>
 	<?php include "php scripts/post.php";?>
 	<?php include "../config/config.php"?>
-</head><!--  $db = new mysqli("localhost", $_db_username, $_db_password, "emmanuel");  -->
+</head>
 <body>
 	<div id="wrapper">
-		<?php session_start();?>
-		
 		<div class="content">
 			<div id="slideShow1Frame">
 				<div id="slideShow1" class="slideShow">
 					<div id="slideShow1slide1" class="slide" hidden>
 						<img class="slideImage" src="img/Image 1.png" />
+						<div id="slideText1" class="slideText slideText">
+							<p class="centerText">Worship Times</p>
+							<ul class="slideTextList">
+								<li>Sunday: 10:00am</li>
+								<li>2nd Tues of the Month: 6:30pm</li>
+							</ul>
+						</div>
 					</div>
 					<div id="slideShow1slide2" class="slide" hidden>
 						<img class="slideImage" src="img/Image 2.png" />
+						<div id="slideText2" class="slideText slideText">
+							<p class="centerText">Address</p>
+							<ul class="slideTextList">
+								<li><?php echo "$_site_address_street";?></li>
+								<li><?php echo "$_site_address_city";?></li>
+							</ul>
+						</div>
 					</div>
 					<div id="slideShow1slide3" class="slide" hidden>
 						<img class="slideImage" src="img/Image 3.png" />
+						<div id="slideText3" class="slideText slideText">
+							<p class="centerText">Contact</p>
+							<ul class="slideTextList">
+								<li>Phone: <?php echo "$_site_phone";?></li>
+								<li>Email: <?php echo "$_site_email";?></li>
+							</ul>
+						</div>
 					</div>
+					
 				</div>
 			</div>
 			

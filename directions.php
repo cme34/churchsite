@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php
+session_start();
+?>
 
 <!doctype html>
 <html>
@@ -31,18 +33,20 @@
 						<div id="address">
 							<h5>Address:</h5>
 							<ul>
-								<li>Jefferson</li>
-								<li>Pittsburgh, PA</li>
-								<li>15235</li>
+								<li><?php echo "$_site_address_street";?></li>
+								<li><?php echo "$_site_address_city";?></li>
 							</ul>
 							<h5>Phone:</h5>
 							<ul>
-								<li>412</li>
+								<li><?php echo "$_site_phone";?></li>
 							</ul>
 							<h5>Email:</h5>
 							<ul>
-								<li>email@</li>
+								<li><?php echo "$_site_email";?></li>
 							</ul>
+							<a class="centerText" href='https://www.google.com/maps/place/Emmanuel+Lutheran+Church+of+Eastmont/@40.441999,-79.8151877,17z/data=!3m1!4b1!4m5!3m4!1s0x8834ebe94cd95457:0x1ad5d653dd6ce35b!8m2!3d40.441999!4d-79.812999'>
+								<h5>Click here to go to Google Maps</h5>
+							</a>
 						</div>
 					</div>
 				</div>

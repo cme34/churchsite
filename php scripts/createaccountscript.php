@@ -66,8 +66,8 @@ $to = $email;
 $subject = "Emmanuel Lutheran Church - Email Verification";
 $txt = "Thank you for creating an account on our website please click the following link to verifiy your account. 
 http://localhost/churchsite/php%20scripts/verify.php?username=$username&hash=$hash";
-$headers = array("From: ",
-    "Reply-To: ",
+$headers = array("From: eastmontelcsite@gmail.com",
+    "Reply-To: eastmontelcsite@gmail.com",
     "X-Mailer: PHP/" . PHP_VERSION
 );
 $headers = implode("\r\n", $headers);

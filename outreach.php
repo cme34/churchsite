@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -16,8 +20,6 @@
 </head>
 <body>
 	<div id="wrapper">
-		<?php session_start();?>
-		
 		<div class="content">
 			<div class="sectionTitleContainer">
 				<h2 class="strongText centerText">Outreach</h2>

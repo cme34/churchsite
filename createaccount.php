@@ -1,6 +1,7 @@
 <?php
-//If the user is signed in, prevent them from accessing this page
 session_start();
+
+//If the user is signed in, prevent them from accessing this page
 if (isset($_SESSION["username"])) {
 	header("Location: home.php");
 }
@@ -41,9 +42,9 @@ if (isset($_SESSION["username"])) {
 						Confirm Password: <input class="inputTextFeild" id="passwordConfirm" name="passwordConfirm" type="password" maxlength=512></input>
 						<p class="inputCharacterLimitText">Character Limit: 512</p>
 						<br/>
-						<input class="inputCheckbox" type="checkbox" id="newsletter" name="newsletter" checked><span>I would like to recieve the monthly Emanual Echos newsletter.</span>
+						<input class="inputCheckbox" type="checkbox" id="newsletter" name="newsletter" checked><span>I would like to recieve emails from Emmanuel about church related news and events.</span>
 						<br/>
-						<input class="inputCheckbox" type="checkbox" id="terms" name="terms"><span>By creating an account, you hereby accept the <a href="privacypolicy.php">Privacy Policy</a> and <a href="termsofuse.php">Terms of Use</a>.</span>
+						<input class="inputCheckbox" type="checkbox" id="terms" name="terms"><span>By creating an account, you hereby accept the <a href="privacypolicy.php">Privacy Policy</a>.</span>
 						<br/>
 						<div class="small-6 columns"><button class="button inputButton yes">Create Account</button></div>
 						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
