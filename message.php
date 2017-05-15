@@ -1,6 +1,7 @@
 <?php
-//If message is not set in session, then navigate to home.php 
 session_start();
+
+//If message is not set in session, then navigate to home.php 
 if (!isset($_SESSION["message"])) {
 	header("Location: home.php");
 }

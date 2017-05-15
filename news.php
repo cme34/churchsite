@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include "../config/config.php";
 
 $highlightLimit = 5;
@@ -54,8 +56,6 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 </head>
 <body>
 	<div id="wrapper">
-		<?php session_start();?>
-		
 		<div class='content'>
 			<div class="sectionTitleContainer">
 				<h2 class="strongText  centerText">Highlighted News</h4>

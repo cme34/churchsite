@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 //If the user is not signed in, prevent them from accessing this page
 if (!isset($_SESSION["username"])) {
 	header("Location: home.php");

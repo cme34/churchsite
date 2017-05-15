@@ -27,7 +27,7 @@ function slideShow(slideShowID, holdTime, transitionTime) {
 	$('#toolBoxButton').click(function(){
 		$('#toolBox').toggle();
 	});
-	
+	/*
 	//Adjust nav size between two give widths 
 	function navResize() {
 		var curWidth = $(window).width();
@@ -59,7 +59,7 @@ function slideShow(slideShowID, holdTime, transitionTime) {
 		toolBoxResize();
 	});
 	navResize();
-	toolBoxResize();
+	toolBoxResize();*/
 	
 	//$(window).resize(function() {
 	//	$('#slideShow1Frame').height($('#slideShow1Frame').width() * 9/16);
