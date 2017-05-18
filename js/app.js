@@ -28,8 +28,24 @@ function slideShow(slideShowID, holdTime, transitionTime) {
 		$('#toolBox').toggle();
 	});
 	
+	$('#toolBoxMobileButton').click(function(){
+		$('#toolBoxMobile').toggle();
+	});
+	
 	function resize() {
-		
+		var width = $(window).width();
+		if (width <= 800) {
+			$('#footerMobile').show();
+			$('#footer').hide();
+			$('#navPagesMobile').show();
+			$('#navPages').hide();
+		}
+		else {
+			$('#footerMobile').hide();
+			$('#footer').show();
+			$('#navPagesMobile').hide();
+			$('#navPages').show();
+		}
 	}
 	
 	$(window).resize(function(){

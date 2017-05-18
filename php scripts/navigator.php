@@ -1,13 +1,18 @@
 <?php
 function createNavigator() {
 	echo "<div id='nav'>";
-	echo "    <a href='home.php'><div class='button buttonNav left'>Home</div></a>";
-	echo "    <a href='news.php'><div class='button buttonNav left'>News</div></a>";
-	echo "    <a href='activities.php'><div class='button buttonNav left'>Activities</div></a>";
-	echo "    <a href='churchyear.php'><div class='button buttonNav left'>Church Year</div></a>";
-	echo "    <a href='youth.php'><div class='button buttonNav left'>Youth</div></a>";
-	echo "    <a href='outreach.php'><div class='button buttonNav left'>Outreach</div></a>";
-	echo "    <a href='directions.php'><div class='button buttonNav left'>Directions</div></a>";
+	echo "    <div id='navPages' hidden>";
+	echo "        <a href='home.php'><div class='button buttonNav left'>Home</div></a>";
+	echo "        <a href='news.php'><div class='button buttonNav left'>News</div></a>";
+	echo "        <a href='activities.php'><div class='button buttonNav left'>Activities</div></a>";
+	echo "        <a href='churchyear.php'><div class='button buttonNav left'>Church Year</div></a>";
+	echo "        <a href='youth.php'><div class='button buttonNav left'>Youth</div></a>";
+	echo "        <a href='outreach.php'><div class='button buttonNav left'>Outreach</div></a>";
+	echo "        <a href='directions.php'><div class='button buttonNav left'>Directions</div></a>";
+	echo "    </div>";
+	echo "    <div id='navPagesMobile' hidden>";
+	echo "	  	  <div id='toolBoxMobileButton' class='button buttonNav left'>Pages</div>";
+	echo "    </div>";
 	if (!isset($_SESSION["username"])) {
 		echo "<a href='createaccount.php'><div class='button buttonNav right'>Create Account</div></a>";
 		echo "<a href='login.php'><div class='button buttonNav right'>Login</div></a>";
@@ -30,6 +35,15 @@ function createNavigator() {
 		}
 		echo "</div>";
 	}
+	echo "	  <div id='toolBoxMobile' hidden>";
+	echo "    	  <a href='home.php'><div class='button buttonToolbox'>Home</div></a>";
+	echo "    	  <a href='news.php'><div class='button buttonToolbox'>News</div></a>";
+	echo "    	  <a href='activities.php'><div class='button buttonToolbox'>Activities</div></a>";
+	echo "    	  <a href='churchyear.php'><div class='button buttonToolbox'>Church Year</div></a>";
+	echo "    	  <a href='youth.php'><div class='button buttonToolbox'>Youth</div></a>";
+	echo "    	  <a href='outreach.php'><div class='button buttonToolbox'>Outreach</div></a>";
+	echo "   	 <a href='directions.php'><div class='button buttonToolbox'>Directions</div></a>";
+	echo "	  </div>";
 	echo "</div>";
 }
 ?>
