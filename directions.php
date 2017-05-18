@@ -11,7 +11,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
 	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
-	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px) and (max-width: 1250px)" href="css/medium.css" />
+	<link rel="stylesheet" media="screen and (min-width: 1251px)" href="css/app.css" />
 	<?php include "php scripts/navigator.php";?>
 	<?php include "php scripts/footer.php";?>
 	<?php include "php scripts/textprocessor.php";?>
@@ -45,7 +46,7 @@ session_start();
 								<li><?php echo "$_site_email";?></li>
 							</ul>
 							<a class="centerText" href='https://www.google.com/maps/place/Emmanuel+Lutheran+Church+of+Eastmont/@40.441999,-79.8151877,17z/data=!3m1!4b1!4m5!3m4!1s0x8834ebe94cd95457:0x1ad5d653dd6ce35b!8m2!3d40.441999!4d-79.812999'>
-								<h5>Click here to go to Google Maps</h5>
+								<h5>(To Google Maps)</h5>
 							</a>
 						</div>
 					</div>

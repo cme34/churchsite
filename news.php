@@ -49,7 +49,8 @@ $firstPostOfPage = $pageLimit * ($page - 1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
 	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
-	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px) and (max-width: 1250px)" href="css/medium.css" />
+	<link rel="stylesheet" media="screen and (min-width: 1251px)" href="css/app.css" />
 	<?php include "php scripts/navigator.php";?>
 	<?php include "php scripts/footer.php";?>
 	<?php include "php scripts/textprocessor.php";?>
@@ -61,9 +62,11 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 				<h2 class="strongText  centerText">Highlighted News</h4>
 			</div>
 			<div class="container">
-				<div class="small-4 columns overflowHidden strongText">Title</div>
-				<div class="small-4 columns overflowHidden strongText">Time Created</div>
-				<div class="small-4 columns overflowHidden strongText">Time Last Edited</div>
+				<div class='noHighlight'>
+					<div class="small-4 columns overflowHidden strongText">Title</div>
+					<div class="small-4 columns overflowHidden strongText">Time Created</div>
+					<div class="small-4 columns overflowHidden strongText">Time Last Edited</div>
+				</div>
 				<?php
 				//Get top $highlightLimit highlighted news
 				$query = "SELECT * FROM postsnews WHERE postsnews.highlight = '1' ORDER BY postid DESC LIMIT $highlightLimit";
@@ -85,8 +88,8 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 					$title = $row["title"];
 					$creatortimestamp = $row["creatortimestamp"];
 					$lastedittimestamp = $row["lastedittimestamp"];
-					echo "<div>";
-					echo "<a href='newsview.php?postid=$postid'><div class='small-4 columns boldLink'>$title</div></a>";
+					echo "<div class='highlight'>";
+					echo "<a href='newsview.php?postid=$postid'><div class='small-4 columns newsTitle'>$title</div></a>";
 					echo "<div class='small-4 columns'>[$creatortimestamp]</div>";
 					echo "<div class='small-4 columns'>[$lastedittimestamp]</div>";
 					echo "</div>";
@@ -107,10 +110,11 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 				?>
 			</div>
 			<div class="container">
-				<div class="small-4 columns overflowHidden strongText">Title</div>
-				<div class="small-2 columns overflowHidden strongText">Highlighted</div>
-				<div class="small-3 columns overflowHidden strongText">Time Created</div>
-				<div class="small-3 columns overflowHidden strongText">Time Last Edited</div>
+				<div class='noHighlight'>
+					<div class="small-4 columns overflowHidden strongText">Title</div>
+					<div class="small-4 columns overflowHidden strongText">Time Created</div>
+					<div class="small-4 columns overflowHidden strongText">Time Last Edited</div>
+				</div>
 				<?php		
 				//Get Posts to display
 				$query = "SELECT * FROM postsnews ORDER BY postid DESC LIMIT $firstPostOfPage, $pageLimit";
@@ -126,16 +130,15 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 					$creatortimestamp = $row["creatortimestamp"];
 					$lastedittimestamp = $row["lastedittimestamp"];
 					$highlight = $row["highlight"];
-					echo "<div>";
-					echo "<a href='newsview.php?postid=$postid'><div class='small-4 columns boldLink'>$title</div></a>";
 					if ($highlight == 1) {
-						echo "<div class='small-2 columns'>yes</div>";
+						echo "<div class='highlight'>";
 					}
 					else {
-						echo "<div class='small-2 columns'>no</div>";
+						echo "<div class='noHighlight'>";
 					}
-					echo "<div class='small-3 columns'>[$creatortimestamp]</div>";
-					echo "<div class='small-3 columns'>[$lastedittimestamp]</div>";
+					echo "<a href='newsview.php?postid=$postid'><div class='small-4 columns newsTitle'>$title</div></a>";
+					echo "<div class='small-4 columns'>[$creatortimestamp]</div>";
+					echo "<div class='small-4 columns'>[$lastedittimestamp]</div>";
 					echo "</div>";
 				}
 				?>
