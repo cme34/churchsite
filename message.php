@@ -16,7 +16,8 @@ if (!isset($_SESSION["message"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/foundation.css" />
 	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
-	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/app.css" />
+	<link rel="stylesheet" media="screen and (min-width: 801px) and (max-width: 1250px)" href="css/medium.css" />
+	<link rel="stylesheet" media="screen and (min-width: 1251px)" href="css/app.css" />
 	<?php include "php scripts/navigator.php";?>
 	<?php include "php scripts/footer.php";?>
 	<?php include "php scripts/textprocessor.php";?>
