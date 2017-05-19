@@ -31,7 +31,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText  centerText">Create Post</h4>
+				<p class="sectionTitle">Create Post</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">

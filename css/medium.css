@@ -163,6 +163,10 @@ ul {
 .highlight {
 	background-color: yellow;
 	height: 24px;
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 0;
+	border-bottom-width: 1px;
 }
 
 .inline {
@@ -271,6 +275,10 @@ ul {
 .noHighlight {
 	background-color: transparent;
 	height: 24px;
+	border-style: solid;
+	border-color: #a33030;
+	border-width: 0;
+	border-bottom-width: 1px;
 }
 
 .noMargin {
@@ -325,6 +333,13 @@ ul {
 .postText {
 	font-family: "Verdana";
 	font-size: 12pt;
+}
+
+.sectionTitle {
+	color: #772222;
+	font-weight: bold;
+	text-align: center;
+	font-size: 24pt;
 }
 
 .sectionTitleContainer {
@@ -407,6 +422,11 @@ ul {
 	border-top-width: 0;
 }
 
+#homePageContainer {
+	height: 360px;
+	background-color: #a33030;
+}
+
 #footer {
 	position: absolute;
 	background-color: #a33030;
@@ -423,6 +443,14 @@ ul {
 #footerbuffer {
 	height: 308px;
 	min-height: 308px;
+}
+
+#footerFacebookMobile {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	right: 4px;
+	bottom: 4px;
 }
 
 #footerImageContainer {
@@ -473,9 +501,10 @@ ul {
 	position: relative;
 	overflow: auto;
 	overflow-y: hidden;
+	font-size: 11pt;
 	white-space: nowrap;
 	background-color: #f9ebeb;
-	height: 384px;
+	height: 360px;
 	border-style: solid;
 	border-color: #a33030;
 	border-width: 4px;
@@ -519,9 +548,10 @@ ul {
 	position: relative;
 	overflow: auto;
 	overflow-y: hidden;
+	font-size: 11pt;
 	white-space: nowrap;
 	background-color: #f9ebeb;
-	height: 384px;
+	height: 360px;
 	border-style: solid;
 	border-color: #a33030;
 	border-width: 4px;

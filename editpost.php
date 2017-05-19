@@ -32,7 +32,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText  centerText">Create Post</h4>
+				<p class="sectionTitle">Create Post</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">
@@ -73,7 +73,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 							unset($_SESSION["error"]);
 							echo "<p class='errorText'>$err<br/></p>";
 						}
-						echo "</form>"
+						echo "</form>";
 					}
 					else {
 						echo "<p>An error has occured. Please try again later.</p>";

@@ -59,13 +59,13 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 	<div id="wrapper">
 		<div class='content'>
 			<div class="sectionTitleContainer">
-				<h2 class="strongText  centerText">Highlighted News</h4>
+				<p class="sectionTitle">Highlighted News</p>
 			</div>
 			<div class="container">
 				<div class='noHighlight'>
-					<div class="small-4 columns overflowHidden strongText">Title</div>
-					<div class="small-4 columns overflowHidden strongText">Time Created</div>
-					<div class="small-4 columns overflowHidden strongText">Time Last Edited</div>
+					<div class="small-4 columns noWrap overflowHidden strongText newsTitle">Title</div>
+					<div class="small-4 columns noWrap overflowHidden strongText newsTime">Time Created</div>
+					<div class="small-4 columns noWrap overflowHidden strongText newsTime">Time Last Edited</div>
 				</div>
 				<?php
 				//Get top $highlightLimit highlighted news
@@ -90,14 +90,14 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 					$lastedittimestamp = $row["lastedittimestamp"];
 					echo "<div class='highlight'>";
 					echo "<a href='newsview.php?postid=$postid'><div class='small-4 columns newsTitle'>$title</div></a>";
-					echo "<div class='small-4 columns'>[$creatortimestamp]</div>";
-					echo "<div class='small-4 columns'>[$lastedittimestamp]</div>";
+					echo "<div class='small-4 columns noWrap overflowHidden newsTime'>[$creatortimestamp]</div>";
+					echo "<div class='small-4 columns noWrap overflowHidden newsTime'>[$lastedittimestamp]</div>";
 					echo "</div>";
 				}
 				?>
 			</div>
 			<div class="sectionTitleContainer">
-				<h2 class="strongText centerText">News</h4>
+				<p class="sectionTitle">News</p>
 				<?php
 					//Show addBar if signed in as admin
 					if (isset($_SESSION["username"])) {
@@ -111,9 +111,9 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 			</div>
 			<div class="container">
 				<div class='noHighlight'>
-					<div class="small-4 columns overflowHidden strongText">Title</div>
-					<div class="small-4 columns overflowHidden strongText">Time Created</div>
-					<div class="small-4 columns overflowHidden strongText">Time Last Edited</div>
+					<div class="small-4 columns noWrap overflowHidden strongText newsTitle">Title</div>
+					<div class="small-4 columns noWrap overflowHidden strongText newsTime">Time Created</div>
+					<div class="small-4 columns noWrap overflowHidden strongText newsTime">Time Last Edited</div>
 				</div>
 				<?php		
 				//Get Posts to display
@@ -137,8 +137,8 @@ $firstPostOfPage = $pageLimit * ($page - 1);
 						echo "<div class='noHighlight'>";
 					}
 					echo "<a href='newsview.php?postid=$postid'><div class='small-4 columns newsTitle'>$title</div></a>";
-					echo "<div class='small-4 columns'>[$creatortimestamp]</div>";
-					echo "<div class='small-4 columns'>[$lastedittimestamp]</div>";
+					echo "<div class='small-4 columns noWrap overflowHidden newsTime'>[$creatortimestamp]</div>";
+					echo "<div class='small-4 columns noWrap overflowHidden newsTime'>[$lastedittimestamp]</div>";
 					echo "</div>";
 				}
 				?>

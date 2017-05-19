@@ -84,7 +84,7 @@ function createFooter() {
 	echo "            <div class='floatLeft clear'>Copyright © 2017</div>";
 	echo "        </div>";
 	echo "		  <div class='small-6 columns'>";
-	echo "        	  <div class='floatRight clear'>";
+	echo "        	  <div id='footerFacebookMobile'>";
 	echo "            	  <a href='https://www.facebook.com/emmanueleastmont/'><img src='img/facebook.png' alt='Facebook'></a>";
 	echo "	      	  </div>";
 	echo "		  </div>";

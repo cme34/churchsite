@@ -59,7 +59,7 @@ session_start();
 			</div>
 			
 			<div class="containerGroup">
-				<div style="height: 384px; background-color: #a33030;">
+				<div id="homePageContainer">
 					<div id="newsFeed" class="small-6 columns container">
 						<h4 class="strongText centerText">News Feed</h4>
 						<?php
@@ -210,7 +210,7 @@ session_start();
 			</div>
 			
 			<div class="sectionTitleContainer">
-				<h2 class="strongText centerText">About Emmanuel</h2>
+				<p class="sectionTitle">About Emmanuel</p>
 				<?php
 					//Show addBar if signed in as admin
 					if (isset($_SESSION["username"])) {

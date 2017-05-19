@@ -23,14 +23,14 @@ session_start();
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText centerText">Directions</h4>
+				<p class="sectionTitle">Directions</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<div class="small-8 columns noMargin noPadding">
+					<div id="mapContainer" class="small-8 columns noMargin noPadding">
 						<div id="map"></div>
 					</div>
-					<div class="small-4 columns noMargin noPadding">
+					<div id="addressContainer" class="small-4 columns noMargin noPadding">
 						<div id="address">
 							<h5>Address:</h5>
 							<ul>
