@@ -51,9 +51,7 @@ if ($rows < 1) {
 
 //Set account to verified
 $query = "UPDATE emmanuelaccountinfo SET verified='1' WHERE username='$username'";
-$result = $db->query($query);
-$rows = $result->num_rows;
-if ($rows < 1) {
+if (!$db->query($query)) {
 	$_SESSION["message"] = "Verification failed. Please try again.";
 	header("Location: ../message.php");
 	die();

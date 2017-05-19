@@ -28,10 +28,10 @@ function createNavigator() {
 			echo "<a href='manageadmins.php'><div class='button buttonToolbox'>Manage Admins</div></a>";
 		}
 		if ($_SESSION["newsletter"] == 0) {
-			echo "<a href='php scripts/switchnewsletter.php'><div class='button buttonToolbox'>Start Receiving Newsletter</div></a>";
+			echo "<a href='php scripts/switchnewsletter.php'><div class='button buttonToolbox'>Start Receiving Emails</div></a>";
 		}
 		else {
-			echo "<a href='php scripts/switchnewsletter.php'><div class='button buttonToolbox'>Stop Receiving Newsletter</div></a>";
+			echo "<a href='php scripts/switchnewsletter.php'><div class='button buttonToolbox'>Stop Receiving Emails</div></a>";
 		}
 		echo "</div>";
 	}

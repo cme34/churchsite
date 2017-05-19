@@ -16,6 +16,11 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 $subject = $_POST["subject"];
 $text = $_POST["text"];
 
+//Add unsubscribe text
+$text .= "
+
+To unsubscribe from these emails, just login at $_site_url and under your account, select Stop Recieving Emails.";
+
 //Connect to database
 $db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
 if ($db->connect_error) {

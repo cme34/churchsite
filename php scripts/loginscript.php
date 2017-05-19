@@ -39,6 +39,14 @@ if ($rows < 1) {
 $row = $result->fetch_assoc();
 $admin = $row["admin"];
 $newsletter = $row["newsletter"];
+$verified = $row["verified"];
+
+//Prevent login if not verified
+if ($verified == 0) {
+	$_SESSION["error"] = "Account not verified yet, please accept the verification email sent to your email.";
+	header("Location: ../login.php");
+	die();
+}
 
 //Set session data and go to home page
 $_SESSION["username"] = $username;
