@@ -33,7 +33,7 @@ if (!($_SESSION["admin"] == 2)) {
 	<div id="wrapper">		
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText  centerText">Mass Email</h4>
+				<p class="sectionTitle">Mass Email</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">

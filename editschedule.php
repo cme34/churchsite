@@ -32,7 +32,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText  centerText">Edit Weekly Schedule</h4>
+				<p class="sectionTitle">Edit Weekly Schedule</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">

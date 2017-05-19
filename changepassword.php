@@ -26,7 +26,7 @@ if (!isset($_SESSION["username"])) {
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText  centerText">Change Password</h4>
+				<p class="sectionTitle">Change Password</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">

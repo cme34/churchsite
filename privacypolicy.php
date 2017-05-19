@@ -23,7 +23,7 @@ session_start();
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText  centerText">Privacy Policy</h4>
+				<p class="sectionTitle">Privacy Policy</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">

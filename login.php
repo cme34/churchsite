@@ -26,7 +26,7 @@ if (isset($_SESSION["username"])) {
 	<div id="wrapper">
 		<div class="content small">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText  centerText">Login</h4>
+				<p class="sectionTitle">Login</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">

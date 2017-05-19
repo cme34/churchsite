@@ -23,7 +23,7 @@ session_start();
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<h2 class="strongText centerText">Outreach</h2>
+				<p class="sectionTitle">Outreach</p>
 				<?php
 					//Show addBar if signed in as admin
 					if (isset($_SESSION["username"])) {
