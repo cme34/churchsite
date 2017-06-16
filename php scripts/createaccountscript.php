@@ -59,29 +59,38 @@ if (!$db->query($query)) {
 	die();
 }
 
-//Send verification email
-$email = $_POST["email"];	
+//Create Email
 $username = $_POST["username"];	
-$to = $email;
-$subject = "Emmanuel Lutheran Church - Email Verification";
-$txt = "Thank you for creating an account on our website please click the following link to verifiy your account. 
-http://localhost/churchsite/php%20scripts/verify.php?username=$username&hash=$hash";
-$headers  = "From: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n";
-$headers .= "Cc: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n"; 
-$headers .= "X-Sender: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n";
-$headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
-$headers .= "X-Priority: 1" . "\r\n";
-$headers .= "Return-Path: noreply@emmanuellutheraneastmont.org" . "\r\n";
-$headers .= "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
-$rtn = mail($to, $subject, wordwrap($txt, 70), $headers);
+require '../../phpmailer/PHPMailerAutoload.php';
 
-if ($rtn) {
-	$rtn = "success";
-}
-else {
-	$rtn = "fail";
-}
+$mail = new PHPMailer();
+
+$mail->isSMTP();
+$mail->SMTPDebug = 0;
+$mail->Host = 'localhost';
+$mail->port = 25;
+$mail->SMTPAuth = false;
+$mail->SMTPSecure = false;
+$mail->SetFrom('noreply@emmanuellutheraneastmont.org');
+$mail->IsHTML(true);
+$mail->SMTPOptions = array(
+		'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
+$mail->addAddress($_POST["email"]);
+$mail->Subject = "Emmanuel Lutheran Church - Email Verification";
+$mail->Body = "Thank you for creating an account on our website please click the following link to verifiy your account. 
+				http://$_site_url/php%20scripts/verify.php?username=$username&hash=$hash";
+
+//Send Email
+if(!$mail->send()) {
+	$_SESSION["error"] = "An error occured when sending your verification email. Please try again.";
+	header("Location: ../createaccount.php");
+	die();
+} 
 
 //Set session message and navigate to message.php
 $_SESSION["message"] = "You have created your account successfully. Before you can log in, please accept the verification email sent to your provided email address." . "$rtn";
