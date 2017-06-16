@@ -45,16 +45,19 @@ if ($rows < 1) {
 }
 
 //Create headers
-$headers = array("From: eastmontelcsite@gmail.com",
-    "Reply-To: eastmontelcsite@gmail.com",
-    "X-Mailer: PHP/" . PHP_VERSION
-);
-$headers = implode("\r\n", $headers);
+$headers  = "From: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n";
+$headers .= "Cc: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n"; 
+$headers .= "X-Sender: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n";
+$headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
+$headers .= "X-Priority: 1" . "\r\n";
+$headers .= "Return-Path: noreply@emmanuellutheraneastmont.org" . "\r\n";
+$headers .= "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-Type: text/html; charset=iso-8859-1" . "\r\n";
 
 //Send email to all users who want to recieve emails
 while ($row = $result->fetch_assoc()) {
 	$to = $row["email"];
-	//mail($to, $subject, $text, $headers);
+	mail($to, $subject, $text, $headers);
 }
 
 //Set session message and navigate to message.php

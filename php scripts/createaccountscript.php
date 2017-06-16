@@ -66,14 +66,24 @@ $to = $email;
 $subject = "Emmanuel Lutheran Church - Email Verification";
 $txt = "Thank you for creating an account on our website please click the following link to verifiy your account. 
 http://localhost/churchsite/php%20scripts/verify.php?username=$username&hash=$hash";
-$headers = array("From: eastmontelcsite@gmail.com",
-    "Reply-To: eastmontelcsite@gmail.com",
-    "X-Mailer: PHP/" . PHP_VERSION
-);
-$headers = implode("\r\n", $headers);
-//mail($to, $subject, $txt,$headers);
+$headers  = "From: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n";
+$headers .= "Cc: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n"; 
+$headers .= "X-Sender: emmanuellutheraneastmont < noreply@emmanuellutheraneastmont.org >" . "\r\n";
+$headers .= 'X-Mailer: PHP/' . phpversion() . "\r\n";
+$headers .= "X-Priority: 1" . "\r\n";
+$headers .= "Return-Path: noreply@emmanuellutheraneastmont.org" . "\r\n";
+$headers .= "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
+$rtn = mail($to, $subject, wordwrap($txt, 70), $headers);
+
+if ($rtn) {
+	$rtn = "success";
+}
+else {
+	$rtn = "fail";
+}
 
 //Set session message and navigate to message.php
-$_SESSION["message"] = "You have created your account successfully. Before you can log in, please accept the verification email sent to your provided email address.";
+$_SESSION["message"] = "You have created your account successfully. Before you can log in, please accept the verification email sent to your provided email address." . "$rtn";
 header("Location: ../message.php");
 ?>

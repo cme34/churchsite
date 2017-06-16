@@ -301,6 +301,13 @@ ul {
 	overflow: visible; 
 }
 
+.policyText {
+	font-family: "Verdana";
+	font-size: 12pt;
+	padding: 4px 8px;
+	margin: 0;
+}
+
 .post {
 	background-color: #f9ebeb;
 	min-height: 320px;

@@ -30,7 +30,7 @@ if (isset($_SESSION["username"])) {
 			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form class="inputForm" Action="php scripts/loginScript.php" Method="POST">
+					<form class="inputForm" Action="php scripts/loginscript.php" Method="POST">
 						Username: <input class="inputTextFeild" id="username" name="username" type="text" maxlength=64></input>
 						<br/>
 						Password: <input class="inputTextFeild" id="password" name="password" type="password" maxlength=256></input>

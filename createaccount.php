@@ -45,7 +45,7 @@ if (isset($_SESSION["username"])) {
 						<br/>
 						<input class="inputCheckbox" type="checkbox" id="newsletter" name="newsletter" checked><span>I would like to recieve emails from Emmanuel about church related news and events.</span>
 						<br/>
-						<input class="inputCheckbox" type="checkbox" id="terms" name="terms"><span>By creating an account, you hereby accept the <a href="data/privacypolicy.htm"  target="_blank">Privacy Policy</a>.</span>
+						<input class="inputCheckbox" type="checkbox" id="terms" name="terms"><span>By creating an account, you hereby accept the <a href="privacypolicy.php"  target="_blank">Privacy Policy</a> and <a href="termsofuse.php"  target="_blank">Terms of Use</a>.</span>
 						<br/>
 						<div class="small-6 columns"><button class="button inputButton yes">Create Account</button></div>
 						<div class="small-6 columns"><a href="home.php"><div class="button inputButton no">Cancel</div></a></div>
