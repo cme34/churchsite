@@ -13,11 +13,7 @@ function createNavigator() {
 	echo "    <div id='navPagesMobile' hidden>";
 	echo "	  	  <div id='toolBoxMobileButton' class='button buttonNav left'>Pages</div>";
 	echo "    </div>";
-	if (!isset($_SESSION["username"])) {
-		echo "<a href='createaccount.php'><div class='button buttonNav right'>Create Account</div></a>";
-		echo "<a href='login.php'><div class='button buttonNav right'>Login</div></a>";
-	}
-	else {
+	if (isset($_SESSION["username"])) {
 		echo "<div id='toolBoxButton' class='button buttonNav right'>Account</div>";
 		echo "<div id='toolBox' class='border' hidden>";
 		echo "    <a href='php scripts/logoutscript.php'><div class='button buttonToolbox'>Logout</div></a>";
@@ -25,12 +21,6 @@ function createNavigator() {
 		echo "    <a href='changepassword.php'><div class='button buttonToolbox'>Change Password</div></a>";
 		if ($_SESSION["admin"] == 2) {
 			echo "<a href='manageadmins.php'><div class='button buttonToolbox'>Manage Admins</div></a>";
-		}
-		if ($_SESSION["newsletter"] == 0) {
-			echo "<a href='php scripts/switchnewsletter.php'><div class='button buttonToolbox'>Start Receiving Emails</div></a>";
-		}
-		else {
-			echo "<a href='php scripts/switchnewsletter.php'><div class='button buttonToolbox'>Stop Receiving Emails</div></a>";
 		}
 		echo "</div>";
 	}
@@ -44,5 +34,8 @@ function createNavigator() {
 	echo " 		  <a href='directions.php'><div class='button buttonToolbox'>Directions</div></a>";
 	echo "	  </div>";
 	echo "</div>";
+	if (!isset($_SESSION["username"])) {
+		echo "<a id='loginLink' href='login.php'>Admin Login</a>";
+	}
 }
 ?>

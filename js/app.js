@@ -62,6 +62,7 @@ function slideShow(slideShowID, holdTime, transitionTime) {
 			$('#footer').show();
 			$('#navPagesMobile').hide();
 			$('#navPages').show();
+			$('#toolBoxMobile').hide();
 			//Home Page
 			$('#newsFeed').removeClass('small-12 columns').addClass('small-6 columns');
 			$('#weeklySchedule').removeClass('small-12 columns').addClass('small-6 columns');

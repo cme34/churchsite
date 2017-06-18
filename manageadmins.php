@@ -36,10 +36,10 @@ if (!($_SESSION["admin"] == 2)) {
 			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form class="inputForm" Action="php scripts/addnewadminscript.php" Method="POST" enctype="multipart/form-data">
-						<div>Enter the username of a new admin here:</div>
-						<input class="inputBox" id="username" name="username" type="text"></input>
-						<button class="inputButton yes" type="text">Submit New Admin</button>
+					<form class="inputForm" Action="php scripts/sendadminrequestscript.php" Method="POST" enctype="multipart/form-data">
+						<div>Enter the email of a person you would like to be an admin here. The person will then recieve an email to create an account.</div>
+						<input class="inputBox" id="email" name="email" type="text"></input>
+						<button class="inputButton yes" type="text">Send Create Account Email</button>
 						<br />
 						<?php
 						if (isset($_SESSION["message"])) {
@@ -62,8 +62,8 @@ if (!($_SESSION["admin"] == 2)) {
 					}
 					else
 					{
-						//Check if credentials are valid
-						$query = "SELECT * FROM emmanuelaccountinfo WHERE emmanuelaccountinfo.admin = 1";
+						//Get admins
+						$query = "SELECT * FROM emmanuelaccountinfo WHERE emmanuelaccountinfo.admin = 1 OR emmanuelaccountinfo.admin = 2";
 						$result = $db->query($query);
 						$rows = $result->num_rows;
 						if ($rows < 1) {
@@ -72,9 +72,49 @@ if (!($_SESSION["admin"] == 2)) {
 						
 						while ($row = $result->fetch_assoc()) {
 							$username = $row["username"];
+							$admin = $row["admin"];
+							echo "<div class='maxWidth clear'>";
+							if ($admin == 1) {
+								echo "	<div class='adminName'>$username</div>";
+								echo "	<div class='adminRemoveLink'><a href='php scripts/removeadminscript.php?username=$username'>Remove Admin</a></div>";
+							}
+							else {
+								if ($_SESSION["username"] == $username) {
+									echo "	<div class='adminName'>$username [You]</div>";
+								}
+								else {
+									echo "	<div class='adminName'>$username [Master Level Account]</div>";
+								}
+							}
+							echo "</div>";
+						}
+					}
+					?>
+				</div>
+				</br>
+				<div class="container">
+					<div class="maxWidth"><h3 class="strongText centerText">List of Pending Admins</h3></div>
+					<?php
+					//Connect to database
+					$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
+					if ($db->connect_error) {
+						echo "<p class='errorText'>Error loading admins</p>";
+					}
+					else
+					{
+						//Check if credentials are valid
+						$query = "SELECT * FROM emmanuelpendinginfo";
+						$result = $db->query($query);
+						$rows = $result->num_rows;
+						if ($rows < 1) {
+							echo "<p class='centerText clear'>No pending admins found</p>";
+						}
+						
+						while ($row = $result->fetch_assoc()) {
+							$email = $row["email"];
 							echo "<div class='maxWidth'>";
-							echo "	<div class='adminName'>$username</div>";
-							echo "	<div class='adminRemoveLink'><a href='php scripts/removeadminscript.php?username=$username'>Remove Admin</a></div>";
+							echo "	<div class='adminName'>$email</div>";
+							echo "	<div class='adminRemoveLink'><a href='php scripts/removeadminrequestscript.php?email=$email'>Remove Pending Request</a></div>";
 							echo "</div>";
 						}
 					}

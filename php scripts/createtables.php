@@ -34,7 +34,25 @@ $table = "emmanuelaccountinfo";
 $query = "SELECT 1 FROM $table LIMIT 1";
 $result = $db->query($query);
 if (!$result) {
-	$query = "CREATE TABLE emmanuel.$table ( username VARCHAR(64) NOT NULL , password VARCHAR(512) NOT NULL , email VARCHAR(512) NOT NULL , admin INT NOT NULL , newsletter TINYINT(1) NOT NULL , verified TINYINT(1) NOT NULL , hash VARCHAR(32) NOT NULL , PRIMARY KEY (username)) ENGINE = InnoDB;";
+	$query = "CREATE TABLE emmanuel.$table ( username VARCHAR(64) NOT NULL , password VARCHAR(512) NOT NULL , email VARCHAR(512) NOT NULL , admin INT NOT NULL , PRIMARY KEY (username)) ENGINE = InnoDB;";
+	$result = $db->query($query);
+	if (!$result) {
+		$msg .= "Error creating table $table.<br />";
+	}
+	else {
+		$msg .= "Table $table created successfully.<br />";
+	}
+}
+else {
+	$msg .= "Table $table already exists.<br />";
+}
+
+//Check if emmanuelpendinginfo table exists, if it doesn't then create it
+$table = "emmanuelpendinginfo";
+$query = "SELECT 1 FROM $table LIMIT 1";
+$result = $db->query($query);
+if (!$result) {
+	$query = "CREATE TABLE emmanuel.$table ( email VARCHAR(512) NOT NULL , hash VARCHAR(32) NOT NULL , PRIMARY KEY (email)) ENGINE = InnoDB;";
 	$result = $db->query($query);
 	if (!$result) {
 		$msg .= "Error creating table $table.<br />";

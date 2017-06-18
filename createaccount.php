@@ -1,9 +1,46 @@
 <?php
+include "../config/config.php";
+
 session_start();
 
 //If the user is signed in, prevent them from accessing this page
 if (isset($_SESSION["username"])) {
 	header("Location: home.php");
+	die();
+}
+
+//If hash is not set, prevent them from accessing this page
+if (!isset($_GET["hash"])) {
+	$_SESSION["message"] = "Sorry, but you do not have access to the create account page.";
+	header("Location: message.php");
+	die();
+}
+$hash = $_GET["hash"];
+
+//If email is not set, prevent them from accessing this page
+if (!isset($_GET["email"])) {
+	$_SESSION["message"] = "Sorry, but you do not have access to the create account page.";
+	header("Location: message.php");
+	die();
+}
+$email = $_GET["email"];
+
+//Connect to database
+$db = new mysqli($_db_host, $_db_username, $_db_password, "emmanuel");
+if ($db->connect_error) {
+	$_SESSION["message"] = "Connection with database failed. Please try again later.";
+	header("Location: message.php");
+	die();
+}
+
+//With hash and email provided, check if allowed access to page
+$query = "SELECT * FROM emmanuelpendinginfo WHERE emmanuelpendinginfo.email = '$email' AND emmanuelpendinginfo.hash = '$hash'";
+$result = $db->query($query);
+$rows = $result->num_rows;
+if ($rows < 1) {
+	$_SESSION["message"] = "Sorry, but you do not have access to the create account page.";
+	header("Location: message.php");
+	die();
 }
 ?>
 
@@ -30,7 +67,7 @@ if (isset($_SESSION["username"])) {
 			</div>
 			<div class="containerGroup">
 				<div class="container">
-					<form class="inputForm" Action="php scripts/createaccountscript.php" Method="POST">
+					<?php echo "<form class='inputForm' Action='php scripts/createaccountscript.php?email=$email&hash=$hash' Method='POST'>" ?>
 						Username: <input class="inputTextFeild" id="username" name="username" type="text" maxlength=64></input>
 						<p class="inputCharacterLimitText">Character Limit: 64</p>
 						<br/>
@@ -42,8 +79,6 @@ if (isset($_SESSION["username"])) {
 						<br/>
 						Confirm Password: <input class="inputTextFeild" id="passwordConfirm" name="passwordConfirm" type="password" maxlength=512></input>
 						<p class="inputCharacterLimitText">Character Limit: 512</p>
-						<br/>
-						<input class="inputCheckbox" type="checkbox" id="newsletter" name="newsletter" checked><span>I would like to recieve emails from Emmanuel about church related news and events.</span>
 						<br/>
 						<input class="inputCheckbox" type="checkbox" id="terms" name="terms"><span>By creating an account, you hereby accept the <a href="privacypolicy.php"  target="_blank">Privacy Policy</a> and <a href="termsofuse.php"  target="_blank">Terms of Use</a>.</span>
 						<br/>
