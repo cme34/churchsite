@@ -36,6 +36,8 @@ function createFooter() {
 	echo "        </div>";
 	echo "        <div class='footerText right'>";
 	echo "            <div class='floatRight clear'>&nbsp;</div>";
+	echo "            <div class='floatRight clear'><a href='privacypolicy.php'>Privacy Policy</a> and <a href='termsofuse.php'>Terms of Use</a></div>";
+	echo "            <div class='floatRight clear'>&nbsp;</div>";
 	echo "            <div class='floatRight clear'>Lead Site Developer:</div>";
 	echo "            <div class='floatRight clear'>Cory Estock</div>";
 	echo "            <div class='floatRight clear'>&nbsp;</div>";
@@ -85,6 +87,9 @@ function createFooter() {
 	echo "            <div class='floatLeft clear'>Copyright © 2017</div>";
 	echo "        </div>";
 	echo "		  <div class='small-6 columns'>";
+	echo "            <div class='floatRight clear'><a href='privacypolicy.php'>Privacy Policy</a></div>";
+	echo "            <div class='floatRight clear'>&nbsp;</div>";
+	echo "			  <div class='floatRight clear'><a href='termsofuse.php'>Terms of Use</a></div>";
 	echo "            <div class='floatRight clear'>&nbsp;</div>";
 	echo "        	  <div id='footerFacebookMobile'>";
 	echo "            	  <a href='https://www.facebook.com/emmanueleastmont/'><img src='img/facebook.png' alt='Facebook'></a>";
