@@ -180,29 +180,31 @@ session_start();
 									}
 									
 									//Set schedule values
-									echo "<li class='weeklyScheduleText'>$sunday</li>";
-									echo "<li class='weeklyScheduleText'>$monday</li>";
-									echo "<li class='weeklyScheduleText'>$tuesday</li>";
-									echo "<li class='weeklyScheduleText'>$wednesday</li>";
-									echo "<li class='weeklyScheduleText'>$thursday</li>";
-									echo "<li class='weeklyScheduleText'>$friday</li>";
-									echo "<li class='weeklyScheduleText'>$saturday</li>";
+									echo "<li class='weeklyScheduleText'>$sunday &nbsp;</li>";
+									echo "<li class='weeklyScheduleText'>$monday &nbsp;</li>";
+									echo "<li class='weeklyScheduleText'>$tuesday &nbsp;</li>";
+									echo "<li class='weeklyScheduleText'>$wednesday &nbsp;</li>";
+									echo "<li class='weeklyScheduleText'>$thursday &nbsp;</li>";
+									echo "<li class='weeklyScheduleText'>$friday &nbsp;</li>";
+									echo "<li class='weeklyScheduleText'>$saturday &nbsp;</li>";
 									?>
 								</ul>
 							</div>
 						</div>
 						<?php
-						if (file_exists("data/bulletin.docx")) {
-							echo "<div class='centerText clear'><a href='data/bulletin.docx'>[View Weekly Bulletin]</a></div>";
-						}
-						
 						if (isset($_SESSION["username"])) {
 							if ($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2) {
 								echo "<div class='editBar scheduleBar'>";
+								if (file_exists("data/bulletin.docx")) {
+									echo "<a class='barOption' href='data/bulletin.docx'>[view bulletin]</a>";
+								}
 								echo "    <a class='barOption' href='editschedule.php'>[edit schedule]</a>";
 								echo "    <a class='barOption' href='changebulletin.php'>[change bulletin]</a>";
 								echo "</div>";
 							}
+						}
+						else if (file_exists("data/bulletin.docx")) {
+							echo "<div class='centerText clear'><a href='data/bulletin.docx'>[View Weekly Bulletin]</a></div>";
 						}
 						?>
 					</div>

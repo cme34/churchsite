@@ -47,6 +47,12 @@ if ($result->num_rows < 1) {
 $row = $result->fetch_assoc();
 $img = $row["image"];
 
+if ($img == null || $img == "") {
+	$_SESSION["message"] = "There was no image found for this post. Image removal failed.";
+	header("Location: ../message.php");
+	die();
+}
+
 //Remove image from file system
 if (!unlink("../$img")) {
 	$_SESSION["message"] = "An error occured when submitting data to the database. Please try again.";
