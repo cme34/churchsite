@@ -10,7 +10,7 @@ if (!isset($_SESSION["username"])) {
 <!doctype html>
 <html>
 <head>
-	<title>Change Email</title>
+	<title>Emmanuel Lutheran Church Eastmont Change Email</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

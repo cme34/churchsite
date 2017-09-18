@@ -47,7 +47,7 @@ if ($rows < 1) {
 <!doctype html>
 <html>
 <head>
-	<title>Create Account</title>
+	<title>Emmanuel Lutheran Church Eastmont Create Account</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

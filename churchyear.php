@@ -5,7 +5,7 @@ session_start();
 <!doctype html>
 <html>
 <head>
-	<title>Church Year</title>
+	<title>Emmanuel Lutheran Church Eastmont Church Year</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

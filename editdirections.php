@@ -15,7 +15,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 <!doctype html>
 <html>
 <head>
-	<title>Edit Weekly Directions</title>
+	<title>Emmanuel Lutheran Church Eastmont Edit Directions</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,7 +32,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 	<div id="wrapper">
 		<div class="content">
 			<div class="sectionTitleContainer">
-				<p class="sectionTitle">Edit Weekly Directions</p>
+				<p class="sectionTitle">Edit Directions</p>
 			</div>
 			<div class="containerGroup">
 				<div class="container">

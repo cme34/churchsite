@@ -15,7 +15,7 @@ if (!($_SESSION["admin"] == 1 || $_SESSION["admin"] == 2)) {
 <!doctype html>
 <html>
 <head>
-	<title>Change Bulletin</title>
+	<title>Emmanuel Lutheran Church Eastmont Change Bulletin</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
