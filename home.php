@@ -5,10 +5,12 @@ session_start();
 <!doctype html>
 <html>
 <head>
-	<title>Emmanuel Lutheran Church Eastmont Home</title>
+	<title>Home - Emmanuel Lutheran Church Eastmont</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="This is the website for Emmanuel Lutheran Church located in Eastmont Township.">
+	<meta name="keywords" content="Emmanuel, Lutheran, Church, Eastmont">
     <link rel="stylesheet" href="css/foundation.css" />
 	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
 	<link rel="stylesheet" media="screen and (min-width: 801px) and (max-width: 1250px)" href="css/medium.css" />
@@ -30,7 +32,8 @@ session_start();
 							<p class="centerText">Worship Times</p>
 							<ul class="slideTextList">
 								<li>Sunday: 10:00am</li>
-								<li>2nd Tues of the Month: 6:30pm</li>
+								<li>Midweek Advent Worship: 1 p.m. on Weds in December</li>
+								<li>Christmas Eve Worship: 7:00 p.m.</li>
 							</ul>
 						</div>
 					</div>

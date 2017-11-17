@@ -5,10 +5,12 @@ session_start();
 <!doctype html>
 <html>
 <head>
-	<title>Emmanuel Lutheran Church Eastmont Terms of Use</title>
+	<title>Terms of Use - Emmanuel Lutheran Church Eastmont</title>
 	<meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="This is the website for Emmanuel Lutheran Church located in Eastmont Township.">
+	<meta name="keywords" content="Emmanuel, Lutheran, Church, Eastmont">
     <link rel="stylesheet" href="css/foundation.css" />
 	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/mobile.css" />
 	<link rel="stylesheet" media="screen and (min-width: 801px) and (max-width: 1250px)" href="css/medium.css" />

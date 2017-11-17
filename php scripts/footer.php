@@ -8,7 +8,8 @@ function createFooter() {
 	echo "            <h6>Worship Time:</h6>";
 	echo "            <ul class='noWrap'>";
 	echo "                <li>Sunday: 10:00am - 11:15am</li>";
-	echo "                <li>Second Tuesday of the Month: 6:30pm - 7:15pm</li>";
+	echo "                <li>Midweek Advent Worship: 1 p.m. on Weds in December</li>";
+	echo "                <li>Christmas Eve Worship: 7:00 p.m.</li>";
 	echo "            </ul>";
 	echo "            <h6>Address: </h6>";
 	echo "            <ul class='noWrap'>";

@@ -59,11 +59,14 @@ if ($loc != "news") {
 	}
 }
 
-//Remove image from file system
-if (!unlink("../$img")) {
-	$_SESSION["message"] = "An error occured when submitting data to the database. Please try again.";
-	header("Location: ../message.php");
-	die();
+//Check if image exists
+if ($img != "") {
+	//Remove image from file system
+	if (!unlink("../$img")) {
+		$_SESSION["message"] = "An error occured when submitting data to the database. Please try again.";
+		header("Location: ../message.php");
+		die();
+	}
 }
 
 //Remove post from db
