@@ -32,8 +32,7 @@ session_start();
 							<p class="centerText">Worship Times</p>
 							<ul class="slideTextList">
 								<li>Sunday: 10:00am</li>
-								<li>Midweek Advent Worship: 1 p.m. on Weds in December</li>
-								<li>Christmas Eve Worship: 7:00 p.m.</li>
+								<li>Midweek Lenten Worship: 1:30 p.m. Weds</li>
 							</ul>
 						</div>
 					</div>
